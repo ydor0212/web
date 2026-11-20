@@ -1,53 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>南京江鸟科技有限公司 | 超细长重载柔性机械臂 · 混天绫</title>
 <meta name="description" content="南京江鸟科技有限公司专注超细长重载柔性机械臂研发与制造，核心产品“混天绫”长径比50.6、负载6.0kg、重复定位精度±0.6mm，实现航空、核电、石化狭小密闭腔体原位无损检测与运维。">
-<meta name="theme-color" content="#0F172A">
+<meta name="theme-color" content="#1E3A8A">
 <meta property="og:type" content="website">
 <meta property="og:title" content="南京江鸟科技有限公司 | 超细长重载柔性机械臂 · 混天绫">
 <meta property="og:description" content="长径比50.6 · 负载6.0kg · 动态响应≤0.1s · 狭小腔体原位无损检测装备">
 <meta property="og:image" content="assets/hero-1.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M5 32c6-.6 10.4-3.4 13.2-8.4 3.4-6.2 8.2-10.4 14.6-12.2-4.6 3.4-7.2 7-7.8 11 6.6-2.8 11.6-2.4 15-1.1-5.2 1.2-9.6 3.6-13.2 7.2-4.3 4.3-9.3 5.6-15 3.9z' fill='%23F97316'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M5 32c6-.6 10.4-3.4 13.2-8.4 3.4-6.2 8.2-10.4 14.6-12.2-4.6 3.4-7.2 7-7.8 11 6.6-2.8 11.6-2.4 15-1.1-5.2 1.2-9.6 3.6-13.2 7.2-4.3 4.3-9.3 5.6-15 3.9z' fill='%231E3A8A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Barlow+Condensed:wght@400;500;600;700&display=swap">
 <style>
 /* ==========================================================================
-   0. 机械科技官网 UI/UX 设计规范变量（方案 A 科技暗黑风 / 方案 B 精密极简风）
+   0. 机械科技官网设计规范（精密极简正式版：#F8FAFC / #FFFFFF + #1E3A8A 深钢蓝主色）
    ========================================================================== */
-:root, html[data-theme="dark"] {
-  --bg-primary: #0F172A;
-  --bg-secondary: #111827;
-  --bg-card: #1E293B;
-  --bg-card-hover: #263449;
-  --bg-elevated: rgba(30, 41, 59, 0.85);
-  --bg-nav: rgba(15, 23, 42, 0.90);
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
-  --accent: #F97316;
-  --accent-hover: #EA580C;
-  --accent-soft: rgba(249, 115, 22, 0.14);
-  --laser: #0EA5E9;
-  --laser-soft: rgba(14, 165, 233, 0.14);
-  --yellow: #EAB308;
-  --red-brand: #E1543F;
-  --border: rgba(148, 163, 184, 0.16);
-  --border-strong: rgba(148, 163, 184, 0.28);
-  --shadow: 0 24px 48px -18px rgba(2, 6, 23, 0.75);
-  --scheme-label: "方案A · 科技暗黑";
-}
-
-html[data-theme="light"] {
+:root {
   --bg-primary: #F8FAFC;
   --bg-secondary: #FFFFFF;
   --bg-card: #FFFFFF;
   --bg-card-hover: #F1F5F9;
   --bg-elevated: rgba(255, 255, 255, 0.94);
-  --bg-nav: rgba(255, 255, 255, 0.94);
+  --bg-nav: rgba(255, 255, 255, 0.95);
   --text-primary: #0F172A;
   --text-secondary: #334155;
   --text-muted: #64748B;
@@ -62,10 +38,6 @@ html[data-theme="light"] {
   --border: rgba(15, 23, 42, 0.11);
   --border-strong: rgba(15, 23, 42, 0.22);
   --shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.16);
-  --scheme-label: "方案B · 精密极简";
-}
-
-:root {
   --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", "Barlow Condensed", "Consolas", "SFMono-Regular", monospace;
   --font-num: "Barlow Condensed", "JetBrains Mono", "Consolas", monospace;
@@ -108,10 +80,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--font-mono); font-size: 12px; font-weight: 600;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
-  padding: 5px 12px; background: var(--accent-soft); border: 1px solid rgba(249,115,22,0.25);
+  padding: 5px 12px; background: var(--accent-soft); border: 1px solid rgba(30,58,138,0.2);
   border-radius: 4px; margin-bottom: 18px;
 }
-html[data-theme="light"] .eyebrow { border-color: rgba(30,58,138,0.2); }
 .eyebrow .num { color: var(--text-muted); font-weight: 500; }
 
 .sec-head {
@@ -127,8 +98,7 @@ html[data-theme="light"] .eyebrow { border-color: rgba(30,58,138,0.2); }
   border-radius: 4px; border: 1px solid transparent; transition: all .28s var(--ease);
   white-space: nowrap;
 }
-.btn--primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px -8px rgba(249, 115, 22, 0.6); }
-html[data-theme="light"] .btn--primary { box-shadow: 0 8px 22px -8px rgba(30, 58, 138, 0.45); }
+.btn--primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px -8px rgba(30, 58, 138, 0.45); }
 .btn--primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
 .btn--laser { background: var(--laser-soft); color: var(--laser); border-color: rgba(14, 165, 233, 0.35); }
 .btn--laser:hover { background: var(--laser); color: #fff; }
@@ -148,10 +118,9 @@ html[data-theme="light"] .btn--primary { box-shadow: 0 8px 22px -8px rgba(30, 58
   border-bottom: 1px solid var(--border); transition: all .3s var(--ease);
 }
 .topbar {
-  background: rgba(2, 6, 23, 0.65); color: #94A3B8; font-size: 12px;
+  background: #0F172A; color: #CBD5E1; font-size: 12px;
   border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
-html[data-theme="light"] .topbar { background: #0F172A; color: #CBD5E1; }
 .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 34px; gap: 16px; }
 .topbar .tb-l, .topbar .tb-r { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
 .topbar .badge-iso {
@@ -181,13 +150,6 @@ html[data-theme="light"] .topbar { background: #0F172A; color: #CBD5E1; }
 }
 
 .nav-right { display: flex; align-items: center; gap: 10px; }
-.theme-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 12px; border-radius: 4px; border: 1px solid var(--border-strong);
-  font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary);
-  background: var(--bg-card); transition: all .25s;
-}
-.theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 .burger { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; }
 
 /* ==========================================================================
@@ -795,10 +757,6 @@ html[data-theme="light"] .topbar { background: #0F172A; color: #CBD5E1; }
         <a href="#contact">联系询盘</a>
       </nav>
       <div class="nav-right">
-        <button class="theme-btn" id="themeToggle" type="button" title="切换配色方案（方案A 科技暗黑 / 方案B 精密极简）">
-          <svg class="lucide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <span id="themeText">方案A·暗黑</span>
-        </button>
         <button class="btn btn--primary btn--sm" type="button" data-inquiry="整套方案咨询" data-intent="预约样机演示 / 获取报价">
           <svg class="lucide" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
           获取报价 / 预约样机演示
@@ -1686,7 +1644,7 @@ html[data-theme="light"] .topbar { background: #0F172A; color: #CBD5E1; }
     </div>
     <div class="f-bottom">
       <div>© 2026 南京江鸟科技有限公司 版权所有 · 江苏省重点研发计划（BE2024153）支持</div>
-      <div>部署就绪：支持腾讯云 EdgeOne Pages / Cloudflare Pages 国内加速访问</div>
+      <div>苏ICP备2026XXXXXX号 · 江苏省智能制造重点实验室产学研基地</div>
     </div>
   </div>
 </footer>
@@ -1797,24 +1755,7 @@ html[data-theme="light"] .topbar { background: #0F172A; color: #CBD5E1; }
 <div class="toast" id="toast"></div>
 
 <script>
-/* ========== 1. 方案 A（科技暗黑风） / 方案 B（精密极简风）主题切换 ========== */
-(function(){
-  const root = document.documentElement;
-  const btn = document.getElementById('themeToggle');
-  const txt = document.getElementById('themeText');
-  const saved = localStorage.getItem('jn_theme');
-  if(saved === 'light' || saved === 'dark') apply(saved);
-  function apply(t){
-    root.setAttribute('data-theme', t);
-    txt.textContent = t === 'dark' ? '方案A·暗黑' : '方案B·极简';
-    localStorage.setItem('jn_theme', t);
-  }
-  btn.addEventListener('click', () => {
-    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
-})();
-
-/* ========== 2. 首屏轮播 ========== */
+/* ========== 1. 首屏轮播 ========== */
 (function(){
   const slides = [...document.querySelectorAll('.slide')];
   const dots = [...document.querySelectorAll('#heroDots button')];

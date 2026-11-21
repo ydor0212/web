@@ -13,6 +13,25 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M5 32c6-.6 10.4-3.4 13.2-8.4 3.4-6.2 8.2-10.4 14.6-12.2-4.6 3.4-7.2 7-7.8 11 6.6-2.8 11.6-2.4 15-1.1-5.2 1.2-9.6 3.6-13.2 7.2-4.3 4.3-9.3 5.6-15 3.9z' fill='%231E3A8A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Barlow+Condensed:wght@400;500;600;700&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "南京江鸟科技有限公司",
+  "alternateName": "Nanjing Jiangniao Technology Co., Ltd.",
+  "url": "https://www.jiangniao-tech.com/",
+  "logo": "https://www.jiangniao-tech.com/assets/hero-1.jpg",
+  "description": "专注超细长重载柔性机械臂研发与制造，核心产品混天绫系列长径比50.6、负载6.0kg、重复定位精度±0.6mm。",
+  "telephone": "+86-25-88886666",
+  "email": "contact@jiangniao-tech.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "南京市",
+    "addressRegion": "江苏省",
+    "streetAddress": "江苏装备产业园"
+  }
+}
+</script>
 <style>
 /* ==========================================================================
    0. 机械科技官网设计规范（精密极简正式版：#F8FAFC / #FFFFFF + #1E3A8A 深钢蓝主色）
@@ -704,6 +723,78 @@ ul { margin: 0; padding: 0; list-style: none; }
   .kpi-grid, .cert-grid, .adv-grid, .scene-grid, .case-grid, .f-grid, .cform .row, .cform .form-acts { grid-template-columns: 1fr; }
   .topbar .tb-l { display: none; }
 }
+/* ==========================================================================
+   11. 借鉴 ScrewFast / NDT 工业站：顶部阅读进度条 + 智能选型与 ROI 测算器 + 技术 FAQ
+   ========================================================================== */
+.scroll-prog {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--laser));
+  z-index: 250; transition: width .08s linear;
+}
+.cfg-wrap {
+  margin-top: 32px; background: var(--bg-card); border: 1px solid var(--border-strong);
+  border-radius: 8px; padding: 30px 28px; box-shadow: var(--shadow);
+}
+.cfg-head {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 24px;
+}
+.cfg-head h3 { font-size: 20px; display: flex; align-items: center; gap: 10px; }
+.cfg-presets { display: flex; gap: 8px; flex-wrap: wrap; }
+.cfg-preset {
+  font-size: 12px; padding: 6px 12px; border-radius: 4px;
+  border: 1px solid var(--border-strong); color: var(--text-secondary); background: var(--bg-primary);
+  transition: all .2s;
+}
+.cfg-preset:hover, .cfg-preset.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.cfg-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: stretch; }
+.cfg-sliders { display: flex; flex-direction: column; gap: 18px; }
+.cfg-row label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 13.5px; font-weight: 600; margin-bottom: 8px;
+}
+.cfg-row label b { font-family: var(--font-mono); font-size: 16px; color: var(--accent); }
+.cfg-row input[type="range"] {
+  width: 100%; accent-color: var(--accent); cursor: pointer; height: 6px;
+}
+.cfg-row .cfg-scale {
+  display: flex; justify-content: space-between; font-family: var(--font-mono);
+  font-size: 11px; color: var(--text-muted); margin-top: 4px;
+}
+.cfg-result {
+  background: var(--bg-primary); border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--accent); border-radius: 6px; padding: 22px 24px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.cfg-result .cr-tag { font-family: var(--font-mono); font-size: 11px; color: var(--laser); letter-spacing: .14em; }
+.cfg-result h4 { font-size: 22px; margin: 6px 0 8px; color: var(--accent); font-family: var(--font-mono); }
+.cfg-result p { font-size: 13px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 16px; }
+.roi-boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.roi-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 5px; padding: 12px; }
+.roi-box b { display: block; font-family: var(--font-mono); font-size: 20px; color: var(--text-primary); }
+.roi-box span { font-size: 11.5px; color: var(--text-muted); }
+
+/* 工程师技术 FAQ 手风琴 */
+.faq-list { display: grid; gap: 12px; max-width: 980px; margin: 0 auto; }
+.faq-item {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+}
+.faq-q {
+  width: 100%; text-align: left; padding: 18px 22px; font-size: 15.5px; font-weight: 700;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  transition: color .2s;
+}
+.faq-q:hover { color: var(--accent); }
+.faq-q .q-num { font-family: var(--font-mono); font-size: 12px; color: var(--laser); margin-right: 10px; }
+.faq-a {
+  padding: 0 22px 18px 48px; font-size: 14px; line-height: 1.85; color: var(--text-secondary);
+  display: none;
+}
+.faq-item.open { border-color: var(--accent); }
+.faq-item.open .faq-a { display: block; }
+@media (max-width: 960px) {
+  .cfg-grid, .roi-boxes { grid-template-columns: 1fr; }
+}
 @media print {
   .site-head, .mmenu, .float-bar, .zoomer, #toast { display: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
@@ -711,6 +802,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 </style>
 </head>
 <body>
+<div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
 <a class="skip" href="#main">跳到主要内容</a>
 
 <!-- ============ 顶部导航（含主题切换 + 右上角固定 B2B 询盘入口） ============ -->
@@ -1119,6 +1211,65 @@ ul { margin: 0; padding: 0; list-style: none; }
       </table>
     </div>
 
+    <!-- 借鉴 NDT 行业标杆站与 Modular Showroom：交互式工况选型配置器 & 免拆检 ROI 测算器 -->
+    <div class="cfg-wrap reveal" id="configurator">
+      <div class="cfg-head">
+        <h3>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          30 秒智能工况选型 &amp; 免拆检降本 ROI 测算器
+        </h3>
+        <div class="cfg-presets" id="cfgPresets">
+          <button type="button" class="cfg-preset on" data-hole="35" data-depth="1.5" data-load="4.5" data-freq="8">航空隔框预设</button>
+          <button type="button" class="cfg-preset" data-hole="50" data-depth="2.2" data-load="5.0" data-freq="12">石化反应釜预设</button>
+          <button type="button" class="cfg-preset" data-hole="65" data-depth="2.8" data-load="4.8" data-freq="6">核电高危储罐预设</button>
+        </div>
+      </div>
+      <div class="cfg-grid">
+        <div class="cfg-sliders">
+          <div class="cfg-row">
+            <label for="rgHole"><span>1. 现场检修口最小孔径 (Access Diameter)</span><b id="valHole">50 mm</b></label>
+            <input type="range" id="rgHole" min="30" max="120" step="2" value="50">
+            <div class="cfg-scale"><span>30 mm (极限小孔)</span><span>60 mm (标准手孔)</span><span>120 mm (常规检修孔)</span></div>
+          </div>
+          <div class="cfg-row">
+            <label for="rgDepth"><span>2. 腔体内部所需探测纵深 (Inspection Reach)</span><b id="valDepth">2.2 m</b></label>
+            <input type="range" id="rgDepth" min="1.0" max="3.0" step="0.1" value="2.2">
+            <div class="cfg-scale"><span>1.0 m</span><span>1.8 m (06型)</span><span>2.4 m (08型)</span><span>3.0 m (10型)</span></div>
+          </div>
+          <div class="cfg-row">
+            <label for="rgLoad"><span>3. 末端探头/夹爪总负载需求 (Payload)</span><b id="valLoad">4.5 kg</b></label>
+            <input type="range" id="rgLoad" min="1.0" max="6.0" step="0.2" value="4.5">
+            <div class="cfg-scale"><span>1.0 kg (纯视觉)</span><span>3.5 kg (超声+视觉)</span><span>6.0 kg (重载作业)</span></div>
+          </div>
+          <div class="cfg-row">
+            <label for="rgFreq"><span>4. 企业年均停机拆检频次 (Annual Inspections)</span><b id="valFreq">10 次/年</b></label>
+            <input type="range" id="rgFreq" min="2" max="30" step="1" value="10">
+            <div class="cfg-scale"><span>2 次/年</span><span>15 次/年</span><span>30 次/年 (高频巡检)</span></div>
+          </div>
+        </div>
+        <div class="cfg-result">
+          <div>
+            <div class="cr-tag">RECOMMENDED CONFIGURATION · 智能匹配结果</div>
+            <h4 id="cfgModelName">QZSZC001-08 · 2.4m 标准主力型</h4>
+            <p id="cfgModelReason">您的 50 mm 孔径高于 08 型外径（44 mm，安全裕度 +6 mm），2.2 m 纵深与 4.5 kg 负载均在 08 型额定包络内。</p>
+            <div class="roi-boxes">
+              <div class="roi-box"><b id="cfgSave">43.5 万</b><span>预计年均节省拆检成本</span></div>
+              <div class="roi-box"><b id="cfgPayback">9.6 个月</b><span>预计设备投资回收期</span></div>
+              <div class="roi-box"><b id="cfgPrice">35 万元</b><span>推荐方案参考报价</span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn--primary btn--sm" type="button" id="cfgApplyBtn">
+              将此工况参数带入询盘单 →
+            </button>
+            <button class="btn btn--outline btn--sm" type="button" id="cfgPdfBtn">
+              导出推荐机型 PDF 规格书
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 三种合作与交付模式 -->
     <div class="svc-grid">
       <div class="svc reveal">
@@ -1512,6 +1663,49 @@ ul { margin: 0; padding: 0; list-style: none; }
   </div>
 </section>
 
+<!-- ============ 9.5 工程师高频技术问答 FAQ（借鉴 ScrewFast B2B 工业模板） ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:38px">
+      <div>
+        <div class="eyebrow">Technical FAQ<span class="num">/ 09</span></div>
+        <h2 class="title">工程师与采购常见技术问答</h2>
+      </div>
+      <p class="lead">针对航空、核电、石化总工与设备部最关心的安全性、探头兼容性、极端环境耐受度及交付周期进行标准化解答。</p>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q" type="button">
+          <span><b class="q-num">Q01</b>作业过程中若突发外部断电或气源中断，机械臂如何安全退出受限腔体？</span>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">混天绫采用“内-中-外三层柔索 + 变刚度气囊”双重安全冗余设计。当检测到外部掉电或气压异常时，驱动控制箱可在毫秒级一键释放气囊锁紧压力与驱动索预紧力，使臂体瞬间恢复 62 N/m 的高柔顺被动状态，现场人员无需拆解设备即可沿原检修口顺畅回抽取出，彻底杜绝“卡死在腔体内部”的工程风险。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span><b class="q-num">Q02</b>末端快换接口支持搭载我们现有的第三方无损检测探头（如超声/涡流/内窥）吗？</span>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">完全支持。臂体内部预留 1–3 路高清视觉/传感器线缆通道及标准化机械-电气快换法兰，末端负载高达 5.2–6.0 kg，可兼容国内外主流相控阵超声（PAUT）、涡流探头、压入能量差残余应力测头、双光谱摄像头及微型电动夹爪。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span><b class="q-num">Q03</b>在高辐射（核电）、强腐蚀（石化）或暗光无地图环境中可靠性如何？</span>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">臂体外部可定制耐辐照、耐酸碱氟橡胶/特氟龙防护蒙皮（已在秦山核电水合肼高辐射储罐中完成实证应用）；导航算法采用无先验地图的局部安全梯度场避障策略，不依赖外部光学定位或预先建图，在全黑、强反射金属腔体内避障成功率 ≥95%。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span><b class="q-num">Q04</b>标准机型交付周期是多久？包含现场操作培训与质保服务吗？</span>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">QZSZC001-06 / 08 / 10 三款标准机型交付周期为合同签订后 4–6 周（非标定制机型约 8–12 周）。成套交付含全套硬件、V1.0 控制软件授权、工程师上门安装联调、2 天现场实操培训及 12 个月整机质保（终身提供柔索模组维护与软件升级）。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 10. 联系与 B2B 询盘 ============ -->
 <section class="section section--alt" id="contact">
   <div class="wrap">
@@ -1890,7 +2084,26 @@ function generateSpecPDF(id){
   const ends = p.ends.map(e => `<li>${e}</li>`).join('');
   w.document.write(`<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
   <title>产品技术规格书 - ${p.name} - 南京江鸟科技有限公司</title>
-  <style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "南京江鸟科技有限公司",
+  "alternateName": "Nanjing Jiangniao Technology Co., Ltd.",
+  "url": "https://www.jiangniao-tech.com/",
+  "logo": "https://www.jiangniao-tech.com/assets/hero-1.jpg",
+  "description": "专注超细长重载柔性机械臂研发与制造，核心产品混天绫系列长径比50.6、负载6.0kg、重复定位精度±0.6mm。",
+  "telephone": "+86-25-88886666",
+  "email": "contact@jiangniao-tech.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "南京市",
+    "addressRegion": "江苏省",
+    "streetAddress": "江苏装备产业园"
+  }
+}
+</script>
+<style>
     *{box-sizing:border-box} body{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;color:#0F172A;margin:0;padding:28px 36px;background:#fff;line-height:1.6}
     .bar{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #0F172A;padding-bottom:14px;margin-bottom:22px}
     .bar h1{margin:0;font-size:22px;letter-spacing:.04em} .bar span{font-family:Consolas,monospace;font-size:12px;color:#475569}
@@ -1908,6 +2121,7 @@ function generateSpecPDF(id){
     .btn{background:#F97316;color:#fff;border:none;padding:9px 18px;border-radius:4px;font-weight:600;cursor:pointer}
     @media print{.noprint{display:none}}
   </style></head><body>
+<div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
   <div class="noprint">
     <button class="btn" onclick="window.print()">打印 / 另存为 PDF 规格书</button>
   </div>
@@ -2122,6 +2336,82 @@ const NEWS = [
       zoomer.classList.remove('on');
       document.body.style.overflow = '';
     }
+  });
+})();
+/* ========== 8. 顶部阅读进度条 + 智能工况选型/ROI测算器 + 技术 FAQ ========== */
+(function(){
+  const prog = document.getElementById('scrollProg');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    if(prog && h > 0) prog.style.width = Math.min(100, (window.scrollY / h) * 100) + '%';
+  }, { passive: true });
+
+  // Configurator & ROI Calculator
+  const rgHole = document.getElementById('rgHole');
+  const rgDepth = document.getElementById('rgDepth');
+  const rgLoad = document.getElementById('rgLoad');
+  const rgFreq = document.getElementById('rgFreq');
+  if(rgHole){
+    let recId = '08';
+    function updateCfg(){
+      const hole = +rgHole.value, depth = +rgDepth.value, load = +rgLoad.value, freq = +rgFreq.value;
+      document.getElementById('valHole').textContent = hole + ' mm';
+      document.getElementById('valDepth').textContent = depth.toFixed(1) + ' m';
+      document.getElementById('valLoad').textContent = load.toFixed(1) + ' kg';
+      document.getElementById('valFreq').textContent = freq + ' 次/年';
+
+      let name = '', reason = '', priceNum = 35;
+      if(depth <= 1.8 && hole >= 32 && load <= 6.0){
+        recId = '06'; priceNum = 30;
+        name = 'QZSZC001-06 · 1.8m 短臂高载型';
+        reason = `检修口 ${hole}mm 大于 06 型外径（30mm，单边余量 +${((hole-30)/2).toFixed(0)}mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完全处于 06 型最佳包络内。`;
+      } else if(depth <= 2.4 && hole >= 46 && load <= 5.6){
+        recId = '08'; priceNum = 35;
+        name = 'QZSZC001-08 · 2.4m 标准主力型';
+        reason = `检修口 ${hole}mm 大于 08 型外径（44mm，单边余量 +${((hole-44)/2).toFixed(0)}mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载匹配主力 8 关节机型。`;
+      } else if(depth <= 3.0 && hole >= 62 && load <= 5.2){
+        recId = '10'; priceNum = 40;
+        name = 'QZSZC001-10 · 3.0m 大纵深长臂型';
+        reason = `检修口 ${hole}mm 大于 10 型外径（60mm），可覆盖 ${depth.toFixed(1)}m 大纵深腔体并稳定承载 ${load.toFixed(1)}kg 末端模组。`;
+      } else {
+        recId = '08'; priceNum = 50;
+        name = '特殊工况非标定制机型（细径长臂方案）';
+        reason = `当前孔径 ${hole}mm 与纵深 ${depth.toFixed(1)}m / 负载 ${load.toFixed(1)}kg 属于极限窄孔深腔组合，建议采用江鸟非标定制细径三层柔索方案。`;
+      }
+      // ROI benchmark: average traditional disassembly inspection costs ~5.0万 per run; non-disassembly saves 87% (~4.35万/次)
+      const annualSave = (freq * 4.35).toFixed(1);
+      const paybackMonths = Math.max(1.5, (priceNum / (freq * 4.35)) * 12).toFixed(1);
+      document.getElementById('cfgModelName').textContent = name;
+      document.getElementById('cfgModelReason').textContent = reason;
+      document.getElementById('cfgSave').textContent = annualSave + ' 万';
+      document.getElementById('cfgPayback').textContent = paybackMonths + ' 个月';
+      document.getElementById('cfgPrice').textContent = priceNum + ' 万元';
+    }
+    [rgHole, rgDepth, rgLoad, rgFreq].forEach(el => el.addEventListener('input', updateCfg));
+    document.querySelectorAll('#cfgPresets .cfg-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#cfgPresets .cfg-preset').forEach(b => b.classList.toggle('on', b === btn));
+        rgHole.value = btn.dataset.hole; rgDepth.value = btn.dataset.depth;
+        rgLoad.value = btn.dataset.load; rgFreq.value = btn.dataset.freq;
+        updateCfg();
+      });
+    });
+    document.getElementById('cfgApplyBtn').addEventListener('click', () => {
+      const m = document.getElementById('cfgModelName').textContent;
+      const summary = `检修口孔径：${rgHole.value}mm，探测纵深：${rgDepth.value}m，末端负载：${rgLoad.value}kg，年检频次：${rgFreq.value}次/年（系统推荐：${m}）`;
+      window.__openInquiry(m, '获取报价 / 预约样机演示');
+      const ta = document.querySelector('#modalInquiryForm textarea[name="msg"]');
+      if(ta) ta.value = summary;
+    });
+    document.getElementById('cfgPdfBtn').addEventListener('click', () => generateSpecPDF(recId));
+    updateCfg();
+  }
+
+  // FAQ Accordion
+  document.querySelectorAll('#faqList .faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
   });
 })();
 </script>

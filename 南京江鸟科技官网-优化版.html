@@ -971,7 +971,7 @@ button { cursor: pointer; background: none; border: none; }
           热线电话：<strong>025-8888 6666</strong> &nbsp;/&nbsp; 邮箱：contact@jiangniao-tech.com
         </span>
         <span class="lang-switch">
-          <a href="#home" class="active">中文</a> &nbsp;|&nbsp; <a href="#contact" onclick="showToast('English Datasheet &amp; Inquiry Available Below')">ENGLISH</a>
+          <a href="javascript:void(0)" id="btnLangZh" class="active" onclick="window.setSiteLang('zh')">中文</a> &nbsp;|&nbsp; <a href="javascript:void(0)" id="btnLangEn" onclick="window.setSiteLang('en')">ENGLISH</a>
         </span>
       </div>
     </div>
@@ -989,6 +989,7 @@ button { cursor: pointer; background: none; border: none; }
   <a href="#about">关于我们</a>
   <a href="#news">新闻中心</a>
   <a href="#contact">联系我们</a>
+  <a href="javascript:void(0)" onclick="window.setSiteLang(window.__LANG==='en'?'zh':'en')">中文 / ENGLISH</a>
 </div>
 
 <!-- ============ 2. 幻灯片大图轮播 (.fullSlide) ============ -->
@@ -1941,31 +1942,41 @@ button { cursor: pointer; background: none; border: none; }
     document.getElementById('valLoad').textContent = load.toFixed(1) + ' kg';
     document.getElementById('valFreq').textContent = freq + ' 次/年';
 
+    const isEn = window.__LANG === 'en';
+    document.getElementById('valFreq').textContent = isEn ? (freq + ' / yr') : (freq + ' 次/年');
     let name = '', reason = '', priceNum = 35;
     if(depth <= 1.8 && hole >= 32 && load <= 6.0){
       recId = '06'; priceNum = 30;
-      name = 'QZSZC001-06 · 1.8m 短臂高载型';
-      reason = `检修口 ${hole}mm 大于 06 型外径（30mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完全处于 06 型最佳作业包络内。`;
+      name = isEn ? 'QZSZC001-06 · 1.8m Short-Arm High-Payload' : 'QZSZC001-06 · 1.8m 短臂高载型';
+      reason = isEn
+        ? `Access port ${hole}mm exceeds 06 outer diameter (30mm); ${depth.toFixed(1)}m reach and ${load.toFixed(1)}kg payload fit within the optimal 06 envelope.`
+        : `检修口 ${hole}mm 大于 06 型外径（30mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完全处于 06 型最佳作业包络内。`;
     } else if(depth <= 2.4 && hole >= 46 && load <= 5.6){
       recId = '08'; priceNum = 35;
-      name = 'QZSZC001-08 · 2.4m 标准主力型';
-      reason = `检修口 ${hole}mm 大于 08 型外径（44mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完美匹配主力 8 关节机型。`;
+      name = isEn ? 'QZSZC001-08 · 2.4m Standard Flagship' : 'QZSZC001-08 · 2.4m 标准主力型';
+      reason = isEn
+        ? `Access port ${hole}mm exceeds 08 outer diameter (44mm); ${depth.toFixed(1)}m reach and ${load.toFixed(1)}kg payload match the 8-joint flagship model.`
+        : `检修口 ${hole}mm 大于 08 型外径（44mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完美匹配主力 8 关节机型。`;
     } else if(depth <= 3.0 && hole >= 62 && load <= 5.2){
       recId = '10'; priceNum = 40;
-      name = 'QZSZC001-10 · 3.0m 大纵深长臂型';
-      reason = `检修口 ${hole}mm 大于 10 型外径（60mm），可覆盖 ${depth.toFixed(1)}m 大纵深腔体并稳定承载 ${load.toFixed(1)}kg 末端模组。`;
+      name = isEn ? 'QZSZC001-10 · 3.0m Deep-Cavity Long-Arm' : 'QZSZC001-10 · 3.0m 大纵深长臂型';
+      reason = isEn
+        ? `Access port ${hole}mm exceeds 10 outer diameter (60mm), covering ${depth.toFixed(1)}m deep cavity with ${load.toFixed(1)}kg end payload.`
+        : `检修口 ${hole}mm 大于 10 型外径（60mm），可覆盖 ${depth.toFixed(1)}m 大纵深腔体并稳定承载 ${load.toFixed(1)}kg 末端模组。`;
     } else {
       recId = '08'; priceNum = 50;
-      name = '特殊工况非标定制机型（细径长臂方案）';
-      reason = `当前孔径 ${hole}mm 与纵深 ${depth.toFixed(1)}m / 负载 ${load.toFixed(1)}kg 属于极限窄孔深腔组合，建议采用江鸟非标定制细径三层柔索方案。`;
+      name = isEn ? 'Custom Slender Continuum Arm Solution' : '特殊工况非标定制机型（细径长臂方案）';
+      reason = isEn
+        ? `Port ${hole}mm with ${depth.toFixed(1)}m reach / ${load.toFixed(1)}kg payload requires a bespoke ultra-slender 3-layer tendon configuration.`
+        : `当前孔径 ${hole}mm 与纵深 ${depth.toFixed(1)}m / 负载 ${load.toFixed(1)}kg 属于极限窄孔深腔组合，建议采用江鸟非标定制细径三层柔索方案。`;
     }
     const annualSave = (freq * 4.35).toFixed(1);
     const paybackMonths = Math.max(1.5, (priceNum / (freq * 4.35)) * 12).toFixed(1);
     document.getElementById('cfgModelName').textContent = name;
     document.getElementById('cfgModelReason').textContent = reason;
-    document.getElementById('cfgSave').textContent = annualSave + ' 万';
-    document.getElementById('cfgPayback').textContent = paybackMonths + ' 个月';
-    document.getElementById('cfgPrice').textContent = priceNum + ' 万元';
+    document.getElementById('cfgSave').textContent = isEn ? ('¥' + annualSave + '0k') : (annualSave + ' 万');
+    document.getElementById('cfgPayback').textContent = isEn ? (paybackMonths + ' mos') : (paybackMonths + ' 个月');
+    document.getElementById('cfgPrice').textContent = isEn ? ('¥' + priceNum + '0k') : (priceNum + ' 万元');
   }
   [rgHole, rgDepth, rgLoad, rgFreq].forEach(el => el.addEventListener('input', updateCfg));
   document.querySelectorAll('#cfgPresets .cfg-preset').forEach(btn => {
@@ -1982,7 +1993,7 @@ button { cursor: pointer; background: none; border: none; }
     window.__openInquiry(m, '获取报价 / 预约样机演示', summary);
   });
   document.getElementById('cfgPdfBtn').addEventListener('click', () => generateSpecPDF(recId));
-  updateCfg();
+  window.__updateCfg = updateCfg; updateCfg();
 })();
 
 /* ========== 4. 产品数据库、详情弹层与 A4 PDF 规格书导出 ========== */
@@ -2044,7 +2055,7 @@ const PRODUCTS = {
 };
 
 function generateSpecPDF(id){
-  const p = PRODUCTS[id] || PRODUCTS['08'];
+  const dict = window.__LANG === 'en' ? PRODUCTS_EN : PRODUCTS; const p = dict[id] || dict['08'];
   const w = window.open('', '_blank');
   if(!w){ showToast('请允许浏览器弹出窗口以导出 PDF 规格书'); return; }
   const rows = p.specs.map(s => `<tr><th>${s[0]}</th><td>${s[1]}</td></tr>`).join('');
@@ -2104,7 +2115,7 @@ function generateSpecPDF(id){
   const modal = document.getElementById('productModal');
   let curId = '08';
   function open(id){
-    const p = PRODUCTS[id]; if(!p) return;
+    const dict = window.__LANG === 'en' ? PRODUCTS_EN : PRODUCTS; const p = dict[id]; if(!p) return;
     curId = id;
     document.getElementById('pmImg').src = p.img;
     document.getElementById('pmType').textContent = p.type;
@@ -2209,7 +2220,7 @@ const NEWS = [
 (function(){
   const nModal = document.getElementById('newsModal');
   document.querySelectorAll('.news-item').forEach(el => el.addEventListener('click', () => {
-    const d = NEWS[+el.dataset.news]; if(!d) return;
+    const list = window.__LANG === 'en' ? NEWS_EN : NEWS; const d = list[+el.dataset.news]; if(!d) return;
     document.getElementById('nmTag').textContent = d.tag;
     document.getElementById('nmDate').textContent = d.date;
     document.getElementById('nmTitle').textContent = d.title;
@@ -2245,6 +2256,384 @@ const NEWS = [
       document.body.style.overflow = '';
     }
   });
+})();
+/* ========== 6. 中英双语完整切换引擎（中文 ⇄ ENGLISH） ========== */
+const PRODUCTS_EN = {
+  '06': {
+    type: 'SHORT ARM · HIGH PAYLOAD', name: 'QZSZC001-06', title: '1.8 m Continuum Inspection Arm', price: '30', img: 'assets/product-06.jpg',
+    scenes: 'Aircraft skin & frame interlayers, compact cavities, engine nacelle inspection & FOD retrieval',
+    intro: 'Engineered for compact cavities: 1.8 m length, 30 mm outer diameter, 6 decoupled joints, highest 6.0 kg tip payload, and 62–4300 N/m variable stiffness.',
+    specs: [
+      ['Model', 'QZSZC001-06'],
+      ['Length / Diameter', '1.8 m / 30 mm (Aspect Ratio 60:1)'],
+      ['Independent Joints', '6 Joints (3-Layer Tendon Decoupled)'],
+      ['Stiffness Range', '62 – 4300 N/m (70× Adjustable)'],
+      ['Rated Tip Payload', '6.0 kg'],
+      ['Workspace Envelope', 'R = 1.2 m Sphere'],
+      ['Steady-State Error', '< ±1.7 mm (Bench Tested ≤ 1.0 mm)'],
+      ['Repeatability', '±0.6 mm'],
+      ['Step Response Time', '≤ 0.1 s'],
+      ['Max Bend / Min Radius', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['Dual-Spectrum HD Vision (1–3 Ports)', 'Electric Gripper / Vacuum Cup / Micro Drill', 'Eddy Current / PAUT / Gas / Pressure Sensors']
+  },
+  '08': {
+    type: 'STANDARD · FLAGSHIP MODEL', name: 'QZSZC001-08', title: '2.4 m Continuum Inspection Arm', price: '35', img: 'assets/product-08.jpg',
+    scenes: 'Petrochemical vertical/horizontal pressure vessels, reactors, heat exchangers & deep welds',
+    intro: 'Flagship all-around model balancing 2.4 m reach and 5.6 kg payload with 8 inverse-feedback decoupled joints for in-situ NDT through standard manholes/handholes.',
+    specs: [
+      ['Model', 'QZSZC001-08'],
+      ['Length / Diameter', '2.4 m / 44 mm (Aspect Ratio 54.5:1)'],
+      ['Independent Joints', '8 Joints (3-Layer Tendon Decoupled)'],
+      ['Stiffness Range', '62 – 4300 N/m (70× Adjustable)'],
+      ['Rated Tip Payload', '5.6 kg'],
+      ['Workspace Envelope', '⌀ 1.1 m × 1.8 m Cylinder'],
+      ['Steady-State Error', '< ±1.7 mm (Bench Tested ≤ 1.0 mm)'],
+      ['Repeatability', '±0.6 mm'],
+      ['Step Response Time', '≤ 0.1 s'],
+      ['Max Bend / Min Radius', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['Dual-Spectrum HD Vision (1–3 Ports)', 'PAUT Ultrasonic / Indentation Residual Stress Probe', 'Electric Gripper / Suction / Cleaning Brush']
+  },
+  '10': {
+    type: 'LONG ARM · DEEP CAVITY', name: 'QZSZC001-10', title: '3.0 m Continuum Inspection Arm', price: '40', img: 'assets/product-10.jpg',
+    scenes: 'Nuclear high-radiation storage tanks, deep tortuous pipelines, ship double-bottoms & utility tunnels',
+    intro: 'Designed for deep, multi-bend hazardous cavities: 3.0 m length, 10 joints, 5.2 kg full-reach payload, and 50.6 slenderness ratio.',
+    specs: [
+      ['Model', 'QZSZC001-10'],
+      ['Length / Diameter', '3.0 m / 60 mm (Aspect Ratio 50.6:1)'],
+      ['Independent Joints', '10 Joints (3-Layer Tendon Decoupled)'],
+      ['Stiffness Range', '62 – 4300 N/m (70× Adjustable)'],
+      ['Rated Tip Payload', '5.2 kg'],
+      ['Workspace Envelope', '⌀ 1.0 m × 1.5 m Cylinder'],
+      ['Steady-State Error', '< ±1.7 mm (Bench Tested ≤ 1.0 mm)'],
+      ['Repeatability', '±0.6 mm'],
+      ['Step Response Time', '≤ 0.1 s'],
+      ['Max Bend / Min Radius', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['Radiation-Hardened HD Vision (1–3 Ports)', 'NDT Flaw Probe / Laser Rangefinder', 'Heavy-Duty Electric Gripper / Retrieval Module']
+  }
+};
+
+const NEWS_EN = [
+  { tag: 'Engineering Application', date: '2026-10-20', title: 'Non-Destructive Inspection Completed at Qinshan Nuclear Power Base, Cutting Cost by 87%',
+    body: ['Facing high-radiation hydrazine storage tanks, the Jiangniao team deployed the Huntianling continuum robotic arm through existing inspection ports without tank disassembly, completing a full-cavity CT-like scan.',
+           'Compared with traditional tank-disassembly inspection, single-run cost dropped by 87% with zero unplanned downtime, extending tank service life by ~30%.'] },
+  { tag: 'National Award', date: '2026-07-18', title: 'Grand Prize at the 17th National Process Equipment Practice & Innovation Finals',
+    body: ['At the 17th National Finals of the China Undergraduate Mechanical Engineering Innovation Competition, the team demonstrated the Gen-3 prototype in simulated confined cavities.',
+           'The live demo showcased narrow-port entry, mapless obstacle avoidance, flaw inspection, and FOD retrieval, earning unanimous acclaim from the judging panel.'] },
+  { tag: 'Media Coverage', date: '2025-10-20', title: 'CCTV-1 & CCTV-13 Feature the "Huntianling" Three-Layer Tendon Continuum Robot',
+    body: ['China Central Television (CCTV-1 and CCTV-13) broadcast a special feature titled "Pioneering Three-Layer Coupled Continuum Structure Design" highlighting Jiangniao Technology.',
+           'The broadcast captured the continuum arm navigating tight bends, locking stiffness by 70× instantaneously, and performing precision quantitative inspection.'] },
+  { tag: 'Pilot Verification', date: '2025-06-26', title: 'Passed Jiangsu Special Equipment Safety Supervision Institute Pilot Test with 95% Yield',
+    body: ['On the test benches of Jiangsu Special Equipment Safety Supervision and Inspection Institute (JSSEI), the Gen-3 system completed 18 vertical-tank tests, 21 horizontal-tank tests, and 20,000 continuous bending fatigue cycles.',
+           'Measured results confirmed dynamic step response ≤100 ms, steady-state error ≤1.0–1.8 mm, obstacle avoidance success ≥95%, and an overall 95% qualification rate supporting 8–10 years of service life.'] }
+];
+
+const I18N_DICT = {
+  '南京江鸟科技有限公司': 'Nanjing Jiangniao Technology Co., Ltd.',
+  '网站首页': 'Home',
+  '公司简介': 'About Us',
+  '企业概况与产线': 'Company & Facility',
+  '荣誉资质与国标': 'Honors & Standards',
+  '展会与竞赛现场': 'Exhibitions & Awards',
+  '新闻动态': 'News',
+  '工程应用进展': 'Field Applications',
+  '央视媒体报道': 'CCTV Coverage',
+  '特检院中试认证': 'Pilot Verification',
+  '产品中心': 'Products',
+  '产品中心与选型': 'Products & Configurator',
+  '内-中-外三层柔索结构': '3-Layer Tendon Structure',
+  '逆反馈关节解耦驱动': 'Inverse-Feedback Decoupling',
+  '无地图避障与轨迹平滑': 'Mapless Obstacle Avoidance',
+  '混天绫三机型参数矩阵': '3-Model Spec Matrix',
+  '智能工况选型与规格书': 'Smart Configurator & PDF',
+  '柔性检测臂相关解答': 'Technical FAQ',
+  '产品优势': 'Advantages',
+  '产品潜力': 'Applications',
+  '工程案例': 'Cases',
+  '联系我们': 'Contact',
+  '获取报价 / 预约演示': 'Get Quote / Book Demo',
+  '江苏省重点研发计划（BE2024153）支持 · 江苏省特种设备检验研究院中试核验': 'Supported by Jiangsu Key R&D Program (BE2024153) · Verified by JSSEI Pilot Test',
+  '超细长重载柔性机械臂 · 混天绫系列': 'ULTRA-SLENDER HEAVY-DUTY CONTINUUM ROBOT · HUNTIANLING SERIES',
+  '化绕指柔为': 'Turning Compliant Tendons into ',
+  '百炼钢': 'Tempered Steel',
+  '在役装备狭小腔体原位无损检测': 'In-Situ NDT Inspection for Confined Industrial Cavities',
+  '50.6 极限长径比 + 6.0 kg 末端重载 + ±0.6 mm 重复定位精度。从 30–60 mm 检修口直接伸入航空隔框、核电储罐与石化压力容器，免拆解完成全域无损探伤与作业。': '50.6 slenderness ratio + 6.0 kg tip payload + ±0.6 mm repeatability. Directly enters 30–60 mm inspection ports of aircraft frames, nuclear tanks, and pressure vessels for disassembly-free NDT.',
+  '进入产品中心 →': 'Explore Products →',
+  '预约样机现场演示': 'Book On-Site Demo',
+  'TECHNICAL BENCHMARK · 实测核心指标': 'TECHNICAL BENCHMARK · VERIFIED SPECS',
+  '最大长径比（3m / 6cm）': 'Max Slenderness (3m / 6cm)',
+  '重复定位精度': 'Repeatability Accuracy',
+  '逆反馈解耦动态响应': 'Decoupled Step Response',
+  '末端最大负载能力': 'Max Tip Payload',
+  '原位在线检测 · 免停机拆解': 'IN-SITU ONLINE NDT · ZERO DISASSEMBLY',
+  '不拆一颗螺栓': 'Without Removing a Single Bolt,',
+  '完成一次': 'Complete a ',
+  '内部全面体检': 'Full Internal Inspection',
+  '利用原有手孔、人孔与检修口伸入高危密闭腔体，20–30 分钟出具定量检测报告，单次检测成本降低 87%，设备在役寿命延长 30%。': 'Enters hazardous confined cavities via existing handholes and ports, delivering quantitative NDT reports in 20–30 min while cutting inspection cost by 87% and extending asset life by 30%.',
+  '查看三层柔索技术': 'Core Technology',
+  '下载 PDF 技术规格书': 'Download PDF Datasheet',
+  '产学研深度转化 · 权威工程实证': 'INDUSTRY-ACADEMIA R&D · FIELD PROVEN',
+  '从省重点实验室': 'From Provincial Key Lab to ',
+  '走向': '',
+  '核电与航空一线': 'Nuclear & Aviation Frontlines',
+  '获江苏省重点研发计划（BE2024153）支持，通过江苏省特检院 20,000 次连续弯折中试认证（良品率 95%），成果获 CCTV-1、CCTV-13 专题报道。': 'Backed by Jiangsu Key R&D Program (BE2024153), certified through 20,000 bending cycles at JSSEI (95% yield rate), and featured on CCTV-1 & CCTV-13.',
+  '查看工程案例': 'View Field Cases',
+  '了解江鸟团队': 'About Jiangniao',
+  '热门关键字：': 'Hot Keywords:',
+  '无地图避障规划': 'Mapless Path Planning',
+  '混天绫柔性检测臂': 'Huntianling Continuum Arm',
+  '智能工况选型': 'Smart Configurator',
+  '柔性臂相关解答': 'Technical FAQ',
+  '搜索': 'Search',
+  '市场现状和问题': 'Market Status & Challenges',
+  '我国航空、核电、石化、火电等领域的重大高端装备大都工作在高温、高压、高辐射或交变载荷等严苛工况中，其内部密闭隔框、储罐内腔、反应釜及异形管路的焊缝与结构微区极易随服役时间增加而产生裂纹、腐蚀或残余应力集中。根据行业统计，我国在役压力容器保有量超 439 万台、压力管道超 101 万公里，每年因设备内部隐患漏检或超期服役引发的非计划停机与安全事故代价高昂。因此，对在役高端装备内部狭小密闭腔体进行常态化、定量化的原位无损检测，是保障装备安全服役与科学延寿的核心前提。': 'Critical equipment across aviation, nuclear, petrochemical, and thermal power sectors operates under extreme heat, pressure, radiation, and cyclic loads. Internal airframes, storage tanks, reactors, and complex pipelines are prone to weld cracking, corrosion, and residual stress accumulation over time. With over 4.39 million pressure vessels and 1.01 million km of pressure pipelines in service nationwide, routine quantitative in-situ non-destructive testing (NDT) inside confined cavities is essential to prevent unplanned outages and extend asset life.',
+  '然而，当前在役装备内部检修面临三大结构性难题：一是': 'However, internal inspection of in-service equipment faces three major bottlenecks: (1) ',
+  '“钻不进”': '"Cannot Enter"',
+  '，检修口孔径往往仅 30–60 mm 且内部通道曲折多变，传统刚性机械臂无法进入；二是': ' — inspection ports are typically only 30–60 mm wide with tortuous internal passages inaccessible to rigid arms; (2) ',
+  '“检不全”': '"Cannot Quantify"',
+  '，普通工业内窥镜仅能做定性肉眼观察，无法搭载重载超声、涡流或压痕探头进行定量测定；三是': ' — flexible borescopes only provide visual observation and lack the payload capacity to carry ultrasonic, eddy-current, or indentation probes; (3) ',
+  '“行不稳”': '"Cannot Stabilize"',
+  '，传统柔性臂伸展后刚度骤降、段间耦合震荡严重，重载下定位精度迅速衰减。传统的“停机拆解、切割取样”不仅破坏设备完整性，更造成巨额停产损失。': ' — conventional continuum arms suffer severe stiffness drop and inter-segment coupling vibration under load. Traditional shutdown and destructive disassembly cause massive downtime losses.',
+  '目前国内高端柔性检测装备存在约 ': 'China currently faces an estimated ',
+  '35% 的国产化缺口': '35% domestic localization gap',
+  '。因此，亟需一种兼具': ' in high-end flexible inspection equipment. The industry urgently requires an in-situ continuum robotic system combining ',
+  '“超高长径比、高刚度高负载、毫米级精准定位”': '"Ultra-High Slenderness, Variable-Stiffness High Payload, and Millimeter-Level Precision"',
+  '的原位无损检测柔性机械臂系统，在不拆一颗螺栓的前提下把检测探头与作业工具精准送达设备深腔，替代高危人工钻爬与破坏性拆解。': ' to deliver NDT probes and tools deep into confined cavities without removing a single bolt.',
+  '孔径受限 · 通道曲折': 'Restricted Port · Tortuous Path',
+  '钻': 'Cannot ',
+  '不进': 'Enter',
+  '检修口仅几十毫米且内部隔框交错，刚性机械臂与常规检测设备无法穿过狭窄弯道抵达真实缺陷区。': 'Inspection openings are only tens of millimeters wide with complex internal baffles; rigid robotic arms cannot pass through to reach true defect zones.',
+  '定性观察 · 难以定量': 'Visual Only · Not Quantitative',
+  '检': 'Cannot ',
+  '不全': 'Quantify',
+  '软管内窥镜负载能力极弱，无法搭载超声、残余应力或打磨夹取工具，焊缝微区缺陷无法定量评估。': 'Conventional borescopes have negligible payload capacity and cannot carry ultrasonic, residual-stress, or grinding/gripping tools for quantitative evaluation.',
+  '刚度骤降 · 耦合震荡': 'Stiffness Drop · Coupling Oscillation',
+  '行': 'Cannot ',
+  '不稳': 'Stabilize',
+  '常规连续体臂随长度增加刚度急剧衰减、段间力学耦合严重，重载工况下末端下垂抖动，无法精准作业。': 'Traditional continuum arms lose stiffness rapidly with length and suffer inter-segment coupling, causing tip sag and jitter under heavy payloads.',
+  '极限长径比': 'Max Slenderness Ratio',
+  '30–60mm 窄孔直入': 'Enters 30–60mm Ports',
+  '最大末端负载': 'Max Tip Payload',
+  '可搭载多模态探头': 'Multi-Modal NDT Payloads',
+  '刚度动态可调': 'Variable Stiffness Range',
+  '62–4300 N/m 变刚度': '62–4300 N/m Adjustable',
+  '小试稳态误差 ≤1.0mm': 'Steady Error ≤1.0mm',
+  '动态阶跃响应': 'Dynamic Step Response',
+  '逆反馈关节解耦': 'Inverse-Feedback Decoupled',
+  '特检院中试良品率': 'JSSEI Pilot Yield Rate',
+  '20,000 次弯折考核': '20,000 Bending Cycles',
+  '智能工况选型与 ROI 测算': 'Smart Configurator & ROI',
+  '“混天绫”超细长重载柔性机械臂系统': '"Huntianling" Ultra-Slender Heavy-Duty Continuum Robotic System',
+  '刚柔并济 · 狭小密闭腔体原位无损检测与作业平台': 'Rigid-Flexible Integration · In-Situ NDT & Operation Platform for Confined Cavities',
+  '在役航空器、核电储罐与石化承压设备的结构完整性评价与缺陷检修，要求检测装备既能像软管一样柔顺穿过几十毫米的曲折检修孔，又能在抵达目标焊缝或微区后具备刚性机械臂的高承载与毫米级定位稳定性。': 'Structural integrity assessment of in-service aircraft, nuclear tanks, and petrochemical pressure vessels requires equipment that can snake compliantly through narrow ports and then lock rigidly for high-load, millimeter-accurate inspection.',
+  '长径比 50.6 : 1': 'Slenderness 50.6 : 1',
+  '刚度可调 62–4300 N/m': 'Stiffness 62–4300 N/m',
+  '重复定位精度 ±0.6 mm': 'Repeatability ±0.6 mm',
+  '动态响应 ≤ 0.1 s': 'Response ≤ 0.1 s',
+  '支持视觉 / 超声 / 压痕 / 夹爪快换': 'Quick-Swap Vision / UT / Indentation / Gripper',
+  '全部定型机型 (3)': 'All Models (3)',
+  '航空隔框 / 小腔体 (06型)': 'Aviation / Compact Cavity (06)',
+  '石化压力容器 / 主力型 (08型)': 'Pressure Vessel / Flagship (08)',
+  '核电高危储罐 / 大纵深 (10型)': 'Nuclear Tank / Deep Cavity (10)',
+  '航空隔框 · 小腔体': 'Aviation · Compact',
+  'SHORT ARM · 短臂高载型': 'SHORT ARM · HIGH PAYLOAD',
+  '1.8 m 柔性检测臂': '1.8 m Continuum Inspection Arm',
+  '臂长 / 外径': 'Length / OD',
+  '独立关节数量': 'Independent Joints',
+  '6 关节解耦': '6 Decoupled Joints',
+  '8 关节解耦': '8 Decoupled Joints',
+  '10 关节解耦': '10 Decoupled Joints',
+  '额定末端负载': 'Rated Tip Payload',
+  '有效工作空间': 'Workspace Envelope',
+  'R = 1.2 m 球体': 'R = 1.2 m Sphere',
+  '万元 / 台': '0k RMB / Set',
+  '导出 PDF 规格书': 'PDF Datasheet',
+  '详细参数表': 'Specifications',
+  '获取报价 / 预约样机': 'Get Quote / Demo',
+  '压力容器 · 主力通用': 'Pressure Vessel · Flagship',
+  'STANDARD · 标准主力型': 'STANDARD · FLAGSHIP MODEL',
+  '2.4 m 柔性检测臂': '2.4 m Continuum Inspection Arm',
+  '核电储罐 · 大纵深': 'Nuclear Tank · Deep Reach',
+  'LONG ARM · 大纵深长臂型': 'LONG ARM · DEEP CAVITY',
+  '3.0 m 柔性检测臂': '3.0 m Continuum Inspection Arm',
+  '在线工况选型配置器 & 免拆检经济效益（ROI）测算': 'Interactive Confined-Space Configurator & Disassembly-Free ROI Calculator',
+  '航空隔框工况': 'Aviation Airframe Preset',
+  '石化压力容器工况': 'Pressure Vessel Preset',
+  '核电高危储罐工况': 'Nuclear Tank Preset',
+  '1. 现场检修口最小孔径 (Access Diameter)': '1. Min Inspection Port Diameter (Access Diameter)',
+  '2. 腔体内部所需探测纵深 (Inspection Reach)': '2. Required Internal Inspection Reach',
+  '3. 末端探头/工具总负载需求 (Payload)': '3. End-Effector Total Payload Requirement',
+  '4. 企业年均停机拆检频次 (Annual Inspections)': '4. Annual Shutdown Inspection Frequency',
+  'RECOMMENDED MODEL · 智能匹配结果': 'RECOMMENDED MODEL · SMART MATCH',
+  '预计年均节省拆检费': 'Est. Annual Cost Savings',
+  '预计设备投资回收期': 'Est. Payback Period',
+  '推荐方案参考报价': 'Reference Package Price',
+  '将此选型参数带入询盘 →': 'Attach Config to Inquiry →',
+  '导出该机型 PDF 规格书': 'Export Model PDF Datasheet',
+  '核心优势': 'Core Advantages',
+  '检测速度': 'Inspection Speed',
+  '测试与扫查速度快，立罐、卧罐内部全域覆盖率达 96%，从单点伸入检测到出具分析报告仅需 20~30 分钟。': 'High scanning speed with 96% internal coverage for vertical/horizontal tanks; takes only 20–30 minutes from port entry to quantitative report generation.',
+  '多模态搭载': 'Multi-Modal Payloads',
+  '6.0 kg 末端大负载，一体化兼容高清视觉、超声相控阵、压入法残余应力测头、电动夹爪与内壁清理工具。': '6.0 kg tip payload seamlessly supports HD dual-spectrum vision, phased-array UT, indentation residual-stress probes, electric grippers, and cleaning tools.',
+  '产品可靠性': 'Proven Reliability',
+  '参编 T/CSTM 00824-2023 与 GB/T 30583-2025 标准，通过省特检院 20,000 次连续弯折中试考核，良品率 95%。': 'Co-authored T/CSTM 00824-2023 & GB/T 30583-2025 standards; certified through 20,000 continuous bending fatigue cycles at JSSEI with a 95% yield rate.',
+  '环境适应性': 'Harsh-Environment Ready',
+  '无先验地图自主避障规划，不受暗光、高辐射、强腐蚀及高密度障碍干扰，未知腔体避障成功率 ≥95%。': 'Mapless autonomous obstacle avoidance immune to darkness, high radiation, corrosion, and dense obstacles, achieving ≥95% avoidance success.',
+  '混天绫 QZSZC001 系列': 'Huntianling QZSZC001 Series',
+  '原位无损': 'In-Situ Non-Destructive',
+  '不拆一颗螺栓、不切割取样，从 30–60 mm 原有检修口直接进入，单次检测成本降低 87%，设备延寿 30%。': 'Zero bolt removal or destructive sampling — enters directly through 30–60 mm ports, cutting single inspection cost by 87% and extending service life by 30%.',
+  '刚柔一体': 'Rigid-Flexible Unity',
+  '内-中-外三层柔索解耦结构，刚度 62–4300 N/m 达 70 倍瞬时可调，伸展自支撑无下垂，极限转弯半径 0.2 m。': 'Inner-Middle-Outer 3-layer decoupled tendon architecture provides 70× instant stiffness modulation (62–4300 N/m), self-supporting reach, and 0.2 m turning radius.',
+  '精度保障': 'Millimeter Precision',
+  '自研逆反馈关节解耦驱动算法，毫秒级消除段间耦合迟滞，0.1 s 动态阶跃响应，重复定位精度达 ±0.6 mm。': 'Proprietary inverse-feedback joint decoupling algorithm eliminates inter-segment hysteresis in milliseconds, delivering 0.1 s response and ±0.6 mm repeatability.',
+  '多场景适用': 'Cross-Industry Versatility',
+  '广泛适用于航空蒙皮隔框、核电高危储罐、石化反应釜、火电锅炉管道、船舶双层底及灾后搜救等受限空间。': 'Widely applicable to aircraft airframes, nuclear storage tanks, petrochemical reactors, boiler headers, ship double-bottoms, and urban search & rescue.',
+  '核心技术原理': 'Core Technologies',
+  '结构层面': 'STRUCTURE',
+  '内-中-外三层柔索解耦结构': 'Inner-Middle-Outer 3-Layer Decoupled Tendon Structure',
+  '三层柔索在段内耦合、段间通过滑轮（Pulley）与中间球铰（Middle Ball）实现力学解耦，依靠索力动态分配实现“刚柔一体”。伸展穿行时柔顺避障，抵达作业点受压时刚度瞬时提升 70 倍自支撑无变形，使 50.6 长径比与 6.0 kg 重载同时成立。': 'Three concentric tendon layers couple within segments and decouple between segments via precision pulleys and middle spherical joints. Compliant during navigation and 70× stiffer under load without sag, enabling a 50.6 slenderness ratio alongside a 6.0 kg payload.',
+  '刚度变化范围': 'Stiffness Modulation Range',
+  '承载能力提升': 'Payload Capacity Increase',
+  '极限转弯半径': 'Min Turning Radius',
+  '发明专利《一种空间站的机械臂装置》专利号：2024117977991': 'Invention Patent: "A Space Station Robotic Arm Apparatus" (No. 2024117977991)',
+  'Fig. 01 / 三层柔索滑轮与球铰解耦结构': 'Fig. 01 / 3-Layer Tendon Pulley & Spherical-Joint Decoupling Structure',
+  '控制层面': 'CONTROL',
+  '逆反馈关节解耦驱动系统': 'Inverse-Feedback Joint Decoupling Drive System',
+  '集成末端三维姿态传感器（Posture Sensor）、电机-索轮驱动阵列（Actuating Device）与气囊变刚度阀控回路（Airbag & Valve），自研逆反馈解耦算法将段间耦合干扰在毫秒级内实时补偿，粗精同驱，让超长臂体在重载下依然“指哪到哪”。': 'Integrates 3D tip posture sensors, motor-pulley actuating arrays, and pneumatic airbag stiffness valves. Our inverse-feedback decoupling algorithm compensates inter-segment interference in milliseconds for pinpoint accuracy under heavy loads.',
+  '重复精度提升': 'Repeatability Improvement',
+  '小试台架实测：单段最大弯曲 180°，满臂长稳定承载 5.2–6.0 kg': 'Bench Test Verified: 180° max single-segment bend, 5.2–6.0 kg full-reach payload',
+  'Fig. 02 / 逆反馈关节解耦驱动与闭环控制台架': 'Fig. 02 / Inverse-Feedback Joint Decoupling & Closed-Loop Control Testbed',
+  '智能层面': 'INTELLIGENCE',
+  '以局部最优解配合安全梯度策略降维，让机械臂在没有先验地图的狭小非结构化腔体里自主避障；将锯齿震荡的原始路径（RAW PATH）实时收敛为高阶连续平滑轨迹（SMOOTHED PATH），面对高密度障碍零碰撞通过。': 'Combines local optimal solvers with safety-gradient dimensionality reduction for autonomous obstacle avoidance in mapless confined cavities, converging jagged RAW PATHs into high-order SMOOTHED PATHs with zero collision.',
+  '轨迹平滑性提升': 'Trajectory Smoothness Gain',
+  '避障成功率': 'Obstacle Avoidance Success',
+  '自适应安全提升': 'Adaptive Safety Margin Gain',
+  '国家软著《检测探测用变刚度连续体机器人控制软件 V1.0》2024SR1758359': 'Software Copyright: "Variable-Stiffness Continuum Robot Control Software V1.0" (2024SR1758359)',
+  'Fig. 03 / 狭小腔体无地图避障与轨迹平滑规划': 'Fig. 03 / Mapless Confined-Cavity Obstacle Avoidance & Trajectory Smoothing',
+  '产品潜力与应用领域': 'Application Scenarios',
+  '航空蒙皮与隔框夹层': 'Aircraft Skin & Airframe Bays',
+  '不拆蒙皮，从检修口进入机身与机翼隔框内部，定位疲劳裂纹、异物与紧固件松动状态。': 'Enters fuselage and wing bays through inspection holes without skin removal to locate fatigue cracks, FOD, and loose fasteners.',
+  '核电储罐与高危管道': 'Nuclear Storage Tanks & Piping',
+  '高辐射环境下非拆卸原位扫查，替代人工进入高危罐体，单次检测降本 87%。': 'Non-disassembly in-situ scanning in high-radiation zones, replacing hazardous manual tank entry and cutting cost by 87%.',
+  '石化压力容器 / 反应釜': 'Petrochemical Vessels & Reactors',
+  '立罐、卧罐内部焊缝与母材全域扫查，覆盖率达 96%，20–30 分钟出具定量报告。': 'Full-cavity weld and base-metal scanning for vertical/horizontal vessels with 96% coverage and 20–30 min quantitative reporting.',
+  '化工异形管路与三通': 'Complex Chemical Piping & Tees',
+  '沿连续弯头、三通、变径段柔顺穿行，在线检查内壁腐蚀减薄与沉积堵塞。': 'Navigates consecutive elbows, tees, and reducers to inspect internal corrosion thinning and deposit blockages.',
+  '重型装备深腔焊缝': 'Heavy-Equipment Deep Welds',
+  '大型结构件内部合拢焊缝可达性差，柔性臂贴壁爬行完成超声与残余应力测定。': 'Reaches inaccessible closure welds inside large structural components for ultrasonic and residual-stress testing.',
+  '地下管廊 / 电缆沟巡检': 'Underground Utility & Cable Tunnels',
+  '低照度、多障碍环境下无地图自主避障通行，替代人工下井巡检。': 'Autonomous mapless traversal in low-light, obstacle-dense trenches, replacing manual manhole entry.',
+  '船舶双层底与狭小舱室': 'Ship Double-Bottoms & Compartments',
+  '双层底、边舱等受限空间内部结构检查，大幅减少人员进舱作业安全风险。': 'Internal structural inspection of double-bottoms and wing tanks, eliminating confined-space suffocation hazards.',
+  '灾后救援与特种作业': 'Disaster Search & Special Operations',
+  '废墟狭缝、坍塌腔体中深入探查生命迹象与危险源并实施机械夹取。': 'Penetrates rubble crevices and collapsed voids to detect life signs, identify hazards, and perform robotic retrieval.',
+  '项目案例': 'Engineering Cases',
+  '航空器蒙皮隔框舱体应急检修': 'Aircraft Airframe Compartment Emergency Inspection',
+  'AVIATION · 东部机场集团': 'AVIATION · Eastern Airport Group',
+  'SC4667 航班南京上空突发异响抖动，混天绫紧急出动，从狭窄检修口进入隔框内部，探查与异物拾取一步到位，避免了飞机停飞拆解造成的巨额损失。': 'When Flight SC4667 experienced abnormal vibration, the Huntianling arm entered through a narrow access port to inspect and retrieve foreign objects in one pass, avoiding costly aircraft grounding and disassembly.',
+  '核电水合肼储罐非拆卸原位检测': 'Non-Disassembly In-Situ Inspection of Nuclear Hydrazine Tank',
+  'NUCLEAR · 秦山核电基地': 'NUCLEAR · Qinshan Nuclear Power Base',
+  '面对高辐射环境下的水合肼储罐，在不拆卸罐体的前提下从原有检修口伸入完成内部全域“CT 扫描”，单次检测成本降低 87%，罐体使用寿命延长 30%。': 'Conducted full-cavity internal scanning of high-radiation hydrazine tanks through existing ports without disassembly, reducing single-inspection cost by 87% and extending tank service life by 30%.',
+  '压力容器与异形管道原位无损检测': 'In-Situ NDT of Pressure Vessels & Complex Pipelines',
+  'PRESSURE VESSEL · 石化现场': 'PRESSURE VESSEL · Petrochemical Site',
+  '立罐、卧罐、异形管路现场原位作业，内部焊缝与母材检测覆盖率达 96%，单点检测到出具定量报告仅需 20–30 分钟，不占产线、不增停机。': 'On-site inspection of vertical/horizontal tanks and piping achieved 96% internal coverage, generating quantitative reports in 20–30 minutes without extra production downtime.',
+  '省特检院权威台架中试与小批量产': 'JSSEI Authoritative Pilot Test & Batch Production',
+  'PILOT TEST · 江苏省特检院': 'PILOT TEST · JSSEI Institute',
+  '在江苏省特种设备检验研究院台架完成立罐 18 次、卧罐 21 次、连续弯折疲劳 20,000 次严苛考核，整机良品率 95%，弯折寿命支撑 8–10 年服役。': 'Completed 18 vertical-tank tests, 21 horizontal-tank tests, and 20,000 continuous bending fatigue cycles at JSSEI with a 95% yield rate, supporting 8–10 years of industrial service.',
+  '关于我们': 'About Us',
+  '南京江鸟科技有限公司是一支专注于超细长重载柔性机械臂研发、制造与在役装备原位无损检测服务的高新技术企业团队，落户南京市江苏装备产业园，首期现代化标准厂房 1200 ㎡，划分精密研发、索驱装配、老化质检与办公四大功能区域。团队自主研发了基于“内-中-外三层柔索解耦结构”与“逆反馈关节解耦驱动”的混天绫系列连续体机械臂系统，同时针对现场不同受限工况配套了高清双光谱视觉、超声探伤、压入能量差残余应力测头及电动夹爪等模块化快换末端。核心技术源自江苏省智能制造重点实验室，获江苏省重点研发计划（项目号：BE2024153）专项支持，团队累计发表高水平论文 11 篇、申请及授权核心专利 15 项、软件著作权 4 项，参编《索驱动连续体机器人》（T/CSTM 00824-2023）与《承压设备残余应力测定 压入能量差法》（GB/T 30583-2025）国家标准，成果获 CCTV-1、CCTV-13 专题报道，致力于为航空、核电、石化及第三方特检机构提供安全、精准、高性价比的原位检测装备与延寿评估方案。': 'Nanjing Jiangniao Technology Co., Ltd. is a high-tech enterprise specializing in the R&D, manufacturing, and in-situ NDT service of ultra-slender heavy-duty continuum robotic arms. Located in Jiangsu Equipment Industrial Park (Nanjing) with a 1,200 ㎡ ISO-compliant facility, our team developed the "Huntianling" continuum robot series powered by our patented 3-layer decoupled tendon structure and inverse-feedback decoupling control, paired with modular quick-swap end-effectors (dual-spectrum vision, ultrasonic, indentation residual-stress probes, and electric grippers). Originating from the Jiangsu Provincial Key Laboratory of Intelligent Manufacturing and supported by the Jiangsu Key R&D Program (BE2024153), we hold 15 core patents, 4 software copyrights, and 11 academic papers, co-authored T/CSTM 00824-2023 and GB/T 30583-2025 standards, and were featured on CCTV-1 and CCTV-13.',
+  '新闻中心': 'News Center',
+  '秦山核电储罐非拆卸检测完成，单次检测成本降低 87%': 'Non-Disassembly Inspection Completed at Qinshan Nuclear Power Base, Cost Reduced by 87%',
+  '面对高辐射环境下的水合肼储罐，团队在不拆卸罐体的前提下通过原有检修口将混天绫柔性臂送入罐体内部完成全域检查，罐体在役寿命同步延长 30%......': 'Facing high-radiation hydrazine storage tanks, our team deployed the Huntianling continuum arm through existing ports for full-cavity scanning without tank disassembly, extending tank life by 30%...',
+  '第十七届过程装备实践与创新赛全国总决赛国家级奖项': 'National Award at the 17th Process Equipment Practice & Innovation Finals',
+  '混天绫团队携三代定型样机参赛，现场完整演示了柔性臂在模拟狭小腔体内的进入、无地图避障、探查与异物拾取全过程，获评委高度认可......': 'Competing with the Gen-3 prototype, the team demonstrated narrow-port entry, mapless obstacle avoidance, inspection, and FOD retrieval in simulated confined cavities...',
+  'CCTV-1、CCTV-13 报道“混天绫”三层联动柔性机械臂': 'CCTV-1 & CCTV-13 Feature the "Huntianling" Three-Layer Tendon Continuum Arm',
+  '中央电视台综合频道与新闻频道以“首创三层联动结构设计”为题，专题报道了混天绫柔性机械臂在狭小腔体内弯曲伸展并完成原位检测的全过程......': 'CCTV-1 and CCTV-13 broadcast a special report on our pioneering three-layer coupled continuum arm navigating tight bends and performing in-situ NDT inspection...',
+  '通过江苏省特种设备检验研究院台架中试，良品率 95%': 'Passed JSSEI Special Equipment Institute Pilot Test with 95% Yield Rate',
+  '完成立罐测试 18 次、卧罐测试 21 次、连续弯折疲劳 20,000 次考核：轨迹动态响应 ≤100 ms、稳态误差 ≤1.8 mm、智能避障成功率 ≥95%......': 'Completed 18 vertical-tank tests, 21 horizontal-tank tests, and 20,000 continuous bending fatigue cycles: dynamic response ≤100 ms, steady error ≤1.8 mm, obstacle avoidance ≥95%...',
+  '作业中若突发断电或气源中断，机械臂会卡在腔体内部吗？': 'Will the robotic arm get stuck inside the cavity if power or air supply fails?',
+  '不会。混天绫具备“三层柔索+变刚度气囊”断电安全冗余，异常掉电时控制箱可一键释放气囊锁紧气压与柔索预紧力，使臂体瞬间恢复 62 N/m 柔顺状态，操作人员可轻松沿原检修口顺畅回抽取出。': 'No. Huntianling features a fail-safe redundancy: upon power or pressure loss, the control box releases airbag pressure and tendon pre-tension in milliseconds, returning the arm to its 62 N/m compliant state for effortless manual withdrawal.',
+  '末端接口能否搭载我们现有的超声、涡流或压痕残余应力探头？': 'Can the tip interface carry our existing ultrasonic, eddy-current, or residual-stress probes?',
+  '完全支持。臂体预留 1–3 路传感器通道与标准机电快换法兰，末端负载达 5.2–6.0 kg，兼容主流相控阵超声（PAUT）、压入能量差法残余应力测头、双光谱内窥及电动夹爪。': 'Yes. The arm provides 1–3 internal sensor conduits and a standardized electro-mechanical quick-swap flange with 5.2–6.0 kg payload capacity, compatible with PAUT, eddy-current, indentation residual-stress probes, and grippers.',
+  '在高辐射、强腐蚀或全黑无地图金属腔体内能否稳定工作？': 'Can it operate reliably in high-radiation, corrosive, or pitch-black mapless metal cavities?',
+  '外部可选配耐辐照、耐酸碱氟橡胶防护套（已在秦山核电水合肼储罐验证）；算法采用无先验地图的局部安全梯度场避障，不依赖外部光学定位，全黑腔体避障成功率 ≥95%。': 'An optional radiation- and acid/alkali-resistant fluoroelastomer sheath (proven at Qinshan Nuclear Power Base) protects the arm, while mapless safety-gradient path planning achieves ≥95% obstacle avoidance in total darkness.',
+  '标准设备采购与驻场检测技术服务如何计费？交付周期多久？': 'What are the pricing options and lead times for equipment purchase vs. on-site inspection service?',
+  '标准成套设备 30–40 万元/台（交付周期 4–6 周，含 2 天实操培训与 12 个月质保）；若仅需单次或短期检修，可选择工程师携设备入场技术服务（单次定检 3000 元起，短期 4 万元/月，长期 2 万元/月）。': 'Standard turnkey systems cost 300k–400k RMB/set (4–6 weeks lead time, including 2-day training & 12-month warranty). On-site engineer inspection service starts from 3,000 RMB/visit (or 20k–40k RMB/month).',
+  '中国 · 江苏省南京市': 'Nanjing, Jiangsu, China',
+  '南京市江苏装备产业园（1200 ㎡ 研发与制造基地）': 'Jiangsu Equipment Industrial Park, Nanjing (1,200 ㎡ R&D & Manufacturing Base)',
+  '24 小时技术与商务热线': '24/7 Technical & Sales Hotline',
+  '给我留言 / 获取报价': 'Leave a Message / Request Quote',
+  '提交留言（发送邮件）': 'Send Inquiry (Email)',
+  '复制留言单（发微信）': 'Copy Inquiry (Clipboard)',
+  '在线咨询': 'Inquiry',
+  '服务热线': 'Hotline',
+  '规格书': 'Datasheet',
+  '返回顶部': 'Top',
+  '一键拨号': 'Call Now',
+  '在线留言': 'Message',
+  '获取该机型报价 / 预约样机': 'Request Quote / Book Demo',
+  '导出 / 打印 PDF 规格书': 'Export / Print PDF Datasheet',
+  '获取报价 / 预约样机演示': 'Request Quote / Book Prototype Demo',
+  '立即提交询盘': 'Submit Inquiry Now',
+  '复制询盘内容': 'Copy Inquiry Text'
+};
+
+const I18N_PH = {
+  '请输入关键字（如：核电 / 08 / 精度）': 'Search keywords (e.g. Nuclear / 08 / Precision)',
+  '您的姓名 / 职称 *': 'Your Name / Title *',
+  '联系电话 / 微信 *': 'Phone / WeChat / Email *',
+  '所属单位 / 企业名称': 'Company / Organization',
+  '请简述留言内容或现场工况（如：检修口孔径、探测纵深、需搭载的探头或期望样机演示时间）...': 'Describe your port diameter, cavity depth, required NDT probes, or preferred demo schedule...',
+  '请简述检修口尺寸、腔体深度或期望演示时间...': 'Describe port diameter, cavity depth, or preferred demo date...'
+};
+
+window.__LANG = 'zh';
+(function(){
+  const trackedNodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+  let n;
+  while((n = walker.nextNode())){
+    if(!n.parentElement) continue;
+    const tag = n.parentElement.tagName;
+    if(tag === 'SCRIPT' || tag === 'STYLE') continue;
+    const raw = n.nodeValue;
+    const trimmed = raw.trim();
+    if(trimmed && I18N_DICT[trimmed] !== undefined){
+      n.__zh = raw;
+      n.__en = raw.replace(trimmed, I18N_DICT[trimmed]);
+      trackedNodes.push(n);
+    }
+  }
+  const trackedInputs = [];
+  document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+    const ph = el.getAttribute('placeholder');
+    if(I18N_PH[ph]){
+      el.__zhPh = ph;
+      el.__enPh = I18N_PH[ph];
+      trackedInputs.push(el);
+    }
+  });
+
+  window.setSiteLang = function(lang){
+    window.__LANG = lang === 'en' ? 'en' : 'zh';
+    const isEn = window.__LANG === 'en';
+    document.documentElement.lang = isEn ? 'en' : 'zh-CN';
+    const bZh = document.getElementById('btnLangZh');
+    const bEn = document.getElementById('btnLangEn');
+    if(bZh) bZh.classList.toggle('active', !isEn);
+    if(bEn) bEn.classList.toggle('active', isEn);
+
+    trackedNodes.forEach(node => { node.nodeValue = isEn ? node.__en : node.__zh; });
+    trackedInputs.forEach(el => { el.setAttribute('placeholder', isEn ? el.__enPh : el.__zhPh); });
+    if(window.__updateCfg) window.__updateCfg();
+    localStorage.setItem('jn_site_lang', window.__LANG);
+    showToast(isEn ? 'Switched to English Mode' : '已切换为中文模式');
+  };
+
+  const savedLang = localStorage.getItem('jn_site_lang');
+  if(savedLang === 'en') window.setSiteLang('en');
 })();
 </script>
 </body>

@@ -1,0 +1,2637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="applicable-device" content="pc,mobile">
+<title>南京探微智能科技有限公司 | 超细长重载柔性机械臂 · 混天绫</title>
+<meta name="keywords" content="南京探微智能科技有限公司,混天绫柔性机械臂,超细长重载柔性机械臂,连续体机器人,三层柔索结构,狭小腔体无损检测,核电储罐检测,航空蒙皮隔框检修">
+<meta name="description" content="南京探微智能科技有限公司专注超细长重载柔性机械臂研发与制造，核心产品“混天绫”长径比50.6、负载6.0kg、重复定位精度±0.6mm，服务航空、核电、石化等在役装备原位无损检测与运维。">
+<meta name="theme-color" content="#17266b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="南京探微智能科技有限公司 | 超细长重载柔性机械臂 · 混天绫">
+<meta property="og:description" content="长径比50.6 · 负载6.0kg · 动态响应≤0.1s · 狭小腔体原位无损检测装备">
+<meta property="og:image" content="assets/hero-1.jpg">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "南京探微智能科技有限公司",
+  "alternateName": "Nanjing Tanwei Intelligent Technology Co., Ltd.",
+  "url": "https://www.jiangniao-tech.com/",
+  "logo": "https://www.jiangniao-tech.com/assets/logo.png",
+  "description": "专注超细长重载柔性机械臂研发与制造，核心产品混天绫系列长径比50.6、负载6.0kg、重复定位精度±0.6mm。",
+  "telephone": "+86-25-88886666",
+  "email": "contact@jiangniao-tech.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "南京市",
+    "addressRegion": "江苏省",
+    "streetAddress": "江苏装备产业园"
+  }
+}
+</script>
+<style>
+/* ==========================================================================
+   0. 基准视觉规范（对标 js-gurion.com 工业精密蓝 #17266b / #053d92 + 纯白极简）
+   ========================================================================== */
+:root {
+  --royal: #17266b;
+  --royal-dark: #0f1b4f;
+  --royal-bar: #053d92;
+  --royal-soft: #3f64b2;
+  --accent-red: #c9372c;
+  --laser: #0284c7;
+  --bg-white: #ffffff;
+  --bg-light: #f6f8fc;
+  --text-main: #222222;
+  --text-body: #4a5568;
+  --text-muted: #718096;
+  --border: #e2e8f0;
+  --font-sans: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono: "Barlow Condensed", "JetBrains Mono", "Consolas", monospace;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shadow: 0 14px 34px rgba(23, 38, 107, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background: var(--bg-white);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; border: none; }
+a { color: inherit; text-decoration: none; transition: all .25s; }
+ul, ol, dl, dd, dt { list-style: none; }
+button, input, select, textarea { font: inherit; outline: none; }
+button { cursor: pointer; background: none; border: none; }
+.lucide { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; fill: none; flex: none; }
+
+.box, .wrap { width: 100%; max-width: 1220px; margin: 0 auto; padding: 0 20px; }
+
+/* 顶部阅读进度条 */
+.scroll-prog {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--royal), var(--accent-red));
+  z-index: 300; transition: width .08s linear;
+}
+
+/* ==========================================================================
+   1. 对标 js-gurion.com 经典对称标题组件 (.biaoti)
+   ========================================================================== */
+.biaoti {
+  margin: 0 auto 44px;
+  width: 100%;
+  text-align: center;
+}
+.biaoti h2 {
+  font-size: clamp(24px, 2.5vw, 30px);
+  color: var(--royal);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+.biaoti h2::before,
+.biaoti h2::after {
+  content: "";
+  width: 90px;
+  height: 1.5px;
+  background: var(--royal);
+  display: inline-block;
+  opacity: 0.75;
+}
+.biaoti p {
+  color: var(--royal);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  opacity: 0.72;
+  text-transform: uppercase;
+}
+.biaoti--light h2,
+.biaoti--light p { color: #ffffff; }
+.biaoti--light h2::before,
+.biaoti--light h2::after { background: rgba(255,255,255,0.65); }
+
+/* ==========================================================================
+   2. 头部导航 (.header + 二级下拉菜单 .sub + 蓝色热线栏 .heade_tel)
+   ========================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 150;
+  background: #ffffff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.07);
+}
+.header-main .box {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 86px; gap: 20px;
+}
+.logo {
+  display: flex; align-items: center; gap: 13px; flex: none;
+}
+.logo-img { height: 48px; width: auto; object-fit: contain; flex: none; }
+.logo-mark {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: var(--royal); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 16px rgba(23, 38, 107, 0.25);
+}
+.logo-text b {
+  display: block; font-size: 21px; font-weight: 900; color: var(--royal); letter-spacing: 0.04em; line-height: 1.2;
+}
+.logo-text span {
+  display: block; font-size: 11px; color: var(--royal-soft); font-family: var(--font-mono); letter-spacing: 0.14em;
+}
+
+.main-nav { flex: 1; display: flex; justify-content: flex-end; }
+.main-nav ul { display: flex; align-items: center; }
+.main-nav li.nLi { position: relative; }
+.main-nav li.nLi > a {
+  display: flex; align-items: center; gap: 4px;
+  padding: 0 15px; height: 86px; line-height: 86px;
+  font-size: 15px; font-weight: 600; color: #222222;
+  position: relative; white-space: nowrap;
+}
+.main-nav li.nLi > a::after {
+  content: ""; position: absolute; left: 15px; right: 15px; bottom: 0;
+  height: 3px; background: var(--royal); transform: scaleX(0); transition: transform .25s;
+}
+.main-nav li.nLi:hover > a,
+.main-nav li.nLi.on > a { color: var(--royal); }
+.main-nav li.nLi:hover > a::after,
+.main-nav li.nLi.on > a::after { transform: scaleX(1); }
+
+/* 二级下拉菜单（对标 js-gurion .sub） */
+.main-nav li.nLi .sub {
+  position: absolute; left: 0; top: 86px; min-width: 190px;
+  background: rgba(23, 38, 107, 0.96); backdrop-filter: blur(8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  padding: 8px 0; opacity: 0; visibility: hidden;
+  transform: translateY(8px); transition: all .25s; z-index: 160;
+}
+.main-nav li.nLi:hover .sub { opacity: 1; visibility: visible; transform: translateY(0); }
+.main-nav li.nLi .sub a {
+  display: block; padding: 10px 20px; font-size: 13.5px; color: rgba(255,255,255,0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5;
+}
+.main-nav li.nLi .sub a:last-child { border-bottom: none; }
+.main-nav li.nLi .sub a:hover { background: var(--royal-bar); color: #fff; padding-left: 25px; }
+
+/* 蓝色热线顶栏 (.heade_tel) */
+.heade_tel {
+  background: var(--royal-bar);
+  color: #ffffff;
+  padding: 7px 0;
+  font-size: 13px;
+}
+.heade_tel .box {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.heade_tel .ht-left {
+  display: flex; align-items: center; gap: 14px; font-size: 12.5px; color: rgba(255,255,255,0.9);
+}
+.heade_tel .ht-badge {
+  background: rgba(255,255,255,0.16); padding: 2px 9px; border-radius: 3px;
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em;
+}
+.heade_tel .ht-right {
+  display: flex; align-items: center; gap: 16px; margin-left: auto; font-weight: 500;
+}
+.heade_tel .ht-right strong { font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.04em; }
+.heade_tel .lang-switch a { color: #fff; opacity: 0.85; font-size: 12.5px; }
+.heade_tel .lang-switch a.active, .heade_tel .lang-switch a:hover { opacity: 1; font-weight: 700; text-decoration: underline; }
+
+.burger { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; color: var(--royal); border: 1px solid var(--border); border-radius: 4px; }
+
+/* ==========================================================================
+   3. 幻灯片大图轮播 (.fullSlide) + 硬核指标看板
+   ========================================================================== */
+.hero {
+  position: relative; height: clamp(500px, 68vh, 650px);
+  background: #0a1435; overflow: hidden; color: #fff;
+}
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity .9s var(--ease); pointer-events: none; }
+.slide.on { opacity: 1; pointer-events: auto; }
+.slide .media { position: absolute; inset: 0; }
+.slide .media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 8s linear; }
+.slide.on .media img { transform: scale(1); }
+.slide .shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(15,27,79,0.86) 0%, rgba(23,38,107,0.58) 42%, rgba(15,27,79,0.10) 100%);
+}
+.slide .body {
+  position: relative; z-index: 2; height: 100%;
+  display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 40px;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 14px; border-radius: 4px; font-size: 12.5px; margin-bottom: 18px;
+  font-family: var(--font-mono); letter-spacing: 0.12em;
+}
+.slide h1 { font-size: clamp(32px, 4.2vw, 54px); line-height: 1.2; margin-bottom: 18px; font-weight: 900; }
+.slide h1 em { font-style: normal; color: #ff6b5b; }
+.slide .sub { font-size: 15.5px; line-height: 1.85; color: rgba(255,255,255,0.88); max-width: 580px; margin-bottom: 28px; }
+.slide .acts { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 4px;
+  border: 1px solid transparent; transition: all .25s; white-space: nowrap;
+}
+.btn--royal { background: var(--royal); color: #fff; }
+.btn--royal:hover { background: var(--royal-bar); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(23,38,107,0.3); }
+.btn--red { background: var(--accent-red); color: #fff; }
+.btn--red:hover { background: #a8281e; transform: translateY(-2px); }
+.btn--ghost { border-color: rgba(255,255,255,0.55); color: #fff; background: rgba(255,255,255,0.08); }
+.btn--ghost:hover { background: #fff; color: var(--royal); }
+.btn--outline { border-color: var(--royal); color: var(--royal); background: #fff; }
+.btn--outline:hover { background: var(--royal); color: #fff; }
+.btn--sm { padding: 8px 16px; font-size: 13px; }
+
+/* 首屏右侧技术指标速览卡片 */
+.hero-hud {
+  background: rgba(15, 27, 79, 0.82); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 24px;
+}
+.hero-hud .hud-t {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: #7dd3fc;
+  border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 10px; margin-bottom: 16px;
+  display: flex; justify-content: space-between;
+}
+.hero-hud .hud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hero-hud .hud-cell { background: rgba(255,255,255,0.07); padding: 12px 14px; border-radius: 4px; }
+.hero-hud .hud-cell b { display: block; font-family: var(--font-mono); font-size: 26px; color: #fff; line-height: 1.1; }
+.hero-hud .hud-cell b i { font-style: normal; font-size: 13px; color: #ff6b5b; margin-left: 3px; }
+.hero-hud .hud-cell span { font-size: 12px; color: rgba(255,255,255,0.75); }
+
+.hero-dots {
+  position: absolute; left: 0; right: 0; bottom: 18px; z-index: 5;
+  display: flex; justify-content: center; gap: 10px;
+}
+.hero-dots button {
+  width: 32px; height: 24px; border-radius: 3px; background: rgba(255,255,255,0.25);
+  color: #fff; font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+}
+.hero-dots button.on { background: var(--accent-red); width: 44px; }
+
+/* ==========================================================================
+   4. 热门关键字与站内检索栏（对标 js-gurion.com .search）
+   ========================================================================== */
+.search-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #d4d9e6;
+  padding: 16px 0;
+}
+.search-bar .box {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.search-bar .hot-keys {
+  font-size: 14px; color: #444; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px;
+}
+.search-bar .hot-keys b { color: var(--royal); display: inline-flex; align-items: center; gap: 5px; }
+.search-bar .hot-keys a {
+  color: #333; padding: 3px 10px; background: var(--bg-light); border-radius: 3px; font-size: 13px;
+}
+.search-bar .hot-keys a:hover { background: var(--royal); color: #fff; }
+.search-form {
+  display: flex; align-items: center; border: 1.5px solid var(--royal); border-radius: 4px; overflow: hidden;
+}
+.search-form input {
+  border: none; padding: 7px 14px; width: 210px; font-size: 13.5px; color: #333;
+}
+.search-form button {
+  background: var(--royal); color: #fff; padding: 7px 16px; font-size: 13.5px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.search-form button:hover { background: var(--royal-bar); }
+
+/* ==========================================================================
+   5. 市场现状和问题（对标 js-gurion.com .marker + 硬核指标看板）
+   ========================================================================== */
+.sec-block { padding: 68px 0; }
+.sec-block--light { background: var(--bg-light); }
+
+.market-text {
+  background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--royal);
+  border-radius: 6px; padding: 32px 36px; box-shadow: var(--shadow); margin-bottom: 32px;
+}
+.market-text p {
+  font-size: 15px; color: #333; line-height: 2; text-indent: 2em; margin-bottom: 14px; text-align: justify;
+}
+.market-text p:last-child { margin-bottom: 0; }
+.market-text b { color: var(--royal); }
+
+.pain-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 32px; }
+.pain-box {
+  background: var(--bg-light); border: 1px solid var(--border); border-left: 4px solid var(--royal);
+  border-radius: 5px; padding: 24px 22px; transition: transform .25s, box-shadow .25s;
+}
+.pain-box:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-left-color: var(--accent-red); }
+.pain-box .p-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.pain-box .p-head span { font-family: var(--font-mono); font-size: 12px; color: var(--royal-soft); font-weight: 700; letter-spacing: 0.1em; }
+.pain-box h3 { font-size: 22px; color: var(--royal); margin-bottom: 8px; }
+.pain-box h3 em { font-style: normal; color: var(--accent-red); }
+.pain-box p { font-size: 13.5px; color: var(--text-body); line-height: 1.8; }
+
+/* 6 项硬核技术指标看板 */
+.kpi-strip {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+}
+.kpi-item {
+  background: var(--royal); color: #fff; border-radius: 5px; padding: 20px 16px; text-align: center;
+  transition: transform .25s;
+}
+.kpi-item:hover { transform: translateY(-4px); background: var(--royal-bar); }
+.kpi-item b { display: block; font-family: var(--font-mono); font-size: 32px; line-height: 1.1; color: #fff; }
+.kpi-item b small { font-size: 14px; color: #ff8a7a; margin-left: 2px; }
+.kpi-item span { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; }
+.kpi-item i { display: block; font-style: normal; font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 3px; }
+
+/* ==========================================================================
+   6. 产品中心（对标 js-gurion.com .pronav 五联蓝钮 + 左图右文主推 + 三机型矩阵 + 选型测算）
+   ========================================================================== */
+.pronav {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
+  margin-bottom: 36px;
+}
+.pronav button, .pronav a {
+  background: var(--royal); color: #ffffff;
+  padding: 10px 22px; border-radius: 5px; font-size: 15px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px; transition: all .25s;
+}
+.pronav button:hover, .pronav button.on, .pronav a:hover {
+  background: var(--accent-red); transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(201, 55, 44, 0.3);
+}
+
+/* 左图右文主推系统展示（对标 js-gurion .case_li） */
+.feature-showcase {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 36px; align-items: center;
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  padding: 32px; margin-bottom: 36px; box-shadow: var(--shadow);
+}
+.feature-showcase .pic {
+  text-align: center; background: var(--bg-light); border: 1px solid var(--border);
+  border-radius: 6px; padding: 20px;
+}
+.feature-showcase .pic img { max-height: 340px; margin: 0 auto; object-fit: contain; }
+.feature-showcase .pic p {
+  margin-top: 12px; font-size: 16px; font-weight: 700; color: var(--royal);
+}
+.feature-showcase .txt h3 {
+  font-size: 23px; color: var(--royal); margin-bottom: 14px;
+  padding-bottom: 12px; border-bottom: 2px solid var(--royal);
+}
+.feature-showcase .txt p {
+  font-size: 14.5px; color: #333; line-height: 1.95; margin-bottom: 14px; text-align: justify;
+}
+.feature-showcase .txt .tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+}
+.feature-showcase .txt .tags span {
+  background: var(--bg-light); border: 1px solid #cbd5e1; color: var(--royal);
+  font-size: 12.5px; font-weight: 600; padding: 4px 12px; border-radius: 4px;
+}
+
+/* 三款定型产品卡片 */
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pcard {
+  border: 1px solid var(--border); border-radius: 6px; background: #fff;
+  display: flex; flex-direction: column; overflow: hidden;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.pcard.hidden { display: none; }
+.pcard:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--royal); }
+.pcard .ph {
+  background: #fff; padding: 22px 16px 10px; position: relative;
+  border-bottom: 1px solid var(--border); text-align: center;
+}
+.pcard .ph img { width: 100%; height: 260px; object-fit: contain; transition: transform .4s; }
+.pcard:hover .ph img { transform: scale(1.05); }
+.pcard .model {
+  position: absolute; left: 14px; top: 14px; background: var(--royal); color: #fff;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 3px;
+}
+.pcard .scene-badge {
+  position: absolute; right: 14px; top: 14px; background: var(--bg-light); color: var(--royal);
+  border: 1px solid var(--border); font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 3px;
+}
+.pcard .pbody { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+.pcard .ptype { font-size: 12px; color: var(--accent-red); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 4px; }
+.pcard h3 { font-size: 20px; color: var(--royal); margin-bottom: 14px; }
+.pcard .pspec {
+  background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px;
+  padding: 12px 14px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 7px;
+}
+.pcard .pspec div { display: flex; justify-content: space-between; font-size: 13px; }
+.pcard .pspec div span { color: var(--text-muted); }
+.pcard .pspec div b { font-family: var(--font-mono); font-size: 14px; color: var(--text-main); }
+.pcard .prow {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+.pcard .price b { font-family: var(--font-mono); font-size: 28px; color: var(--accent-red); }
+.pcard .price small { font-size: 12px; color: var(--text-muted); margin-left: 3px; }
+.pcard .pdf-btn {
+  color: var(--royal); font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+}
+.pcard .pdf-btn:hover { color: var(--accent-red); text-decoration: underline; }
+.pcard .pactions { margin-top: auto; display: grid; grid-template-columns: 1fr 1.25fr; gap: 10px; }
+
+/* 智能工况选型 & ROI 测算器 */
+.cfg-wrap {
+  margin-top: 32px; background: #fff; border: 2px solid var(--royal);
+  border-radius: 6px; padding: 28px; box-shadow: var(--shadow);
+}
+.cfg-head {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 22px;
+}
+.cfg-head h3 { font-size: 19px; color: var(--royal); display: flex; align-items: center; gap: 8px; }
+.cfg-presets { display: flex; gap: 8px; flex-wrap: wrap; }
+.cfg-preset {
+  font-size: 12.5px; padding: 5px 12px; border-radius: 4px;
+  border: 1px solid var(--royal); color: var(--royal); background: #fff; font-weight: 600;
+}
+.cfg-preset.on, .cfg-preset:hover { background: var(--royal); color: #fff; }
+.cfg-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: stretch; }
+.cfg-sliders { display: flex; flex-direction: column; gap: 15px; }
+.cfg-row label { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+.cfg-row label b { font-family: var(--font-mono); font-size: 16px; color: var(--accent-red); }
+.cfg-row input[type="range"] { width: 100%; accent-color: var(--royal); cursor: pointer; }
+.cfg-scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.cfg-result {
+  background: var(--bg-light); border: 1px solid var(--border); border-left: 4px solid var(--royal);
+  border-radius: 5px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+}
+.cfg-result h4 { font-size: 20px; color: var(--royal); margin: 4px 0 8px; }
+.cfg-result p { font-size: 13px; color: var(--text-body); margin-bottom: 14px; }
+.roi-boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.roi-box { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 10px; text-align: center; }
+.roi-box b { display: block; font-family: var(--font-mono); font-size: 20px; color: var(--accent-red); }
+.roi-box span { font-size: 11px; color: var(--text-muted); }
+
+/* ==========================================================================
+   7. 八大核心优势（严格对标 js-gurion.com .iadtage-wrap 深蓝底 + 左4/中图/右4 布局）
+   ========================================================================== */
+.iadtage-wrap {
+  padding: 68px 0;
+  background: var(--royal);
+  color: #ffffff;
+  overflow: hidden;
+}
+.iadtage-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.iadtage-col { display: flex; flex-direction: column; gap: 22px; }
+.iadtage-col--left .iad-item { text-align: right; }
+.iadtage-col--right .iad-item { text-align: left; }
+.iad-item {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  padding: 18px 20px;
+  transition: transform .35s, background .35s, border-color .35s;
+}
+.iad-item:hover {
+  transform: translateY(-6px);
+  background: rgba(5, 61, 146, 0.85);
+  border-color: #7dd3fc;
+}
+.iad-item .ti {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 17.5px; font-weight: 700; color: #ffffff; margin-bottom: 6px;
+}
+.iadtage-col--left .iad-item .ti { justify-content: flex-end; }
+.iad-item .ti i {
+  font-style: normal; font-family: var(--font-mono); font-size: 12px;
+  background: var(--accent-red); color: #fff; padding: 2px 7px; border-radius: 3px;
+}
+.iad-item p { font-size: 13px; color: rgba(255, 255, 255, 0.82); line-height: 1.7; }
+
+.iadtage-center {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 18px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  border: 4px solid rgba(255, 255, 255, 0.25);
+}
+.iadtage-center img { max-height: 380px; margin: 0 auto; object-fit: contain; }
+.iadtage-center .c-cap {
+  margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--royal);
+}
+.iadtage-center .c-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* ==========================================================================
+   8. 三项底层技术突破 & 工程图（点击全屏放大）
+   ========================================================================== */
+.tech-row {
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center;
+  padding: 44px 0; border-bottom: 1px solid var(--border);
+}
+.tech-row:last-of-type { border-bottom: none; }
+.tech-row:nth-child(even) .dgm-wrap { order: -1; }
+.tech-row .layer {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--bg-light); border-left: 3px solid var(--royal);
+  padding: 4px 12px; margin-bottom: 14px;
+}
+.tech-row .layer b { font-size: 13px; color: var(--royal); }
+.tech-row .layer span { font-family: var(--font-mono); font-size: 11.5px; color: var(--royal-soft); letter-spacing: 0.14em; }
+.tech-row h3 { font-size: 25px; color: var(--royal); margin-bottom: 14px; }
+.tech-row .desc { font-size: 14.5px; color: var(--text-body); line-height: 1.95; margin-bottom: 22px; text-align: justify; }
+.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.metrics div {
+  background: var(--bg-light); border: 1px solid var(--border); border-top: 2px solid var(--royal);
+  border-radius: 4px; padding: 14px 12px; text-align: center;
+}
+.metrics b { display: block; font-family: var(--font-mono); font-size: 26px; color: var(--royal); line-height: 1.1; }
+.metrics b i { font-style: normal; font-size: 14px; color: var(--accent-red); margin-left: 2px; }
+.metrics span { font-size: 12px; color: var(--text-muted); }
+.tnote {
+  font-size: 12.5px; color: var(--royal); background: #eef2ff;
+  border: 1px solid #c7d2fe; padding: 7px 14px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px;
+}
+
+.dgm-wrap {
+  background: #ffffff; border: 2px solid var(--royal); border-radius: 6px;
+  position: relative; overflow: hidden; aspect-ratio: 4/3;
+  padding: 36px 16px 38px; cursor: zoom-in; box-shadow: var(--shadow);
+}
+.dgm-wrap::before {
+  content: "ENGINEERING SCHEMATIC · 工程原理图"; position: absolute; left: 0; right: 0; top: 0; height: 28px;
+  background: var(--royal); color: #ffffff; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.12em; display: flex; align-items: center; padding: 0 14px;
+}
+.dgm-wrap img { width: 100%; height: 100%; object-fit: contain; }
+.dgm-wrap .cap {
+  position: absolute; left: 16px; bottom: 9px; font-family: var(--font-mono);
+  font-size: 11.5px; font-weight: 700; color: var(--royal);
+}
+.dgm-wrap::after {
+  content: "点击放大 ⤢"; position: absolute; right: 16px; bottom: 9px;
+  font-size: 11.5px; font-weight: 600; color: var(--accent-red);
+}
+
+/* ==========================================================================
+   9. 产品潜力与八大应用场景 + 项目案例（对标 js-gurion.com .solution）
+   ========================================================================== */
+.scene-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.scene-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  padding: 24px 20px; position: relative; transition: all .3s;
+}
+.scene-card:hover { border-color: var(--royal); transform: translateY(-4px); box-shadow: var(--shadow); }
+.scene-card .sc-num {
+  position: absolute; right: 16px; top: 16px; font-family: var(--font-mono);
+  font-size: 13px; font-weight: 700; color: var(--royal-soft);
+}
+.scene-card svg { width: 32px; height: 32px; color: var(--royal); margin-bottom: 14px; }
+.scene-card h4 { font-size: 17px; color: var(--royal); margin-bottom: 8px; }
+.scene-card p { font-size: 13px; color: var(--text-body); line-height: 1.75; }
+
+/* 项目案例 4 宫格 + 悬停蓝条标题（对标 js-gurion .solution） */
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.case-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  overflow: hidden; transition: transform .3s, box-shadow .3s; position: relative;
+}
+.case-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--royal); }
+.case-card .imgwrap { aspect-ratio: 16/10; overflow: hidden; position: relative; }
+.case-card .imgwrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.case-card:hover .imgwrap img { transform: scale(1.06); }
+.case-card .c-bar {
+  background: var(--royal); color: #fff; padding: 11px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.case-card .c-bar h4 { font-size: 17px; font-weight: 700; }
+.case-card .c-bar span { font-family: var(--font-mono); font-size: 12px; color: #93c5fd; }
+.case-card .c-desc { padding: 16px 18px; font-size: 13.5px; color: var(--text-body); line-height: 1.8; }
+
+/* ==========================================================================
+   10. 关于我们（严格对标 js-gurion.com .about 深蓝底 + 居中正文 + 四大圆环指标）
+   ========================================================================== */
+.about-sec {
+  background: var(--royal);
+  color: #ffffff;
+  padding: 72px 0;
+}
+.about-sec .about-lead {
+  max-width: 1060px; margin: 0 auto 48px;
+  font-size: 15.5px; line-height: 2; letter-spacing: 0.03em;
+  text-align: center; color: rgba(255, 255, 255, 0.92);
+}
+.about-circles {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+  max-width: 1040px; margin: 0 auto 48px;
+}
+.circle-item { text-align: center; cursor: pointer; }
+.circle-ring {
+  width: 156px; height: 156px; margin: 0 auto 16px;
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 255, 255, 0.45);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; transition: all .4s;
+  background: rgba(255, 255, 255, 0.05);
+}
+.circle-ring::after {
+  content: ""; position: absolute; inset: 10px;
+  border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: border-color .4s;
+}
+.circle-item:hover .circle-ring {
+  transform: scale(1.08);
+  background: var(--royal-bar);
+  border-color: #7dd3fc;
+}
+.circle-ring b {
+  font-family: var(--font-mono); font-size: 44px; font-weight: 700; color: #ffffff; line-height: 1;
+}
+.circle-ring b i { font-style: normal; font-size: 16px; margin-left: 2px; }
+.circle-item h4 { font-size: 16px; color: #ffffff; line-height: 1.6; font-weight: 600; }
+
+/* 荣誉资质与合作单位条 */
+.about-extra {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px; padding: 24px 28px;
+}
+.about-extra h4 { font-size: 16px; color: #7dd3fc; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.about-extra ul { display: grid; gap: 8px; font-size: 13.5px; color: rgba(255, 255, 255, 0.9); }
+
+/* ==========================================================================
+   11. 新闻中心（严格对标 js-gurion.com .in_news 双列网格 + 78x78 日期方块） + FAQ
+   ========================================================================== */
+.news-2col {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 32px;
+}
+.news-item {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 16px; border-bottom: 1px solid #d4d9e6; background: #fff;
+  border-radius: 4px; cursor: pointer; transition: all .25s;
+}
+.news-item:hover { background: var(--bg-light); transform: translateX(4px); }
+.news-item .list-time {
+  width: 78px; height: 78px; flex: none;
+  border: 1px solid #dce2f0; background: var(--bg-light);
+  color: var(--royal); text-align: center;
+  display: flex; flex-direction: column; justify-content: center;
+  font-family: var(--font-mono); font-size: 13px; transition: all .25s;
+}
+.news-item .list-time span {
+  display: block; font-size: 28px; font-weight: 700; line-height: 1.1;
+}
+.news-item:hover .list-time { background: var(--royal); color: #fff; border-color: var(--royal); }
+.news-item .list-tit h3 {
+  font-size: 17.5px; color: var(--royal); margin-bottom: 6px; font-weight: 700; line-height: 1.4;
+}
+.news-item .list-tit p {
+  font-size: 13.5px; color: var(--text-body); line-height: 1.65;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* 技术解答 FAQ */
+.faq-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+.faq-card {
+  background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--royal);
+  border-radius: 5px; padding: 20px 22px;
+}
+.faq-card h4 { font-size: 16px; color: var(--royal); margin-bottom: 8px; display: flex; align-items: baseline; gap: 8px; }
+.faq-card h4 b { font-family: var(--font-mono); color: var(--accent-red); }
+.faq-card p { font-size: 13.5px; color: var(--text-body); line-height: 1.8; }
+
+/* ==========================================================================
+   12. 页尾（严格对标 js-gurion.com .footer 左联系方式+导航+备案 / 右“给我留言”表单）
+   ========================================================================== */
+.site-footer {
+  background: #111c4e;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 60px 0 36px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start;
+}
+.foot-cards {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 28px;
+}
+.foot-card {
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 14px;
+}
+.foot-card .fc-icon {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--royal-bar);
+  display: flex; align-items: center; justify-content: center; color: #fff; flex: none;
+}
+.foot-card h4 { font-size: 15px; color: #fff; margin-bottom: 4px; }
+.foot-card p { font-size: 13px; color: rgba(255, 255, 255, 0.78); line-height: 1.65; }
+
+.foot-nav {
+  display: flex; flex-wrap: wrap; gap: 8px 20px;
+  padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14);
+  margin-bottom: 18px; font-size: 14px;
+}
+.foot-nav a:hover { color: #7dd3fc; text-decoration: underline; }
+.foot-copy { font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.9; }
+.foot-copy a:hover { color: #fff; text-decoration: underline; }
+
+/* 页尾右侧“给我留言”表单 */
+.foot_form {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 26px 28px;
+}
+.foot_form .form_t {
+  font-size: 20px; font-weight: 700; color: #fff;
+  margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-red);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.foot_form .form_t span { font-family: var(--font-mono); font-size: 12px; color: #93c5fd; font-weight: 500; }
+.foot_form .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.foot_form input, .foot_form select, .foot_form textarea {
+  width: 100%; background: rgba(255, 255, 255, 0.95); border: 1px solid transparent;
+  border-radius: 4px; padding: 10px 12px; font-size: 13.5px; color: #222;
+}
+.foot_form input:focus, .foot_form select:focus, .foot_form textarea:focus { border-color: var(--accent-red); }
+.foot_form textarea { resize: vertical; min-height: 82px; margin-bottom: 12px; }
+.foot_form .f-btns { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; }
+
+/* ==========================================================================
+   13. 右侧浮动客服工具栏 (.toolbar) + 手机底部固定栏 (.bottom) + 弹窗系统
+   ========================================================================== */
+.toolbar {
+  position: fixed; right: 16px; top: 55%; transform: translateY(-50%);
+  z-index: 180; display: flex; flex-direction: column; gap: 6px;
+}
+.toolbar .tb-item {
+  width: 58px; height: 58px; background: var(--royal); color: #fff;
+  border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; font-size: 11px; position: relative; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22); transition: background .25s;
+}
+.toolbar .tb-item:hover { background: var(--accent-red); }
+.toolbar .tb-pop {
+  position: absolute; right: 68px; top: 0; background: #fff; color: #222;
+  border: 1px solid var(--royal); border-radius: 5px; padding: 12px 16px;
+  white-space: nowrap; box-shadow: var(--shadow); display: none;
+}
+.toolbar .tb-item:hover .tb-pop { display: block; }
+.toolbar .tb-pop p { font-size: 12px; color: var(--text-muted); }
+.toolbar .tb-pop strong { font-family: var(--font-mono); font-size: 18px; color: var(--royal); }
+
+/* 手机底部固定栏（对标 js-gurion #bottom） */
+.mobile-bottom {
+  position: fixed; left: 0; right: 0; bottom: 0; height: 52px;
+  background: var(--royal); color: #fff; z-index: 190;
+  display: none; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.mobile-bottom a, .mobile-bottom button {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 13.5px; font-weight: 600; color: #fff;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+/* 弹层系统 */
+.modal {
+  position: fixed; inset: 0; z-index: 240; display: flex; align-items: center; justify-content: center;
+  padding: 20px; background: rgba(15, 27, 79, 0.72); backdrop-filter: blur(5px);
+  opacity: 0; visibility: hidden; transition: all .28s;
+}
+.modal.open { opacity: 1; visibility: visible; }
+.modal .panel {
+  background: #fff; color: #222; border-radius: 6px; width: min(1020px, 100%);
+  max-height: 90vh; overflow: auto; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+}
+.modal .close {
+  position: absolute; right: 14px; top: 14px; width: 36px; height: 36px;
+  border: 1px solid var(--border); border-radius: 4px; background: #fff;
+  display: flex; align-items: center; justify-content: center; z-index: 3;
+}
+.modal .close:hover { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+.pm-grid { display: grid; grid-template-columns: 360px 1fr; }
+.pm-media { background: var(--bg-light); padding: 28px 20px; display: flex; align-items: center; justify-content: center; }
+.pm-media img { width: 100%; max-height: 440px; object-fit: contain; }
+.pm-body { padding: 32px 36px; }
+.pm-body h3 { font-size: 26px; color: var(--royal); margin: 6px 0 10px; }
+.pm-body .pt { font-size: 13.5px; color: var(--text-body); margin-bottom: 16px; }
+.pm-body .price-line {
+  display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+.pm-body .price-line b { font-family: var(--font-mono); font-size: 32px; color: var(--accent-red); }
+.pspec-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.pspec-table tr { border-bottom: 1px solid var(--border); }
+.pspec-table th { text-align: left; font-size: 12.5px; color: var(--text-muted); padding: 9px 0; width: 38%; }
+.pspec-table td { font-size: 13.5px; padding: 9px 0; font-family: var(--font-mono); font-weight: 700; color: var(--royal); }
+.pm-body .ends { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.pm-body .ends span { font-size: 12px; background: var(--bg-light); border: 1px solid var(--border); padding: 4px 10px; border-radius: 3px; }
+.pm-body .acts { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.zoomer {
+  position: fixed; inset: 0; z-index: 310; background: rgba(10, 20, 53, 0.92);
+  display: none; align-items: center; justify-content: center; padding: 4vw; cursor: zoom-out;
+}
+.zoomer.on { display: flex; }
+.zoomer img { max-width: 100%; max-height: 100%; background: #fff; padding: 12px; border-radius: 6px; object-fit: contain; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 64px; transform: translate(-50%, 20px); z-index: 320;
+  background: var(--royal); color: #fff; padding: 12px 24px; border-radius: 4px;
+  font-size: 13.5px; font-weight: 600; opacity: 0; visibility: hidden; transition: all .3s;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+.toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+/* 移动菜单 */
+.mmenu {
+  position: fixed; inset: 0; z-index: 200; background: var(--royal); color: #fff;
+  padding: 80px 24px 30px; display: none; flex-direction: column; gap: 6px;
+}
+.mmenu.open { display: flex; }
+.mmenu a { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 17px; font-weight: 700; }
+
+/* 响应式 */
+@media (max-width: 1080px) {
+  .main-nav { display: none; }
+  .burger { display: inline-flex; }
+  .slide .body { grid-template-columns: 1fr; }
+  .hero-hud { display: none; }
+  .iadtage-grid { grid-template-columns: 1fr; }
+  .iadtage-col--left .iad-item { text-align: left; }
+  .iadtage-col--left .iad-item .ti { justify-content: flex-start; }
+  .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 860px) {
+  .feature-showcase, .prod-grid, .pain-3col, .tech-row, .cfg-grid, .case-grid, .news-2col, .faq-list, .footer-grid, .about-extra, .pm-grid { grid-template-columns: 1fr; }
+  .tech-row:nth-child(even) .dgm-wrap { order: 0; }
+  .scene-grid, .about-circles { grid-template-columns: repeat(2, 1fr); }
+  .toolbar { display: none; }
+  .mobile-bottom { display: grid; }
+  body { padding-bottom: 52px; }
+}
+@media (max-width: 560px) {
+  .kpi-strip, .scene-grid, .about-circles, .foot-cards, .foot_form .f-row, .foot_form .f-btns, .roi-boxes { grid-template-columns: 1fr; }
+  .heade_tel .ht-left { display: none; }
+}
+@media print {
+  .site-header, .toolbar, .mobile-bottom, .zoomer, #toast { display: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
+
+<!-- ============ 1. 头部导航（严格对标 js-gurion.com：白底导航 + 二级菜单 + 蓝色热线栏） ============ -->
+<header class="site-header" id="siteHead">
+  <div class="header-main">
+    <div class="box">
+      <a class="logo" href="#home" title="南京探微智能科技有限公司">
+        <img class="logo-img" src="assets/logo.png" alt="南京探微智能科技有限公司 Logo">
+        <div class="logo-text">
+          <b>南京探微智能科技有限公司</b>
+          <span>NANJING TANWEI INTELLIGENT TECHNOLOGY</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="主导航">
+        <ul>
+          <li class="nLi on"><a href="#home">网站首页</a></li>
+          <li class="nLi">
+            <a href="#about">公司简介</a>
+            <div class="sub">
+              <a href="#about">企业概况与产线</a>
+              <a href="#about">荣誉资质与国标</a>
+              <a href="#cases">展会与竞赛现场</a>
+            </div>
+          </li>
+          <li class="nLi">
+            <a href="#news">新闻动态</a>
+            <div class="sub">
+              <a href="#news">工程应用进展</a>
+              <a href="#news">央视媒体报道</a>
+              <a href="#news">特检院中试认证</a>
+            </div>
+          </li>
+          <li class="nLi">
+            <a href="#products">产品中心</a>
+            <div class="sub">
+              <a href="#tech-01">内-中-外三层柔索结构</a>
+              <a href="#tech-02">逆反馈关节解耦驱动</a>
+              <a href="#tech-03">无地图避障与轨迹平滑</a>
+              <a href="#prodGrid">混天绫三机型参数矩阵</a>
+              <a href="#configurator">智能工况选型与规格书</a>
+              <a href="#faq">柔性检测臂相关解答</a>
+            </div>
+          </li>
+          <li class="nLi"><a href="#advantages">产品优势</a></li>
+          <li class="nLi"><a href="#scenarios">产品潜力</a></li>
+          <li class="nLi"><a href="#cases">工程案例</a></li>
+          <li class="nLi"><a href="#contact">联系我们</a></li>
+        </ul>
+      </nav>
+
+      <button class="btn btn--royal btn--sm" type="button" data-inquiry="整套方案咨询" data-intent="获取报价 / 预约样机演示">
+        获取报价 / 预约演示
+      </button>
+      <button class="burger" id="burger" aria-label="打开菜单">
+        <svg class="lucide" viewBox="0 0 24 24"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 蓝色热线横栏（对标 js-gurion .heade_tel） -->
+  <div class="heade_tel">
+    <div class="box">
+      <div class="ht-left">
+        <span class="ht-badge">T/CSTM 00824-2023 · GB/T 30583-2025</span>
+        <span>江苏省重点研发计划（BE2024153）支持 · 江苏省特种设备检验研究院中试核验</span>
+      </div>
+      <div class="ht-right">
+        <span>
+          <svg class="lucide" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          热线电话：<strong>025-8888 6666</strong> &nbsp;/&nbsp; 邮箱：contact@jiangniao-tech.com
+        </span>
+        <span class="lang-switch">
+          <a href="javascript:void(0)" id="btnLangZh" class="active" onclick="window.setSiteLang('zh')">中文</a> &nbsp;|&nbsp; <a href="javascript:void(0)" id="btnLangEn" onclick="window.setSiteLang('en')">ENGLISH</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <a href="#home">网站首页</a>
+  <a href="#market">市场现状和问题</a>
+  <a href="#products">产品中心与选型</a>
+  <a href="#advantages">核心优势</a>
+  <a href="#tech">三层柔索核心技术</a>
+  <a href="#scenarios">产品潜力与应用场景</a>
+  <a href="#cases">工程案例</a>
+  <a href="#about">关于我们</a>
+  <a href="#news">新闻中心</a>
+  <a href="#contact">联系我们</a>
+  <a href="javascript:void(0)" onclick="window.setSiteLang(window.__LANG==='en'?'zh':'en')">中文 / ENGLISH</a>
+</div>
+
+<!-- ============ 2. 幻灯片大图轮播 (.fullSlide) ============ -->
+<section class="hero" id="home">
+  <div class="slides" id="slides">
+    <article class="slide on">
+      <div class="media"><img src="assets/hero-1.jpg?v=2" fetchpriority="high" decoding="async" alt="南京工程学院·探微智能超细长比刚柔机器人展厅实景"></div>
+      <div class="shade"></div>
+      <div class="box body">
+        <div>
+          <div class="hero-tag">超细长重载柔性机械臂 · 混天绫系列</div>
+          <h1>化绕指柔为<em>百炼钢</em><br>在役装备狭小腔体原位无损检测</h1>
+          <p class="sub">50.6 极限长径比 + 6.0 kg 末端重载 + ±0.6 mm 重复定位精度。从 30–60 mm 检修口直接伸入航空隔框、核电储罐与石化压力容器，免拆解完成全域无损探伤与作业。</p>
+          <div class="acts">
+            <a class="btn btn--red" href="#products">进入产品中心 →</a>
+            <button class="btn btn--ghost" type="button" data-inquiry="混天绫全系选型" data-intent="预约样机现场演示">预约样机现场演示</button>
+          </div>
+        </div>
+        <aside class="hero-hud">
+          <div class="hud-t"><span>TECHNICAL BENCHMARK · 实测核心指标</span><span>VERIFIED</span></div>
+          <div class="hud-grid">
+            <div class="hud-cell"><b>50.6<i>:1</i></b><span>最大长径比（3m / 6cm）</span></div>
+            <div class="hud-cell"><b>±0.6<i>mm</i></b><span>重复定位精度</span></div>
+            <div class="hud-cell"><b>≤0.1<i>s</i></b><span>逆反馈解耦动态响应</span></div>
+            <div class="hud-cell"><b>6.0<i>kg</i></b><span>末端最大负载能力</span></div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="slide">
+      <div class="media"><img src="assets/hero-2.jpg" decoding="async" alt="混天绫超细长重载柔性机械臂产品"></div>
+      <div class="shade"></div>
+      <div class="box body">
+        <div>
+          <div class="hero-tag">原位在线检测 · 免停机拆解</div>
+          <h1>不拆一颗螺栓<br>完成一次<em>内部全面体检</em></h1>
+          <p class="sub">利用原有手孔、人孔与检修口伸入高危密闭腔体，20–30 分钟出具定量检测报告，单次检测成本降低 87%，设备在役寿命延长 30%。</p>
+          <div class="acts">
+            <a class="btn btn--red" href="#tech">查看三层柔索技术</a>
+            <button class="btn btn--ghost" type="button" data-spec-pdf="08">下载 PDF 技术规格书</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide">
+      <div class="media"><img src="assets/hero-3.jpg" decoding="async" alt="探微智能团队在行业展会现场展示柔性机械臂"></div>
+      <div class="shade"></div>
+      <div class="box body">
+        <div>
+          <div class="hero-tag">产学研深度转化 · 权威工程实证</div>
+          <h1>从省重点实验室<br>走向<em>核电与航空一线</em></h1>
+          <p class="sub">获江苏省重点研发计划（BE2024153）支持，通过江苏省特检院 20,000 次连续弯折中试认证（良品率 95%），成果获 CCTV-1、CCTV-13 专题报道。</p>
+          <div class="acts">
+            <a class="btn btn--red" href="#cases">查看工程案例</a>
+            <a class="btn btn--ghost" href="#about">了解探微团队</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="hero-dots" id="heroDots">
+    <button class="on" data-i="0">1</button>
+    <button data-i="1">2</button>
+    <button data-i="2">3</button>
+  </div>
+</section>
+
+<!-- ============ 3. 热门关键字与站内搜索栏（对标 js-gurion.com .search） ============ -->
+<div class="search-bar">
+  <div class="box">
+    <div class="hot-keys">
+      <b>
+        <svg class="lucide" style="width:15px;height:15px" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        热门关键字：
+      </b>
+      <a href="#tech-01">内-中-外三层柔索结构</a>
+      <a href="#tech-02">逆反馈关节解耦驱动</a>
+      <a href="#tech-03">无地图避障规划</a>
+      <a href="#prodGrid">混天绫柔性检测臂</a>
+      <a href="#configurator">智能工况选型</a>
+      <a href="#faq">柔性臂相关解答</a>
+    </div>
+    <form class="search-form" id="siteSearchForm">
+      <input type="text" id="siteSearchInput" placeholder="请输入关键字（如：核电 / 08 / 精度）">
+      <button type="submit">
+        <svg class="lucide" style="width:15px;height:15px" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+        搜索
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ 4. 市场现状和问题（对标 js-gurion.com .marker） ============ -->
+<section class="sec-block" id="market">
+  <div class="box">
+    <div class="biaoti">
+      <h2>市场现状和问题</h2>
+      <p>Market Status &amp; Industry Pain Points</p>
+    </div>
+
+    <div class="market-text">
+      <p>我国航空、核电、石化、火电等领域的重大高端装备大都工作在高温、高压、高辐射或交变载荷等严苛工况中，其内部密闭隔框、储罐内腔、反应釜及异形管路的焊缝与结构微区极易随服役时间增加而产生裂纹、腐蚀或残余应力集中。根据行业统计，我国在役压力容器保有量超 439 万台、压力管道超 101 万公里，每年因设备内部隐患漏检或超期服役引发的非计划停机与安全事故代价高昂。因此，对在役高端装备内部狭小密闭腔体进行常态化、定量化的原位无损检测，是保障装备安全服役与科学延寿的核心前提。</p>
+      <p>然而，当前在役装备内部检修面临三大结构性难题：一是<b>“钻不进”</b>，检修口孔径往往仅 30–60 mm 且内部通道曲折多变，传统刚性机械臂无法进入；二是<b>“检不全”</b>，普通工业内窥镜仅能做定性肉眼观察，无法搭载重载超声、涡流或压痕探头进行定量测定；三是<b>“行不稳”</b>，传统柔性臂伸展后刚度骤降、段间耦合震荡严重，重载下定位精度迅速衰减。传统的“停机拆解、切割取样”不仅破坏设备完整性，更造成巨额停产损失。</p>
+      <p>目前国内高端柔性检测装备存在约 <b>35% 的国产化缺口</b>。因此，亟需一种兼具<b>“超高长径比、高刚度高负载、毫米级精准定位”</b>的原位无损检测柔性机械臂系统，在不拆一颗螺栓的前提下把检测探头与作业工具精准送达设备深腔，替代高危人工钻爬与破坏性拆解。</p>
+    </div>
+
+    <div class="pain-3col">
+      <article class="pain-box">
+        <div class="p-head"><span>PAIN POINT 01</span><b>孔径受限 · 通道曲折</b></div>
+        <h3>钻<em>不进</em></h3>
+        <p>检修口仅几十毫米且内部隔框交错，刚性机械臂与常规检测设备无法穿过狭窄弯道抵达真实缺陷区。</p>
+      </article>
+      <article class="pain-box">
+        <div class="p-head"><span>PAIN POINT 02</span><b>定性观察 · 难以定量</b></div>
+        <h3>检<em>不全</em></h3>
+        <p>软管内窥镜负载能力极弱，无法搭载超声、残余应力或打磨夹取工具，焊缝微区缺陷无法定量评估。</p>
+      </article>
+      <article class="pain-box">
+        <div class="p-head"><span>PAIN POINT 03</span><b>刚度骤降 · 耦合震荡</b></div>
+        <h3>行<em>不稳</em></h3>
+        <p>常规连续体臂随长度增加刚度急剧衰减、段间力学耦合严重，重载工况下末端下垂抖动，无法精准作业。</p>
+      </article>
+    </div>
+
+    <!-- 6 项硬核实测指标条 -->
+    <div class="kpi-strip" id="kpi">
+      <div class="kpi-item"><b>50.6<small>:1</small></b><span>极限长径比</span><i>30–60mm 窄孔直入</i></div>
+      <div class="kpi-item"><b>6.0<small>kg</small></b><span>最大末端负载</span><i>可搭载多模态探头</i></div>
+      <div class="kpi-item"><b>70<small>倍</small></b><span>刚度动态可调</span><i>62–4300 N/m 变刚度</i></div>
+      <div class="kpi-item"><b>±0.6<small>mm</small></b><span>重复定位精度</span><i>小试稳态误差 ≤1.0mm</i></div>
+      <div class="kpi-item"><b>≤0.1<small>s</small></b><span>动态阶跃响应</span><i>逆反馈关节解耦</i></div>
+      <div class="kpi-item"><b>95.0<small>%</small></b><span>特检院中试良品率</span><i>20,000 次弯折考核</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. 产品中心（对标 js-gurion.com .pronav 五联蓝钮 + 左图右文主推 + 三机型矩阵） ============ -->
+<section class="sec-block sec-block--light" id="products">
+  <div class="box">
+    <div class="biaoti">
+      <h2>产品中心</h2>
+      <p>Product Display &amp; Selection Matrix</p>
+    </div>
+
+    <!-- 对标 js-gurion .pronav 的五联深蓝功能导航钮 -->
+    <div class="pronav">
+      <a href="#tech-01">内-中-外三层柔索结构</a>
+      <a href="#tech-02">逆反馈关节解耦驱动</a>
+      <a href="#tech-03">无地图避障与轨迹平滑</a>
+      <a href="#faq">柔性检测臂相关解答</a>
+      <a href="#configurator">智能工况选型与 ROI 测算</a>
+    </div>
+
+    <!-- 对标 js-gurion .case_li 的左图右文核心系统阐述 -->
+    <div class="feature-showcase">
+      <div class="pic">
+        <img src="assets/product-08.jpg" alt="混天绫超细长重载柔性机械臂系统">
+        <p>“混天绫”超细长重载柔性机械臂系统</p>
+      </div>
+      <div class="txt">
+        <h3>刚柔并济 · 狭小密闭腔体原位无损检测与作业平台</h3>
+        <p>在役航空器、核电储罐与石化承压设备的结构完整性评价与缺陷检修，要求检测装备既能像软管一样柔顺穿过几十毫米的曲折检修孔，又能在抵达目标焊缝或微区后具备刚性机械臂的高承载与毫米级定位稳定性。</p>
+        <p>针对该行业难题，<b>南京探微智能科技团队自主研发了“混天绫”系列变刚度索驱动连续体机器人系统</b>。整套系统由<b>内-中-外三层柔索机械臂本体、多电机逆反馈解耦驱动控制箱、V1.0 智能避障与轨迹规划上位机软件及模块化末端快换接口</b>四部分组成。通过段内耦合、段间滑轮与球铰解耦设计，实现了 <b>62–4300 N/m（70 倍）刚度瞬时调节</b>与 <b>5.2–6.0 kg 末端高负载</b>；相较于传统停机拆罐检测，该系统可在不破坏设备结构的前提下，20–30 分钟完成立罐、卧罐及复杂隔框的 96% 全域扫查，<b>单次检测成本降低 87%，设备在役寿命延长 30%</b>。</p>
+        <div class="tags">
+          <span>长径比 50.6 : 1</span>
+          <span>刚度可调 62–4300 N/m</span>
+          <span>重复定位精度 ±0.6 mm</span>
+          <span>动态响应 ≤ 0.1 s</span>
+          <span>支持视觉 / 超声 / 压痕 / 夹爪快换</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 按场景筛选条 -->
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="productFilters">
+        <button class="btn btn--royal btn--sm filter-btn on" type="button" data-filter="all">全部定型机型 (3)</button>
+        <button class="btn btn--outline btn--sm filter-btn" type="button" data-filter="aviation">航空隔框 / 小腔体 (06型)</button>
+        <button class="btn btn--outline btn--sm filter-btn" type="button" data-filter="vessel">石化压力容器 / 主力型 (08型)</button>
+        <button class="btn btn--outline btn--sm filter-btn" type="button" data-filter="nuclear">核电高危储罐 / 大纵深 (10型)</button>
+      </div>
+      <div style="font-size:13px;color:var(--text-muted)">三种服务模式：<b>成套设备销售（30–40万）</b> · <b>驻场检测服务（3000元起/次）</b> · <b>非标定制（50万起）</b></div>
+    </div>
+
+    <!-- 三款标准机型卡片 -->
+    <div class="prod-grid" id="prodGrid">
+      <article class="pcard" data-categories="all aviation">
+        <div class="ph">
+          <span class="model">QZSZC001-06</span>
+          <span class="scene-badge">航空隔框 · 小腔体</span>
+          <img src="assets/product-06.jpg" alt="QZSZC001-06 短臂型柔性机械臂" loading="lazy" decoding="async">
+        </div>
+        <div class="pbody">
+          <div class="ptype">SHORT ARM · 短臂高载型</div>
+          <h3>1.8 m 柔性检测臂</h3>
+          <div class="pspec">
+            <div><span>臂长 / 外径</span><b>1.8 m / 30 mm</b></div>
+            <div><span>独立关节数量</span><b>6 关节解耦</b></div>
+            <div><span>额定末端负载</span><b>6.0 kg</b></div>
+            <div><span>重复定位精度</span><b>±0.6 mm</b></div>
+            <div><span>有效工作空间</span><b>R = 1.2 m 球体</b></div>
+          </div>
+          <div class="prow">
+            <div class="price"><b>30</b><small>万元 / 台</small></div>
+            <button class="pdf-btn" type="button" data-spec-pdf="06">
+              <svg class="lucide" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              导出 PDF 规格书
+            </button>
+          </div>
+          <div class="pactions">
+            <button class="btn btn--outline btn--sm more" type="button" data-product="06">详细参数表</button>
+            <button class="btn btn--royal btn--sm" type="button" data-inquiry="QZSZC001-06（1.8m 短臂型）" data-intent="获取报价 / 预约样机演示">获取报价 / 预约样机</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard" data-categories="all vessel aviation">
+        <div class="ph">
+          <span class="model">QZSZC001-08</span>
+          <span class="scene-badge">压力容器 · 主力通用</span>
+          <img src="assets/product-08.jpg" alt="QZSZC001-08 标准型柔性机械臂" loading="lazy" decoding="async">
+        </div>
+        <div class="pbody">
+          <div class="ptype">STANDARD · 标准主力型</div>
+          <h3>2.4 m 柔性检测臂</h3>
+          <div class="pspec">
+            <div><span>臂长 / 外径</span><b>2.4 m / 44 mm</b></div>
+            <div><span>独立关节数量</span><b>8 关节解耦</b></div>
+            <div><span>额定末端负载</span><b>5.6 kg</b></div>
+            <div><span>重复定位精度</span><b>±0.6 mm</b></div>
+            <div><span>有效工作空间</span><b>⌀1.1 m × 1.8 m</b></div>
+          </div>
+          <div class="prow">
+            <div class="price"><b>35</b><small>万元 / 台</small></div>
+            <button class="pdf-btn" type="button" data-spec-pdf="08">
+              <svg class="lucide" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              导出 PDF 规格书
+            </button>
+          </div>
+          <div class="pactions">
+            <button class="btn btn--outline btn--sm more" type="button" data-product="08">详细参数表</button>
+            <button class="btn btn--royal btn--sm" type="button" data-inquiry="QZSZC001-08（2.4m 标准主力型）" data-intent="获取报价 / 预约样机演示">获取报价 / 预约样机</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard" data-categories="all nuclear vessel">
+        <div class="ph">
+          <span class="model">QZSZC001-10</span>
+          <span class="scene-badge">核电储罐 · 大纵深</span>
+          <img src="assets/product-10.jpg" alt="QZSZC001-10 长臂型柔性机械臂" loading="lazy" decoding="async">
+        </div>
+        <div class="pbody">
+          <div class="ptype">LONG ARM · 大纵深长臂型</div>
+          <h3>3.0 m 柔性检测臂</h3>
+          <div class="pspec">
+            <div><span>臂长 / 外径</span><b>3.0 m / 60 mm</b></div>
+            <div><span>独立关节数量</span><b>10 关节解耦</b></div>
+            <div><span>额定末端负载</span><b>5.2 kg</b></div>
+            <div><span>重复定位精度</span><b>±0.6 mm</b></div>
+            <div><span>有效工作空间</span><b>⌀1.0 m × 1.5 m</b></div>
+          </div>
+          <div class="prow">
+            <div class="price"><b>40</b><small>万元 / 台</small></div>
+            <button class="pdf-btn" type="button" data-spec-pdf="10">
+              <svg class="lucide" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              导出 PDF 规格书
+            </button>
+          </div>
+          <div class="pactions">
+            <button class="btn btn--outline btn--sm more" type="button" data-product="10">详细参数表</button>
+            <button class="btn btn--royal btn--sm" type="button" data-inquiry="QZSZC001-10（3.0m 长臂型）" data-intent="获取报价 / 预约样机演示">获取报价 / 预约样机</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- 30秒智能工况选型 & 免拆检 ROI 测算器 -->
+    <div class="cfg-wrap" id="configurator">
+      <div class="cfg-head">
+        <h3>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          在线工况选型配置器 &amp; 免拆检经济效益（ROI）测算
+        </h3>
+        <div class="cfg-presets" id="cfgPresets">
+          <button type="button" class="cfg-preset" data-hole="35" data-depth="1.5" data-load="4.5" data-freq="8">航空隔框工况</button>
+          <button type="button" class="cfg-preset on" data-hole="50" data-depth="2.2" data-load="5.0" data-freq="10">石化压力容器工况</button>
+          <button type="button" class="cfg-preset" data-hole="65" data-depth="2.8" data-load="4.8" data-freq="6">核电高危储罐工况</button>
+        </div>
+      </div>
+      <div class="cfg-grid">
+        <div class="cfg-sliders">
+          <div class="cfg-row">
+            <label for="rgHole"><span>1. 现场检修口最小孔径 (Access Diameter)</span><b id="valHole">50 mm</b></label>
+            <input type="range" id="rgHole" min="30" max="120" step="2" value="50">
+            <div class="cfg-scale"><span>30 mm</span><span>60 mm</span><span>120 mm</span></div>
+          </div>
+          <div class="cfg-row">
+            <label for="rgDepth"><span>2. 腔体内部所需探测纵深 (Inspection Reach)</span><b id="valDepth">2.2 m</b></label>
+            <input type="range" id="rgDepth" min="1.0" max="3.0" step="0.1" value="2.2">
+            <div class="cfg-scale"><span>1.0 m</span><span>1.8 m (06型)</span><span>2.4 m (08型)</span><span>3.0 m (10型)</span></div>
+          </div>
+          <div class="cfg-row">
+            <label for="rgLoad"><span>3. 末端探头/工具总负载需求 (Payload)</span><b id="valLoad">5.0 kg</b></label>
+            <input type="range" id="rgLoad" min="1.0" max="6.0" step="0.2" value="5.0">
+            <div class="cfg-scale"><span>1.0 kg (视觉)</span><span>3.5 kg (超声+视觉)</span><span>6.0 kg (重载作业)</span></div>
+          </div>
+          <div class="cfg-row">
+            <label for="rgFreq"><span>4. 企业年均停机拆检频次 (Annual Inspections)</span><b id="valFreq">10 次/年</b></label>
+            <input type="range" id="rgFreq" min="2" max="30" step="1" value="10">
+            <div class="cfg-scale"><span>2 次/年</span><span>15 次/年</span><span>30 次/年</span></div>
+          </div>
+        </div>
+        <div class="cfg-result">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--royal-soft);font-weight:700">RECOMMENDED MODEL · 智能匹配结果</div>
+            <h4 id="cfgModelName">QZSZC001-08 · 2.4m 标准主力型</h4>
+            <p id="cfgModelReason">您的 50 mm 孔径高于 08 型外径（44 mm），2.2 m 纵深与 5.0 kg 负载均在 08 型额定包络内。</p>
+            <div class="roi-boxes">
+              <div class="roi-box"><b id="cfgSave">43.5 万</b><span>预计年均节省拆检费</span></div>
+              <div class="roi-box"><b id="cfgPayback">9.7 个月</b><span>预计设备投资回收期</span></div>
+              <div class="roi-box"><b id="cfgPrice">35 万元</b><span>推荐方案参考报价</span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn--royal btn--sm" type="button" id="cfgApplyBtn">将此选型参数带入询盘 →</button>
+            <button class="btn btn--outline btn--sm" type="button" id="cfgPdfBtn">导出该机型 PDF 规格书</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. 八大核心优势（严格对标 js-gurion.com .iadtage-wrap 深蓝底 + 左4/中图/右4 对称布局） ============ -->
+<section class="iadtage-wrap" id="advantages">
+  <div class="box">
+    <div class="biaoti biaoti--light">
+      <h2>核心优势</h2>
+      <p>Core Advantages</p>
+    </div>
+
+    <div class="iadtage-grid">
+      <!-- 左侧 4 项（右对齐） -->
+      <div class="iadtage-col iadtage-col--left">
+        <div class="iad-item">
+          <div class="ti"><span>检测速度</span><i>01</i></div>
+          <p>测试与扫查速度快，立罐、卧罐内部全域覆盖率达 96%，从单点伸入检测到出具分析报告仅需 20~30 分钟。</p>
+        </div>
+        <div class="iad-item">
+          <div class="ti"><span>多模态搭载</span><i>02</i></div>
+          <p>6.0 kg 末端大负载，一体化兼容高清视觉、超声相控阵、压入法残余应力测头、电动夹爪与内壁清理工具。</p>
+        </div>
+        <div class="iad-item">
+          <div class="ti"><span>产品可靠性</span><i>03</i></div>
+          <p>参编 T/CSTM 00824-2023 与 GB/T 30583-2025 标准，通过省特检院 20,000 次连续弯折中试考核，良品率 95%。</p>
+        </div>
+        <div class="iad-item">
+          <div class="ti"><span>环境适应性</span><i>04</i></div>
+          <p>无先验地图自主避障规划，不受暗光、高辐射、强腐蚀及高密度障碍干扰，未知腔体避障成功率 ≥95%。</p>
+        </div>
+      </div>
+
+      <!-- 中央核心装备展示台 -->
+      <div class="iadtage-center">
+        <img src="assets/product-08.jpg" alt="混天绫超细长重载柔性机械臂">
+        <div class="c-cap">混天绫 QZSZC001 系列</div>
+        <div class="c-sub">SLENDERNESS 50.6 · PAYLOAD 6.0KG</div>
+      </div>
+
+      <!-- 右侧 4 项（左对齐） -->
+      <div class="iadtage-col iadtage-col--right">
+        <div class="iad-item">
+          <div class="ti"><i>05</i><span>原位无损</span></div>
+          <p>不拆一颗螺栓、不切割取样，从 30–60 mm 原有检修口直接进入，单次检测成本降低 87%，设备延寿 30%。</p>
+        </div>
+        <div class="iad-item">
+          <div class="ti"><i>06</i><span>刚柔一体</span></div>
+          <p>内-中-外三层柔索解耦结构，刚度 62–4300 N/m 达 70 倍瞬时可调，伸展自支撑无下垂，极限转弯半径 0.2 m。</p>
+        </div>
+        <div class="iad-item">
+          <div class="ti"><i>07</i><span>精度保障</span></div>
+          <p>自研逆反馈关节解耦驱动算法，毫秒级消除段间耦合迟滞，0.1 s 动态阶跃响应，重复定位精度达 ±0.6 mm。</p>
+        </div>
+        <div class="iad-item">
+          <div class="ti"><i>08</i><span>多场景适用</span></div>
+          <p>广泛适用于航空蒙皮隔框、核电高危储罐、石化反应釜、火电锅炉管道、船舶双层底及灾后搜救等受限空间。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. 三项底层技术突破与工程图（#tech） ============ -->
+<section class="sec-block" id="tech">
+  <div class="box">
+    <div class="biaoti">
+      <h2>核心技术原理</h2>
+      <p>Three Underlying Technological Breakthroughs</p>
+    </div>
+
+    <!-- 技术 01 -->
+    <div class="tech-row" id="tech-01">
+      <div>
+        <div class="layer"><b>结构层面</b><span>STRUCTURE ARCHITECTURE</span></div>
+        <h3>内-中-外三层柔索解耦结构</h3>
+        <p class="desc">三层柔索在段内耦合、段间通过滑轮（Pulley）与中间球铰（Middle Ball）实现力学解耦，依靠索力动态分配实现“刚柔一体”。伸展穿行时柔顺避障，抵达作业点受压时刚度瞬时提升 70 倍自支撑无变形，使 50.6 长径比与 6.0 kg 重载同时成立。</p>
+        <div class="metrics">
+          <div><b>70<i>×</i></b><span>刚度变化范围</span></div>
+          <div><b>50<i>×</i></b><span>承载能力提升</span></div>
+          <div><b>0.2<i>m</i></b><span>极限转弯半径</span></div>
+        </div>
+        <div class="tnote">发明专利《一种空间站的机械臂装置》专利号：2024117977991</div>
+      </div>
+      <div class="dgm-wrap dgm-wrap--img">
+        <img src="assets/tech-01.jpg" alt="内-中-外三层柔索解耦结构示意图" loading="lazy" decoding="async">
+        <div class="cap">Fig. 01 / 三层柔索滑轮与球铰解耦结构</div>
+      </div>
+    </div>
+
+    <!-- 技术 02 -->
+    <div class="tech-row" id="tech-02">
+      <div>
+        <div class="layer"><b>控制层面</b><span>INVERSE-FEEDBACK CONTROL</span></div>
+        <h3>逆反馈关节解耦驱动系统</h3>
+        <p class="desc">集成末端三维姿态传感器（Posture Sensor）、电机-索轮驱动阵列（Actuating Device）与气囊变刚度阀控回路（Airbag &amp; Valve），自研逆反馈解耦算法将段间耦合干扰在毫秒级内实时补偿，粗精同驱，让超长臂体在重载下依然“指哪到哪”。</p>
+        <div class="metrics">
+          <div><b>≤0.1<i>s</i></b><span>动态阶跃响应</span></div>
+          <div><b>≤1.0<i>mm</i></b><span>小试稳态误差</span></div>
+          <div><b>66.7<i>%</i></b><span>重复精度提升</span></div>
+        </div>
+        <div class="tnote">小试台架实测：单段最大弯曲 180°，满臂长稳定承载 5.2–6.0 kg</div>
+      </div>
+      <div class="dgm-wrap dgm-wrap--img">
+        <img src="assets/tech-02.png" alt="逆反馈关节解耦驱动与传感控制系统示意图" loading="lazy" decoding="async">
+        <div class="cap">Fig. 02 / 逆反馈关节解耦驱动与闭环控制台架</div>
+      </div>
+    </div>
+
+    <!-- 技术 03 -->
+    <div class="tech-row" id="tech-03">
+      <div>
+        <div class="layer"><b>智能层面</b><span>MAPLESS PATH PLANNING</span></div>
+        <h3>无地图避障规划与轨迹平滑</h3>
+        <p class="desc">以局部最优解配合安全梯度策略降维，让机械臂在没有先验地图的狭小非结构化腔体里自主避障；将锯齿震荡的原始路径（RAW PATH）实时收敛为高阶连续平滑轨迹（SMOOTHED PATH），面对高密度障碍零碰撞通过。</p>
+        <div class="metrics">
+          <div><b>26<i>%+</i></b><span>轨迹平滑性提升</span></div>
+          <div><b>≥95<i>%</i></b><span>避障成功率</span></div>
+          <div><b>36.7<i>%</i></b><span>自适应安全提升</span></div>
+        </div>
+        <div class="tnote">国家软著《检测探测用变刚度连续体机器人控制软件 V1.0》2024SR1758359</div>
+      </div>
+      <div class="dgm-wrap dgm-wrap--img">
+        <img src="assets/tech-03.jpg" alt="狭小腔体无地图避障与轨迹平滑规划示意图" loading="lazy" decoding="async">
+        <div class="cap">Fig. 03 / 狭小腔体无地图避障与轨迹平滑规划</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. 产品潜力与应用场景（对标 js-gurion.com 产品潜力栏目） ============ -->
+<section class="sec-block sec-block--light" id="scenarios">
+  <div class="box">
+    <div class="biaoti">
+      <h2>产品潜力与应用领域</h2>
+      <p>Application Potential &amp; Industrial Scenarios</p>
+    </div>
+
+    <div class="scene-grid">
+      <article class="scene-card">
+        <span class="sc-num">01</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12l12-6 12 6-12 6z"/><path d="M8 15v6c0 2 3 3 6 3s6-1 6-3v-6"/><path d="M26 12v8"/></svg>
+        <h4>航空蒙皮与隔框夹层</h4>
+        <p>不拆蒙皮，从检修口进入机身与机翼隔框内部，定位疲劳裂纹、异物与紧固件松动状态。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">02</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="16" cy="16" r="4"/><path d="M16 2v5M16 25v5M2 16h5M25 16h5"/><path d="M7 7l3.5 3.5M21.5 21.5L25 25M25 7l-3.5 3.5M10.5 21.5L7 25"/></svg>
+        <h4>核电储罐与高危管道</h4>
+        <p>高辐射环境下非拆卸原位扫查，替代人工进入高危罐体，单次检测降本 87%。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">03</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="20" height="20" rx="6"/><path d="M6 16h20M16 6v20"/></svg>
+        <h4>石化压力容器 / 反应釜</h4>
+        <p>立罐、卧罐内部焊缝与母材全域扫查，覆盖率达 96%，20–30 分钟出具定量报告。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">04</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 22c4 0 4-8 8-8s5 8 9 8 5-6 9-6"/><path d="M3 12c4 0 4-4 8-4s5 4 9 4 5-3 9-3"/></svg>
+        <h4>化工异形管路与三通</h4>
+        <p>沿连续弯头、三通、变径段柔顺穿行，在线检查内壁腐蚀减薄与沉积堵塞。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">05</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 26l6-16 6 16"/><path d="M16 26l6-16 6 16"/><path d="M6 21h8M18 21h8"/></svg>
+        <h4>重型装备深腔焊缝</h4>
+        <p>大型结构件内部合拢焊缝可达性差，柔性臂贴壁爬行完成超声与残余应力测定。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">06</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 19h26"/><path d="M6 19V8h20v11"/><path d="M11 8V5h10v3"/><path d="M16 19v5"/></svg>
+        <h4>地下管廊 / 电缆沟巡检</h4>
+        <p>低照度、多障碍环境下无地图自主避障通行，替代人工下井巡检。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">07</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 22h24l-3 5H7z"/><path d="M16 4v8"/><path d="M9 12h14l2 10H7z"/></svg>
+        <h4>船舶双层底与狭小舱室</h4>
+        <p>双层底、边舱等受限空间内部结构检查，大幅减少人员进舱作业安全风险。</p>
+      </article>
+      <article class="scene-card">
+        <span class="sc-num">08</span>
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 3l5 6-5 3-5-3z"/><path d="M16 12v6"/><path d="M8 22h16v5H8z"/><path d="M12 22v-4M20 22v-4"/></svg>
+        <h4>灾后救援与特种作业</h4>
+        <p>废墟狭缝、坍塌腔体中深入探查生命迹象与危险源并实施机械夹取。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. 项目案例（对标 js-gurion.com .solution 工程案例） ============ -->
+<section class="sec-block" id="cases">
+  <div class="box">
+    <div class="biaoti">
+      <h2>项目案例</h2>
+      <p>Project Cases &amp; Field Verification</p>
+    </div>
+
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="imgwrap"><img src="assets/case-aviation.jpg" alt="航空器蒙皮舱体检修" loading="lazy" decoding="async"></div>
+        <div class="c-bar"><h4>航空器蒙皮隔框舱体应急检修</h4><span>AVIATION · 东部机场集团</span></div>
+        <div class="c-desc">SC4667 航班南京上空突发异响抖动，混天绫紧急出动，从狭窄检修口进入隔框内部，探查与异物拾取一步到位，避免了飞机停飞拆解造成的巨额损失。</div>
+      </article>
+
+      <article class="case-card">
+        <div class="imgwrap"><img src="assets/case-nuclear.jpg" alt="秦山核电储罐非拆卸检测" loading="lazy" decoding="async"></div>
+        <div class="c-bar"><h4>核电水合肼储罐非拆卸原位检测</h4><span>NUCLEAR · 秦山核电基地</span></div>
+        <div class="c-desc">面对高辐射环境下的水合肼储罐，在不拆卸罐体的前提下从原有检修口伸入完成内部全域“CT 扫描”，单次检测成本降低 87%，罐体使用寿命延长 30%。</div>
+      </article>
+
+      <article class="case-card">
+        <div class="imgwrap"><img src="assets/case-field.jpg" alt="压力容器与异形管道现场检测" loading="lazy" decoding="async"></div>
+        <div class="c-bar"><h4>压力容器与异形管道原位无损检测</h4><span>PRESSURE VESSEL · 石化现场</span></div>
+        <div class="c-desc">立罐、卧罐、异形管路现场原位作业，内部焊缝与母材检测覆盖率达 96%，单点检测到出具定量报告仅需 20–30 分钟，不占产线、不增停机。</div>
+      </article>
+
+      <article class="case-card">
+        <div class="imgwrap"><img src="assets/case-pilot.jpg" alt="江苏省特检院中试验证" loading="lazy" decoding="async"></div>
+        <div class="c-bar"><h4>省特检院权威台架中试与小批量产</h4><span>PILOT TEST · 江苏省特检院</span></div>
+        <div class="c-desc">在江苏省特种设备检验研究院台架完成立罐 18 次、卧罐 21 次、连续弯折疲劳 20,000 次严苛考核，整机良品率 95%，弯折寿命支撑 8–10 年服役。</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. 关于我们（严格对标 js-gurion.com .about 深蓝背景 + 居中详述 + 四大圆环指标） ============ -->
+<section class="about-sec" id="about">
+  <div class="box">
+    <div class="biaoti biaoti--light">
+      <h2>关于我们</h2>
+      <p>About Us</p>
+    </div>
+
+    <p class="about-lead">
+      南京探微智能科技有限公司是一支专注于超细长重载柔性机械臂研发、制造与在役装备原位无损检测服务的高新技术企业团队，落户南京市江苏装备产业园，首期现代化标准厂房 1200 ㎡，划分精密研发、索驱装配、老化质检与办公四大功能区域。团队自主研发了基于“内-中-外三层柔索解耦结构”与“逆反馈关节解耦驱动”的混天绫系列连续体机械臂系统，同时针对现场不同受限工况配套了高清双光谱视觉、超声探伤、压入能量差残余应力测头及电动夹爪等模块化快换末端。核心技术源自江苏省智能制造重点实验室，获江苏省重点研发计划（项目号：BE2024153）专项支持，团队累计发表高水平论文 11 篇、申请及授权核心专利 15 项、软件著作权 4 项，参编《索驱动连续体机器人》（T/CSTM 00824-2023）与《承压设备残余应力测定 压入能量差法》（GB/T 30583-2025）国家标准，成果获 CCTV-1、CCTV-13 专题报道，致力于为航空、核电、石化及第三方特检机构提供安全、精准、高性价比的原位检测装备与延寿评估方案。
+    </p>
+
+    <!-- 对标 js-gurion .about 四大圆环数据徽章 -->
+    <div class="about-circles">
+      <div class="circle-item">
+        <div class="circle-ring"><b>1200<i>㎡</i></b></div>
+        <h4>现代化研发制造厂房<br>ISO 规范质量有保障</h4>
+      </div>
+      <div class="circle-item">
+        <div class="circle-ring"><b>15<i>项</i></b></div>
+        <h4>核心专利与国标参编<br>完全自主知识产权</h4>
+      </div>
+      <div class="circle-item">
+        <div class="circle-ring"><b>100<i>+</i></b></div>
+        <h4>台架与现场实测验证<br>免拆检投资少效益高</h4>
+      </div>
+      <div class="circle-item">
+        <div class="circle-ring"><b>95<i>%</i></b></div>
+        <h4>省特检院中试良品率<br>标杆客户高度认同</h4>
+      </div>
+    </div>
+
+    <div class="about-extra">
+      <div>
+        <h4>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          标准制定与核心知识产权背书
+        </h4>
+        <ul>
+          <li>• 团体标准：<b>T/CSTM 00824-2023</b>《索驱动连续体机器人》</li>
+          <li>• 国家标准：<b>GB/T 30583-2025</b>《承压设备残余应力测定 压入能量差法》</li>
+          <li>• 发明专利：《一种空间站的机械臂装置》（专利号：<b>2024117977991</b>）</li>
+          <li>• 国家软著：《检测探测用变刚度连续体机器人控制软件 V1.0》（<b>2024SR1758359</b>）</li>
+        </ul>
+      </div>
+      <div>
+        <h4>
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          重点合作与技术调研单位
+        </h4>
+        <ul>
+          <li>• 航空与交通：<b>东部机场集团</b> · <b>广州新科宇航</b> · <b>南京地铁</b></li>
+          <li>• 核电与能源：<b>秦山核电基地</b> · <b>中国石油</b></li>
+          <li>• 权威特检与重工：<b>江苏省特种设备检验研究院</b> · <b>徐工集团</b> · <b>西门子（南京）</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. 新闻中心（严格对标 js-gurion.com .in_news 双列网格 + 78x78 日期方块） ============ -->
+<section class="sec-block" id="news">
+  <div class="box">
+    <div class="biaoti">
+      <h2>新闻中心</h2>
+      <p>News Information &amp; Technical FAQ</p>
+    </div>
+
+    <div class="news-2col">
+      <article class="news-item" data-news="0">
+        <div class="list-time"><span>20</span>2026-10</div>
+        <div class="list-tit">
+          <h3>秦山核电储罐非拆卸检测完成，单次检测成本降低 87%</h3>
+          <p>面对高辐射环境下的水合肼储罐，团队在不拆卸罐体的前提下通过原有检修口将混天绫柔性臂送入罐体内部完成全域检查，罐体在役寿命同步延长 30%......</p>
+        </div>
+      </article>
+
+      <article class="news-item" data-news="1">
+        <div class="list-time"><span>18</span>2026-07</div>
+        <div class="list-tit">
+          <h3>第十七届过程装备实践与创新赛全国总决赛国家级奖项</h3>
+          <p>混天绫团队携三代定型样机参赛，现场完整演示了柔性臂在模拟狭小腔体内的进入、无地图避障、探查与异物拾取全过程，获评委高度认可......</p>
+        </div>
+      </article>
+
+      <article class="news-item" data-news="2">
+        <div class="list-time"><span>20</span>2025-10</div>
+        <div class="list-tit">
+          <h3>CCTV-1、CCTV-13 报道“混天绫”三层联动柔性机械臂</h3>
+          <p>中央电视台综合频道与新闻频道以“首创三层联动结构设计”为题，专题报道了混天绫柔性机械臂在狭小腔体内弯曲伸展并完成原位检测的全过程......</p>
+        </div>
+      </article>
+
+      <article class="news-item" data-news="3">
+        <div class="list-time"><span>26</span>2025-06</div>
+        <div class="list-tit">
+          <h3>通过江苏省特种设备检验研究院台架中试，良品率 95%</h3>
+          <p>完成立罐测试 18 次、卧罐测试 21 次、连续弯折疲劳 20,000 次考核：轨迹动态响应 ≤100 ms、稳态误差 ≤1.8 mm、智能避障成功率 ≥95%......</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- 柔性检测臂相关解答（对标 js-gurion 产品相关解答栏目） -->
+    <div id="faq" style="margin-top:52px">
+      <div class="biaoti" style="margin-bottom:28px">
+        <h2>柔性检测臂相关解答</h2>
+        <p>Technical Questions &amp; Answers</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-card">
+          <h4><b>Q1</b>作业中若突发断电或气源中断，机械臂会卡在腔体内部吗？</h4>
+          <p>不会。混天绫具备“三层柔索+变刚度气囊”断电安全冗余，异常掉电时控制箱可一键释放气囊锁紧气压与柔索预紧力，使臂体瞬间恢复 62 N/m 柔顺状态，操作人员可轻松沿原检修口顺畅回抽取出。</p>
+        </div>
+        <div class="faq-card">
+          <h4><b>Q2</b>末端接口能否搭载我们现有的超声、涡流或压痕残余应力探头？</h4>
+          <p>完全支持。臂体预留 1–3 路传感器通道与标准机电快换法兰，末端负载达 5.2–6.0 kg，兼容主流相控阵超声（PAUT）、压入能量差法残余应力测头、双光谱内窥及电动夹爪。</p>
+        </div>
+        <div class="faq-card">
+          <h4><b>Q3</b>在高辐射、强腐蚀或全黑无地图金属腔体内能否稳定工作？</h4>
+          <p>外部可选配耐辐照、耐酸碱氟橡胶防护套（已在秦山核电水合肼储罐验证）；算法采用无先验地图的局部安全梯度场避障，不依赖外部光学定位，全黑腔体避障成功率 ≥95%。</p>
+        </div>
+        <div class="faq-card">
+          <h4><b>Q4</b>标准设备采购与驻场检测技术服务如何计费？交付周期多久？</h4>
+          <p>标准成套设备 30–40 万元/台（交付周期 4–6 周，含 2 天实操培训与 12 个月质保）；若仅需单次或短期检修，可选择工程师携设备入场技术服务（单次定检 3000 元起，短期 4 万元/月，长期 2 万元/月）。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. 页尾与给我留言（严格对标 js-gurion.com .footer 左联系方式+导航+备案 / 右“给我留言”表单） ============ -->
+<footer class="site-footer" id="contact">
+  <div class="box">
+    <div class="footer-grid">
+      <!-- 左侧：联系方式卡片 + 底部导航 + 版权备案 -->
+      <div class="foot-left">
+        <div class="foot-cards">
+          <div class="foot-card">
+            <div class="fc-icon">
+              <svg class="lucide" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>中国 · 江苏省南京市</h4>
+              <p>南京市江苏装备产业园（1200 ㎡ 研发与制造基地）</p>
+            </div>
+          </div>
+          <div class="foot-card">
+            <div class="fc-icon">
+              <svg class="lucide" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>24 小时技术与商务热线</h4>
+              <p>电话：025-8888 6666<br>邮箱：contact@jiangniao-tech.com</p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="foot-nav" aria-label="底部导航">
+          <a href="#home">网站首页</a>
+          <a href="#about">公司简介</a>
+          <a href="#news">新闻动态</a>
+          <a href="#products">产品中心</a>
+          <a href="#advantages">产品优势</a>
+          <a href="#scenarios">产品潜力</a>
+          <a href="#cases">工程案例</a>
+          <a href="#contact">联系我们</a>
+        </nav>
+
+        <div class="foot-copy">
+          <div>Copyright 2022-2026 © 南京探微智能科技有限公司 版权所有 · 江苏省重点研发计划（BE2024153）支持</div>
+          <div>
+            官网域名：<a href="https://www.jiangniao-tech.com/" target="_blank" rel="noopener">www.jiangniao-tech.com</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">苏ICP备2026XXXXXX号</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧：对标 js-gurion .foot_form “给我留言” -->
+      <div class="foot-right">
+        <div class="foot_form">
+          <div class="form_t">
+            <b>给我留言 / 获取报价</b>
+            <span>ONLINE MESSAGE &amp; INQUIRY</span>
+          </div>
+          <form id="contactForm" novalidate>
+            <div class="f-row">
+              <input type="text" name="name" required placeholder="您的姓名 / 职称 *">
+              <input type="tel" name="phone" required placeholder="联系电话 / 微信 *">
+            </div>
+            <div class="f-row">
+              <input type="text" name="company" placeholder="所属单位 / 企业名称">
+              <select name="model" id="fModel">
+                <option value="QZSZC001-08（2.4m 标准主力型）">意向：QZSZC001-08（2.4m 主力型）</option>
+                <option value="QZSZC001-06（1.8m 短臂高载型）">意向：QZSZC001-06（1.8m 短臂型）</option>
+                <option value="QZSZC001-10（3.0m 大纵深长臂型）">意向：QZSZC001-10（3.0m 长臂型）</option>
+                <option value="驻场检测技术服务 / 非标定制">意向：驻场检测服务 / 非标定制</option>
+              </select>
+            </div>
+            <textarea name="msg" id="fMsg" placeholder="请简述留言内容或现场工况（如：检修口孔径、探测纵深、需搭载的探头或期望样机演示时间）..."></textarea>
+            <div class="f-btns">
+              <button type="submit" class="btn btn--red">提交留言（发送邮件）</button>
+              <button type="button" class="btn btn--ghost" id="copyInquiryBtn">复制留言单（发微信）</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ 13. 右侧浮动客服栏（对标 js-gurion.com .toolbar） ============ -->
+<aside class="toolbar" aria-label="快捷客服工具栏">
+  <div class="tb-item" data-inquiry="在线客服询盘" data-intent="获取报价 / 预约样机演示">
+    <svg class="lucide" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>在线咨询</span>
+  </div>
+  <div class="tb-item">
+    <svg class="lucide" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>服务热线</span>
+    <div class="tb-pop">
+      <p>24小时技术与商务热线</p>
+      <strong>025-8888 6666</strong>
+    </div>
+  </div>
+  <div class="tb-item" data-spec-pdf="08">
+    <svg class="lucide" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>规格书</span>
+  </div>
+  <div class="tb-item" id="totop">
+    <svg class="lucide" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+    <span>返回顶部</span>
+  </div>
+</aside>
+
+<!-- 手机底部固定三联栏（对标 js-gurion.com #bottom） -->
+<div class="mobile-bottom">
+  <a href="#home">网站首页</a>
+  <a href="tel:02588886666">一键拨号</a>
+  <button type="button" data-inquiry="移动端快捷询盘" data-intent="获取报价 / 预约样机演示">在线留言</button>
+</div>
+
+<!-- 产品参数与 PDF 规格书弹层 -->
+<div class="modal" id="productModal" role="dialog" aria-modal="true">
+  <div class="panel">
+    <button class="close" type="button" aria-label="关闭"><svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="pm-grid">
+      <div class="pm-media"><img id="pmImg" src="assets/product-08.jpg" alt=""></div>
+      <div class="pm-body">
+        <div style="font-family:var(--font-mono);font-size:12px;color:var(--accent-red);font-weight:700" id="pmType">STANDARD</div>
+        <h3 id="pmName">QZSZC001-08</h3>
+        <p class="pt" id="pmIntro"></p>
+        <div class="price-line"><b id="pmPrice">35</b><span>万元 / 台（标准成套交付，含控制箱与软件）</span></div>
+        <table class="pspec-table" id="pmTable"></table>
+        <div class="ends" id="pmEnds"></div>
+        <div class="acts">
+          <button class="btn btn--royal" type="button" id="pmInquiryBtn">获取该机型报价 / 预约样机</button>
+          <button class="btn btn--red" type="button" id="pmPdfBtn">导出 / 打印 PDF 规格书</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 轻量化 B2B 询盘弹窗 -->
+<div class="modal" id="inquiryModal" role="dialog" aria-modal="true">
+  <div class="panel" style="max-width:560px;padding:30px">
+    <button class="close" type="button" aria-label="关闭"><svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--royal-soft);font-weight:700">QUICK B2B INQUIRY · 快速询盘</div>
+    <h3 style="font-size:22px;color:var(--royal);margin:4px 0 6px">获取报价 / 预约样机演示</h3>
+    <p style="font-size:13px;color:var(--text-body);margin-bottom:16px">当前意向项：<b id="iqTargetLabel" style="color:var(--accent-red)">混天绫全系选型</b>。提交后工作日 2 小时内由工程师对接。</p>
+    <form id="modalInquiryForm" novalidate style="display:grid;gap:12px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input name="name" type="text" required placeholder="您的姓名 / 职称 *" style="padding:10px;border:1px solid var(--border);border-radius:4px">
+        <input name="phone" type="tel" required placeholder="联系电话 / 微信 *" style="padding:10px;border:1px solid var(--border);border-radius:4px">
+      </div>
+      <input name="company" type="text" placeholder="所属单位 / 企业名称" style="padding:10px;border:1px solid var(--border);border-radius:4px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input name="model" id="iqModelInput" type="text" readonly style="padding:10px;border:1px solid var(--border);border-radius:4px;background:var(--bg-light)">
+        <select name="type" id="iqTypeSelect" style="padding:10px;border:1px solid var(--border);border-radius:4px">
+          <option value="获取报价 / 预约样机演示">获取报价 / 预约样机演示</option>
+          <option value="获取标准设备正式报价单">获取标准设备正式报价单</option>
+          <option value="现场驻场检测技术服务">现场驻场检测技术服务</option>
+          <option value="特殊腔体非标定制开发">特殊腔体非标定制开发</option>
+        </select>
+      </div>
+      <textarea name="msg" rows="3" placeholder="请简述检修口尺寸、腔体深度或期望演示时间..." style="padding:10px;border:1px solid var(--border);border-radius:4px"></textarea>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:10px">
+        <button class="btn btn--royal" type="submit">立即提交询盘</button>
+        <button class="btn btn--outline" type="button" id="modalCopyBtn">复制询盘内容</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 新闻详情弹层 -->
+<div class="modal" id="newsModal" role="dialog" aria-modal="true">
+  <div class="panel" style="max-width:740px;padding:36px">
+    <button class="close" type="button" aria-label="关闭"><svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--accent-red);font-weight:700" id="nmTag">工程应用</div>
+    <div style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-muted);margin-bottom:8px" id="nmDate">2026.10.20</div>
+    <h3 id="nmTitle" style="font-size:23px;color:var(--royal);margin-bottom:16px"></h3>
+    <div id="nmBody" style="font-size:14.5px;color:var(--text-body);line-height:1.95;display:grid;gap:12px"></div>
+  </div>
+</div>
+
+<div class="zoomer" id="zoomer"><img alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ========== 1. 幻灯片轮播 ========== */
+(function(){
+  const slides = [...document.querySelectorAll('.slide')];
+  const dots = [...document.querySelectorAll('#heroDots button')];
+  let i = 0, timer = null;
+  function go(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+    clearTimeout(timer);
+    timer = setTimeout(() => go(i + 1), 7000);
+  }
+  dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.i)));
+  timer = setTimeout(() => go(1), 7000);
+})();
+
+/* ========== 2. 顶部进度条、导航高亮与站内关键字搜索 ========== */
+(function(){
+  const prog = document.getElementById('scrollProg');
+  const navItems = [...document.querySelectorAll('.main-nav li.nLi')];
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    if(prog && h > 0) prog.style.width = Math.min(100, (y / h) * 100) + '%';
+  }, { passive: true });
+
+  document.getElementById('totop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // 站内搜索（对标 js-gurion 搜索栏）
+  document.getElementById('siteSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const kw = (document.getElementById('siteSearchInput').value || '').trim();
+    if(!kw){ showToast('请输入搜索关键字'); return; }
+    const map = [
+      { k: ['06', '短臂', '航空', '蒙皮', '1.8'], id: '#prodGrid' },
+      { k: ['08', '标准', '容器', '反应釜', '2.4'], id: '#prodGrid' },
+      { k: ['10', '长臂', '核电', '储罐', '3.0'], id: '#prodGrid' },
+      { k: ['柔索', '三层', '结构', '滑轮', '刚度'], id: '#tech-01' },
+      { k: ['解耦', '逆反馈', '控制', '响应', '精度'], id: '#tech-02' },
+      { k: ['避障', '平滑', '轨迹', '软件', '地图'], id: '#tech-03' },
+      { k: ['优势', '速度', '无损'], id: '#advantages' },
+      { k: ['案例', '秦山', '机场', '特检'], id: '#cases' },
+      { k: ['解答', '断电', '探头', '周期', '价格', '报价'], id: '#faq' }
+    ];
+    const hit = map.find(m => m.k.some(w => kw.toLowerCase().includes(w)));
+    const target = document.querySelector(hit ? hit.id : '#products');
+    if(target) target.scrollIntoView({ behavior: 'smooth' });
+    showToast('已为您定位至“' + kw + '”相关技术与产品模块');
+  });
+})();
+
+/* ========== 3. 产品筛选与智能选型/ROI测算器 ========== */
+(function(){
+  const btns = [...document.querySelectorAll('#productFilters .filter-btn')];
+  const cards = [...document.querySelectorAll('#prodGrid .pcard')];
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      btns.forEach(b => {
+        b.classList.toggle('on', b === btn);
+        b.classList.toggle('btn--royal', b === btn);
+        b.classList.toggle('btn--outline', b !== btn);
+      });
+      cards.forEach(c => {
+        const cats = (c.dataset.categories || '').split(/\s+/);
+        c.classList.toggle('hidden', !cats.includes(f));
+      });
+    });
+  });
+
+  const rgHole = document.getElementById('rgHole');
+  const rgDepth = document.getElementById('rgDepth');
+  const rgLoad = document.getElementById('rgLoad');
+  const rgFreq = document.getElementById('rgFreq');
+  let recId = '08';
+  function updateCfg(){
+    const hole = +rgHole.value, depth = +rgDepth.value, load = +rgLoad.value, freq = +rgFreq.value;
+    document.getElementById('valHole').textContent = hole + ' mm';
+    document.getElementById('valDepth').textContent = depth.toFixed(1) + ' m';
+    document.getElementById('valLoad').textContent = load.toFixed(1) + ' kg';
+    document.getElementById('valFreq').textContent = freq + ' 次/年';
+
+    const isEn = window.__LANG === 'en';
+    document.getElementById('valFreq').textContent = isEn ? (freq + ' / yr') : (freq + ' 次/年');
+    let name = '', reason = '', priceNum = 35;
+    if(depth <= 1.8 && hole >= 32 && load <= 6.0){
+      recId = '06'; priceNum = 30;
+      name = isEn ? 'QZSZC001-06 · 1.8m Short-Arm High-Payload' : 'QZSZC001-06 · 1.8m 短臂高载型';
+      reason = isEn
+        ? `Access port ${hole}mm exceeds 06 outer diameter (30mm); ${depth.toFixed(1)}m reach and ${load.toFixed(1)}kg payload fit within the optimal 06 envelope.`
+        : `检修口 ${hole}mm 大于 06 型外径（30mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完全处于 06 型最佳作业包络内。`;
+    } else if(depth <= 2.4 && hole >= 46 && load <= 5.6){
+      recId = '08'; priceNum = 35;
+      name = isEn ? 'QZSZC001-08 · 2.4m Standard Flagship' : 'QZSZC001-08 · 2.4m 标准主力型';
+      reason = isEn
+        ? `Access port ${hole}mm exceeds 08 outer diameter (44mm); ${depth.toFixed(1)}m reach and ${load.toFixed(1)}kg payload match the 8-joint flagship model.`
+        : `检修口 ${hole}mm 大于 08 型外径（44mm），${depth.toFixed(1)}m 纵深与 ${load.toFixed(1)}kg 负载完美匹配主力 8 关节机型。`;
+    } else if(depth <= 3.0 && hole >= 62 && load <= 5.2){
+      recId = '10'; priceNum = 40;
+      name = isEn ? 'QZSZC001-10 · 3.0m Deep-Cavity Long-Arm' : 'QZSZC001-10 · 3.0m 大纵深长臂型';
+      reason = isEn
+        ? `Access port ${hole}mm exceeds 10 outer diameter (60mm), covering ${depth.toFixed(1)}m deep cavity with ${load.toFixed(1)}kg end payload.`
+        : `检修口 ${hole}mm 大于 10 型外径（60mm），可覆盖 ${depth.toFixed(1)}m 大纵深腔体并稳定承载 ${load.toFixed(1)}kg 末端模组。`;
+    } else {
+      recId = '08'; priceNum = 50;
+      name = isEn ? 'Custom Slender Continuum Arm Solution' : '特殊工况非标定制机型（细径长臂方案）';
+      reason = isEn
+        ? `Port ${hole}mm with ${depth.toFixed(1)}m reach / ${load.toFixed(1)}kg payload requires a bespoke ultra-slender 3-layer tendon configuration.`
+        : `当前孔径 ${hole}mm 与纵深 ${depth.toFixed(1)}m / 负载 ${load.toFixed(1)}kg 属于极限窄孔深腔组合，建议采用探微非标定制细径三层柔索方案。`;
+    }
+    const annualSave = (freq * 4.35).toFixed(1);
+    const paybackMonths = Math.max(1.5, (priceNum / (freq * 4.35)) * 12).toFixed(1);
+    document.getElementById('cfgModelName').textContent = name;
+    document.getElementById('cfgModelReason').textContent = reason;
+    document.getElementById('cfgSave').textContent = isEn ? ('¥' + annualSave + '0k') : (annualSave + ' 万');
+    document.getElementById('cfgPayback').textContent = isEn ? (paybackMonths + ' mos') : (paybackMonths + ' 个月');
+    document.getElementById('cfgPrice').textContent = isEn ? ('¥' + priceNum + '0k') : (priceNum + ' 万元');
+  }
+  [rgHole, rgDepth, rgLoad, rgFreq].forEach(el => el.addEventListener('input', updateCfg));
+  document.querySelectorAll('#cfgPresets .cfg-preset').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#cfgPresets .cfg-preset').forEach(b => b.classList.toggle('on', b === btn));
+      rgHole.value = btn.dataset.hole; rgDepth.value = btn.dataset.depth;
+      rgLoad.value = btn.dataset.load; rgFreq.value = btn.dataset.freq;
+      updateCfg();
+    });
+  });
+  document.getElementById('cfgApplyBtn').addEventListener('click', () => {
+    const m = document.getElementById('cfgModelName').textContent;
+    const summary = `检修口孔径：${rgHole.value}mm，探测纵深：${rgDepth.value}m，末端负载：${rgLoad.value}kg，年检频次：${rgFreq.value}次/年（推荐：${m}）`;
+    window.__openInquiry(m, '获取报价 / 预约样机演示', summary);
+  });
+  document.getElementById('cfgPdfBtn').addEventListener('click', () => generateSpecPDF(recId));
+  window.__updateCfg = updateCfg; updateCfg();
+})();
+
+/* ========== 4. 产品数据库、详情弹层与 A4 PDF 规格书导出 ========== */
+const PRODUCTS = {
+  '06': {
+    type: 'SHORT ARM · 短臂高载型', name: 'QZSZC001-06', title: '1.8 m 超细长重载柔性检测臂', price: '30', img: 'assets/product-06.jpg',
+    scenes: '航空器蒙皮隔框夹层、精密小腔体、发动机短舱检视与异物拾取',
+    intro: '面向小腔体与紧凑检修空间，1.8 m 臂长、30 mm 细径、6 关节独立解耦驱动，具备全系最高的 6.0 kg 末端负载能力，刚度 62–4300 N/m 连续可调。',
+    specs: [
+      ['设备型号', 'QZSZC001-06'],
+      ['臂体长度 / 外径', '1.8 m / 30 mm（长径比 60:1）'],
+      ['独立关节数量', '6 关节（内-中-外三层柔索解耦）'],
+      ['刚度调节范围', '62 – 4300 N/m（70 倍可调）'],
+      ['额定末端负载', '6.0 kg'],
+      ['有效工作空间', 'R = 1.2 m 球体包络'],
+      ['稳态定位误差', '＜ ±1.7 mm（小试实测 ≤ 1.0 mm）'],
+      ['重复定位精度', '±0.6 mm'],
+      ['动态响应时间', '≤ 0.1 s'],
+      ['最大弯曲角 / 转弯半径', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['双光谱高清视觉探测（1–3 端口）', '精密电动夹爪 / 真空吸盘 / 微型钻头', '涡流 / 超声 / 气体 / 压力传感器接口']
+  },
+  '08': {
+    type: 'STANDARD · 标准主力型', name: 'QZSZC001-08', title: '2.4 m 超细长重载柔性检测臂', price: '35', img: 'assets/product-08.jpg',
+    scenes: '石化立式/卧式压力容器、反应釜、换热器及重型装备深腔焊缝原位探伤',
+    intro: '主力通用机型，在 2.4 m 作业纵深与 5.6 kg 末端重载之间取得最优平衡，8 关节逆反馈解耦驱动，适配绝大多数承压设备人孔与手孔原位无损检测。',
+    specs: [
+      ['设备型号', 'QZSZC001-08'],
+      ['臂体长度 / 外径', '2.4 m / 44 mm（长径比 54.5:1）'],
+      ['独立关节数量', '8 关节（内-中-外三层柔索解耦）'],
+      ['刚度调节范围', '62 – 4300 N/m（70 倍可调）'],
+      ['额定末端负载', '5.6 kg'],
+      ['有效工作空间', '⌀ 1.1 m × 1.8 m 圆柱包络'],
+      ['稳态定位误差', '＜ ±1.7 mm（小试实测 ≤ 1.0 mm）'],
+      ['重复定位精度', '±0.6 mm'],
+      ['动态响应时间', '≤ 0.1 s'],
+      ['最大弯曲角 / 转弯半径', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['双光谱高清视觉探测（1–3 端口）', '超声相控阵 / 压入法残余应力探头', '电动夹爪 / 吸盘 / 内壁清理刷头']
+  },
+  '10': {
+    type: 'LONG ARM · 大纵深长臂型', name: 'QZSZC001-10', title: '3.0 m 超细长重载柔性检测臂', price: '40', img: 'assets/product-10.jpg',
+    scenes: '核电高辐射储罐、大纵深曲折管路、船舶双层底及地下管廊远距原位检测',
+    intro: '面向大纵深与多弯头高危腔体，3.0 m 超长臂体、10 关节多自由度包络，可沿连续弯曲通道深入设备核心区，满臂长末端负载达 5.2 kg，长径比 50.6。',
+    specs: [
+      ['设备型号', 'QZSZC001-10'],
+      ['臂体长度 / 外径', '3.0 m / 60 mm（长径比 50.6:1）'],
+      ['独立关节数量', '10 关节（内-中-外三层柔索解耦）'],
+      ['刚度调节范围', '62 – 4300 N/m（70 倍可调）'],
+      ['额定末端负载', '5.2 kg'],
+      ['有效工作空间', '⌀ 1.0 m × 1.5 m 圆柱包络'],
+      ['稳态定位误差', '＜ ±1.7 mm（小试实测 ≤ 1.0 mm）'],
+      ['重复定位精度', '±0.6 mm'],
+      ['动态响应时间', '≤ 0.1 s'],
+      ['最大弯曲角 / 转弯半径', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['耐辐照高清视觉探测（1–3 端口）', '无损探伤探头 / 激光测距传感器', '重载电动夹爪 / 异物抓取与清理模组']
+  }
+};
+
+function generateSpecPDF(id){
+  const dict = window.__LANG === 'en' ? PRODUCTS_EN : PRODUCTS; const p = dict[id] || dict['08'];
+  const w = window.open('', '_blank');
+  if(!w){ showToast('请允许浏览器弹出窗口以导出 PDF 规格书'); return; }
+  const rows = p.specs.map(s => `<tr><th>${s[0]}</th><td>${s[1]}</td></tr>`).join('');
+  const ends = p.ends.map(e => `<li>${e}</li>`).join('');
+  w.document.write(`<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+  <title>产品技术规格书 - ${p.name} - 南京探微智能科技有限公司</title>
+  <style>
+    *{box-sizing:border-box} body{font-family:"Microsoft YaHei",sans-serif;color:#17266b;margin:0;padding:28px 36px;background:#fff;line-height:1.6}
+    .bar{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #17266b;padding-bottom:14px;margin-bottom:22px}
+    .bar h1{margin:0;font-size:22px} .bar span{font-family:Consolas,monospace;font-size:12px;color:#475569}
+    .top{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center;margin-bottom:22px;padding:16px;border:1px solid #CBD5E1;border-radius:6px}
+    .top img{width:100%;max-height:220px;object-fit:contain}
+    .badge{display:inline-block;background:#17266b;color:#fff;font-family:Consolas,monospace;font-size:11px;padding:3px 10px;border-radius:3px;margin-bottom:6px}
+    h2{margin:0 0 8px;font-size:22px} p{margin:0 0 8px;font-size:13px;color:#334155}
+    table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px}
+    th,td{border:1px solid #CBD5E1;padding:9px 14px;text-align:left}
+    th{background:#F1F5F9;width:34%;font-weight:600;color:#17266b} td{font-family:Consolas,"Microsoft YaHei",monospace;font-weight:600;color:#222}
+    .box{border:1px solid #CBD5E1;border-radius:6px;padding:14px 18px;margin-bottom:18px;font-size:12.5px;color:#333}
+    .box h3{margin:0 0 8px;font-size:14px;color:#17266b}
+    .foot{margin-top:24px;padding-top:12px;border-top:1px solid #CBD5E1;display:flex;justify-content:space-between;font-size:11.5px;color:#64748B}
+    .noprint{margin-bottom:18px} .btn{background:#17266b;color:#fff;border:none;padding:9px 18px;border-radius:4px;font-weight:600;cursor:pointer}
+    @media print{.noprint{display:none}}
+  </style></head><body>
+  <div class="noprint"><button class="btn" onclick="window.print()">打印 / 另存为 PDF 规格书</button></div>
+  <div class="bar">
+    <div style="display:flex;align-items:center;gap:14px"><img src="assets/logo.png" alt="Logo" style="height:42px;width:auto"><div><h1>南京探微智能科技有限公司 · 产品技术规格书</h1><span>NANJING TANWEI INTELLIGENT TECHNOLOGY · TECHNICAL DATASHEET</span></div></div>
+    <div style="text-align:right"><span>文档编号：JN-SPEC-${p.name}-2026</span><br><span>执行标准：T/CSTM 00824-2023</span></div>
+  </div>
+  <div class="top">
+    <img src="${p.img}" alt="${p.name}">
+    <div>
+      <span class="badge">${p.type}</span>
+      <h2>${p.name} · ${p.title}</h2>
+      <p>${p.intro}</p>
+      <p><b>典型适用场景：</b>${p.scenes}</p>
+      <p><b>标准成套参考价：</b>${p.price} 万元 / 台（含柔性臂体、解耦驱动控制箱、V1.0 控制软件与末端快换接口）</p>
+    </div>
+  </div>
+  <table><tbody>${rows}</tbody></table>
+  <div class="box"><h3>支持搭载的模块化末端执行器</h3><ul style="margin:0;padding-left:18px">${ends}</ul></div>
+  <div class="box">
+    <h3>技术背书与质量认证</h3>
+    <div>• 核心发明专利：《一种空间站的机械臂装置》（专利号：2024117977991） · 软件著作权：2024SR1758359</div>
+    <div>• 权威中试核验：通过江苏省特种设备检验研究院台架中试（20,000 次连续弯折疲劳考核，良品率 95%）</div>
+    <div>• 研发计划支持：江苏省重点研发计划项目（项目号：BE2024153） · 江苏省智能制造重点实验室</div>
+  </div>
+  <div class="foot">
+    <span>南京探微智能科技有限公司 | 江苏省南京市·江苏装备产业园</span>
+    <span>热线：025-8888 6666 | 官网：www.jiangniao-tech.com</span>
+  </div>
+  <script>setTimeout(()=>window.print(), 450);<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+(function(){
+  const modal = document.getElementById('productModal');
+  let curId = '08';
+  function open(id){
+    const dict = window.__LANG === 'en' ? PRODUCTS_EN : PRODUCTS; const p = dict[id]; if(!p) return;
+    curId = id;
+    document.getElementById('pmImg').src = p.img;
+    document.getElementById('pmType').textContent = p.type;
+    document.getElementById('pmName').textContent = p.name + ' · ' + p.title;
+    document.getElementById('pmIntro').textContent = p.intro;
+    document.getElementById('pmPrice').textContent = p.price;
+    document.getElementById('pmTable').innerHTML = p.specs.map(s => `<tr><th>${s[0]}</th><td>${s[1]}</td></tr>`).join('');
+    document.getElementById('pmEnds').innerHTML = p.ends.map(e => `<span>${e}</span>`).join('');
+    modal.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function close(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.more').forEach(b => b.addEventListener('click', () => open(b.dataset.product)));
+  document.querySelectorAll('[data-spec-pdf]').forEach(b => b.addEventListener('click', () => generateSpecPDF(b.dataset.specPdf)));
+  document.getElementById('pmPdfBtn').addEventListener('click', () => generateSpecPDF(curId));
+  document.getElementById('pmInquiryBtn').addEventListener('click', () => {
+    close();
+    const p = PRODUCTS[curId];
+    window.__openInquiry(p.name + '（' + p.title + '）', '获取报价 / 预约样机演示');
+  });
+  modal.querySelector('.close').addEventListener('click', close);
+  modal.addEventListener('click', e => { if(e.target === modal) close(); });
+  window.__closeProduct = close;
+})();
+
+/* ========== 5. 留言询盘、新闻弹层与工程图放大 ========== */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(window.__tt);
+  window.__tt = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+function formatInquiryText(fd){
+  return [
+    '【南京探微智能科技官网 · 客户留言询盘单】',
+    '姓名/职称：' + (fd.get('name') || '—'),
+    '联系电话：' + (fd.get('phone') || '—'),
+    '所属单位：' + (fd.get('company') || '—'),
+    '意向型号：' + (fd.get('model') || '—'),
+    '留言内容：' + (fd.get('msg') || '—')
+  ].join('\n');
+}
+
+(function(){
+  const modal = document.getElementById('inquiryModal');
+  const mForm = document.getElementById('modalInquiryForm');
+  function openInquiry(model, intent, preMsg){
+    document.getElementById('iqTargetLabel').textContent = model || '混天绫全系选型';
+    document.getElementById('iqModelInput').value = model || '混天绫全系选型';
+    if(intent) document.getElementById('iqTypeSelect').value = intent;
+    if(preMsg) mForm.querySelector('textarea[name="msg"]').value = preMsg;
+    modal.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function closeInquiry(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('[data-inquiry]').forEach(btn => {
+    btn.addEventListener('click', () => openInquiry(btn.dataset.inquiry, btn.dataset.intent));
+  });
+  modal.querySelector('.close').addEventListener('click', closeInquiry);
+  modal.addEventListener('click', e => { if(e.target === modal) closeInquiry(); });
+
+  function handleSubmit(form, isModal){
+    const fd = new FormData(form);
+    if(!fd.get('name') || !fd.get('phone')){ showToast('请填写您的姓名与联系电话'); return; }
+    const text = formatInquiryText(fd);
+    const subject = encodeURIComponent('【官网留言询盘】' + (fd.get('model') || '') + ' · ' + fd.get('name'));
+    window.location.href = 'mailto:contact@jiangniao-tech.com?subject=' + subject + '&body=' + encodeURIComponent(text);
+    if(isModal) closeInquiry();
+    showToast('已生成询盘邮件，也可点击“复制留言单”直接发微信');
+  }
+  function handleCopy(form){
+    const fd = new FormData(form);
+    if(!fd.get('name') || !fd.get('phone')){ showToast('请先填写您的姓名与联系电话'); return; }
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(formatInquiryText(fd)).then(() => showToast('留言询盘单已复制，可直接粘贴发微信！'));
+    }
+  }
+  mForm.addEventListener('submit', e => { e.preventDefault(); handleSubmit(mForm, true); });
+  document.getElementById('modalCopyBtn').addEventListener('click', () => handleCopy(mForm));
+
+  const cForm = document.getElementById('contactForm');
+  cForm.addEventListener('submit', e => { e.preventDefault(); handleSubmit(cForm, false); });
+  document.getElementById('copyInquiryBtn').addEventListener('click', () => handleCopy(cForm));
+  window.__openInquiry = openInquiry;
+  window.__closeInquiry = closeInquiry;
+})();
+
+const NEWS = [
+  { tag: '工程应用', date: '2026-10-20', title: '秦山核电储罐非拆卸检测完成，单次检测成本降低 87%',
+    body: ['面对高辐射环境下的水合肼储罐，探微智能团队在不拆卸罐体的前提下，通过原有检修口将混天绫柔性机械臂送入罐体内部，完成全域无死角检查。',
+           '相比传统拆罐检测方案，单次检测成本降低约 87%，避免了停罐带来的产能损失；不拆卸、不返厂，罐体在役寿命同步延长约 30%。'] },
+  { tag: '行业荣誉', date: '2026-07-18', title: '第十七届过程装备实践与创新赛全国总决赛国家级奖项',
+    body: ['2026 年中国大学生机械工程创新创意大赛——第十七届过程装备实践与创新赛全国总决赛举行，团队携三代定型样机参赛。',
+           '现场完整演示了柔性臂在狭小模拟腔体内的进入、无地图避障、探查与异物拾取全过程，结构、控制、智能三项核心突破获评委高度认可。'] },
+  { tag: '媒体报道', date: '2025-10-20', title: 'CCTV-1、CCTV-13 报道“混天绫”三层联动柔性机械臂',
+    body: ['中央电视台综合频道与新闻频道以“首创三层联动结构设计”为题，专题报道了混天绫超细长重载柔性机械臂。',
+           '镜头记录了柔性臂在狭小腔体内大曲率弯曲、刚度瞬时锁死并完成定量检测的完整过程。'] },
+  { tag: '技术验证', date: '2025-06-26', title: '通过江苏省特检院权威台架中试，整机良品率达 95%',
+    body: ['在江苏省特种设备检验研究院台架上，团队完成了第三代样机的权威中试验证：立罐测试 18 次、卧罐测试 21 次、连续弯折疲劳 20,000 次。',
+           '实测轨迹动态响应 ≤100 ms、稳态定位误差 ≤1.0~1.8 mm、智能避障成功率 ≥95%，整机良品率 95%，弯折疲劳寿命支撑 8–10 年服役。'] }
+];
+
+(function(){
+  const nModal = document.getElementById('newsModal');
+  document.querySelectorAll('.news-item').forEach(el => el.addEventListener('click', () => {
+    const list = window.__LANG === 'en' ? NEWS_EN : NEWS; const d = list[+el.dataset.news]; if(!d) return;
+    document.getElementById('nmTag').textContent = d.tag;
+    document.getElementById('nmDate').textContent = d.date;
+    document.getElementById('nmTitle').textContent = d.title;
+    document.getElementById('nmBody').innerHTML = d.body.map(p => `<p>${p}</p>`).join('');
+    nModal.classList.add('open'); document.body.style.overflow = 'hidden';
+  }));
+  nModal.querySelector('.close').addEventListener('click', () => { nModal.classList.remove('open'); document.body.style.overflow = ''; });
+  nModal.addEventListener('click', e => { if(e.target === nModal){ nModal.classList.remove('open'); document.body.style.overflow = ''; } });
+
+  const burger = document.getElementById('burger');
+  const mmenu = document.getElementById('mmenu');
+  burger.addEventListener('click', () => mmenu.classList.toggle('open'));
+  mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mmenu.classList.remove('open')));
+
+  const zoomer = document.getElementById('zoomer');
+  const zImg = zoomer.querySelector('img');
+  document.querySelectorAll('.dgm-wrap--img').forEach(wrap => {
+    wrap.addEventListener('click', () => {
+      const im = wrap.querySelector('img');
+      zImg.src = im.src; zImg.alt = im.alt;
+      zoomer.classList.add('on');
+    });
+  });
+  zoomer.addEventListener('click', () => zoomer.classList.remove('on'));
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      if(window.__closeProduct) window.__closeProduct();
+      if(window.__closeInquiry) window.__closeInquiry();
+      nModal.classList.remove('open');
+      mmenu.classList.remove('open');
+      zoomer.classList.remove('on');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+/* ========== 6. 中英双语完整切换引擎（中文 ⇄ ENGLISH） ========== */
+const PRODUCTS_EN = {
+  '06': {
+    type: 'SHORT ARM · HIGH PAYLOAD', name: 'QZSZC001-06', title: '1.8 m Continuum Inspection Arm', price: '30', img: 'assets/product-06.jpg',
+    scenes: 'Aircraft skin & frame interlayers, compact cavities, engine nacelle inspection & FOD retrieval',
+    intro: 'Engineered for compact cavities: 1.8 m length, 30 mm outer diameter, 6 decoupled joints, highest 6.0 kg tip payload, and 62–4300 N/m variable stiffness.',
+    specs: [
+      ['Model', 'QZSZC001-06'],
+      ['Length / Diameter', '1.8 m / 30 mm (Aspect Ratio 60:1)'],
+      ['Independent Joints', '6 Joints (3-Layer Tendon Decoupled)'],
+      ['Stiffness Range', '62 – 4300 N/m (70× Adjustable)'],
+      ['Rated Tip Payload', '6.0 kg'],
+      ['Workspace Envelope', 'R = 1.2 m Sphere'],
+      ['Steady-State Error', '< ±1.7 mm (Bench Tested ≤ 1.0 mm)'],
+      ['Repeatability', '±0.6 mm'],
+      ['Step Response Time', '≤ 0.1 s'],
+      ['Max Bend / Min Radius', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['Dual-Spectrum HD Vision (1–3 Ports)', 'Electric Gripper / Vacuum Cup / Micro Drill', 'Eddy Current / PAUT / Gas / Pressure Sensors']
+  },
+  '08': {
+    type: 'STANDARD · FLAGSHIP MODEL', name: 'QZSZC001-08', title: '2.4 m Continuum Inspection Arm', price: '35', img: 'assets/product-08.jpg',
+    scenes: 'Petrochemical vertical/horizontal pressure vessels, reactors, heat exchangers & deep welds',
+    intro: 'Flagship all-around model balancing 2.4 m reach and 5.6 kg payload with 8 inverse-feedback decoupled joints for in-situ NDT through standard manholes/handholes.',
+    specs: [
+      ['Model', 'QZSZC001-08'],
+      ['Length / Diameter', '2.4 m / 44 mm (Aspect Ratio 54.5:1)'],
+      ['Independent Joints', '8 Joints (3-Layer Tendon Decoupled)'],
+      ['Stiffness Range', '62 – 4300 N/m (70× Adjustable)'],
+      ['Rated Tip Payload', '5.6 kg'],
+      ['Workspace Envelope', '⌀ 1.1 m × 1.8 m Cylinder'],
+      ['Steady-State Error', '< ±1.7 mm (Bench Tested ≤ 1.0 mm)'],
+      ['Repeatability', '±0.6 mm'],
+      ['Step Response Time', '≤ 0.1 s'],
+      ['Max Bend / Min Radius', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['Dual-Spectrum HD Vision (1–3 Ports)', 'PAUT Ultrasonic / Indentation Residual Stress Probe', 'Electric Gripper / Suction / Cleaning Brush']
+  },
+  '10': {
+    type: 'LONG ARM · DEEP CAVITY', name: 'QZSZC001-10', title: '3.0 m Continuum Inspection Arm', price: '40', img: 'assets/product-10.jpg',
+    scenes: 'Nuclear high-radiation storage tanks, deep tortuous pipelines, ship double-bottoms & utility tunnels',
+    intro: 'Designed for deep, multi-bend hazardous cavities: 3.0 m length, 10 joints, 5.2 kg full-reach payload, and 50.6 slenderness ratio.',
+    specs: [
+      ['Model', 'QZSZC001-10'],
+      ['Length / Diameter', '3.0 m / 60 mm (Aspect Ratio 50.6:1)'],
+      ['Independent Joints', '10 Joints (3-Layer Tendon Decoupled)'],
+      ['Stiffness Range', '62 – 4300 N/m (70× Adjustable)'],
+      ['Rated Tip Payload', '5.2 kg'],
+      ['Workspace Envelope', '⌀ 1.0 m × 1.5 m Cylinder'],
+      ['Steady-State Error', '< ±1.7 mm (Bench Tested ≤ 1.0 mm)'],
+      ['Repeatability', '±0.6 mm'],
+      ['Step Response Time', '≤ 0.1 s'],
+      ['Max Bend / Min Radius', '180° / R ≥ 0.2 m']
+    ],
+    ends: ['Radiation-Hardened HD Vision (1–3 Ports)', 'NDT Flaw Probe / Laser Rangefinder', 'Heavy-Duty Electric Gripper / Retrieval Module']
+  }
+};
+
+const NEWS_EN = [
+  { tag: 'Engineering Application', date: '2026-10-20', title: 'Non-Destructive Inspection Completed at Qinshan Nuclear Power Base, Cutting Cost by 87%',
+    body: ['Facing high-radiation hydrazine storage tanks, the Tanwei team deployed the Huntianling continuum robotic arm through existing inspection ports without tank disassembly, completing a full-cavity CT-like scan.',
+           'Compared with traditional tank-disassembly inspection, single-run cost dropped by 87% with zero unplanned downtime, extending tank service life by ~30%.'] },
+  { tag: 'National Award', date: '2026-07-18', title: 'Grand Prize at the 17th National Process Equipment Practice & Innovation Finals',
+    body: ['At the 17th National Finals of the China Undergraduate Mechanical Engineering Innovation Competition, the team demonstrated the Gen-3 prototype in simulated confined cavities.',
+           'The live demo showcased narrow-port entry, mapless obstacle avoidance, flaw inspection, and FOD retrieval, earning unanimous acclaim from the judging panel.'] },
+  { tag: 'Media Coverage', date: '2025-10-20', title: 'CCTV-1 & CCTV-13 Feature the "Huntianling" Three-Layer Tendon Continuum Robot',
+    body: ['China Central Television (CCTV-1 and CCTV-13) broadcast a special feature titled "Pioneering Three-Layer Coupled Continuum Structure Design" highlighting Tanwei Intelligent Technology.',
+           'The broadcast captured the continuum arm navigating tight bends, locking stiffness by 70× instantaneously, and performing precision quantitative inspection.'] },
+  { tag: 'Pilot Verification', date: '2025-06-26', title: 'Passed Jiangsu Special Equipment Safety Supervision Institute Pilot Test with 95% Yield',
+    body: ['On the test benches of Jiangsu Special Equipment Safety Supervision and Inspection Institute (JSSEI), the Gen-3 system completed 18 vertical-tank tests, 21 horizontal-tank tests, and 20,000 continuous bending fatigue cycles.',
+           'Measured results confirmed dynamic step response ≤100 ms, steady-state error ≤1.0–1.8 mm, obstacle avoidance success ≥95%, and an overall 95% qualification rate supporting 8–10 years of service life.'] }
+];
+
+const I18N_DICT = {
+  '南京探微智能科技有限公司': 'Nanjing Tanwei Intelligent Technology Co., Ltd.',
+  '网站首页': 'Home',
+  '公司简介': 'About Us',
+  '企业概况与产线': 'Company & Facility',
+  '荣誉资质与国标': 'Honors & Standards',
+  '展会与竞赛现场': 'Exhibitions & Awards',
+  '新闻动态': 'News',
+  '工程应用进展': 'Field Applications',
+  '央视媒体报道': 'CCTV Coverage',
+  '特检院中试认证': 'Pilot Verification',
+  '产品中心': 'Products',
+  '产品中心与选型': 'Products & Configurator',
+  '内-中-外三层柔索结构': '3-Layer Tendon Structure',
+  '逆反馈关节解耦驱动': 'Inverse-Feedback Decoupling',
+  '无地图避障与轨迹平滑': 'Mapless Obstacle Avoidance',
+  '混天绫三机型参数矩阵': '3-Model Spec Matrix',
+  '智能工况选型与规格书': 'Smart Configurator & PDF',
+  '柔性检测臂相关解答': 'Technical FAQ',
+  '产品优势': 'Advantages',
+  '产品潜力': 'Applications',
+  '工程案例': 'Cases',
+  '联系我们': 'Contact',
+  '获取报价 / 预约演示': 'Get Quote / Book Demo',
+  '江苏省重点研发计划（BE2024153）支持 · 江苏省特种设备检验研究院中试核验': 'Supported by Jiangsu Key R&D Program (BE2024153) · Verified by JSSEI Pilot Test',
+  '超细长重载柔性机械臂 · 混天绫系列': 'ULTRA-SLENDER HEAVY-DUTY CONTINUUM ROBOT · HUNTIANLING SERIES',
+  '化绕指柔为': 'Turning Compliant Tendons into ',
+  '百炼钢': 'Tempered Steel',
+  '在役装备狭小腔体原位无损检测': 'In-Situ NDT Inspection for Confined Industrial Cavities',
+  '50.6 极限长径比 + 6.0 kg 末端重载 + ±0.6 mm 重复定位精度。从 30–60 mm 检修口直接伸入航空隔框、核电储罐与石化压力容器，免拆解完成全域无损探伤与作业。': '50.6 slenderness ratio + 6.0 kg tip payload + ±0.6 mm repeatability. Directly enters 30–60 mm inspection ports of aircraft frames, nuclear tanks, and pressure vessels for disassembly-free NDT.',
+  '进入产品中心 →': 'Explore Products →',
+  '预约样机现场演示': 'Book On-Site Demo',
+  'TECHNICAL BENCHMARK · 实测核心指标': 'TECHNICAL BENCHMARK · VERIFIED SPECS',
+  '最大长径比（3m / 6cm）': 'Max Slenderness (3m / 6cm)',
+  '重复定位精度': 'Repeatability Accuracy',
+  '逆反馈解耦动态响应': 'Decoupled Step Response',
+  '末端最大负载能力': 'Max Tip Payload',
+  '原位在线检测 · 免停机拆解': 'IN-SITU ONLINE NDT · ZERO DISASSEMBLY',
+  '不拆一颗螺栓': 'Without Removing a Single Bolt,',
+  '完成一次': 'Complete a ',
+  '内部全面体检': 'Full Internal Inspection',
+  '利用原有手孔、人孔与检修口伸入高危密闭腔体，20–30 分钟出具定量检测报告，单次检测成本降低 87%，设备在役寿命延长 30%。': 'Enters hazardous confined cavities via existing handholes and ports, delivering quantitative NDT reports in 20–30 min while cutting inspection cost by 87% and extending asset life by 30%.',
+  '查看三层柔索技术': 'Core Technology',
+  '下载 PDF 技术规格书': 'Download PDF Datasheet',
+  '产学研深度转化 · 权威工程实证': 'INDUSTRY-ACADEMIA R&D · FIELD PROVEN',
+  '从省重点实验室': 'From Provincial Key Lab to ',
+  '走向': '',
+  '核电与航空一线': 'Nuclear & Aviation Frontlines',
+  '获江苏省重点研发计划（BE2024153）支持，通过江苏省特检院 20,000 次连续弯折中试认证（良品率 95%），成果获 CCTV-1、CCTV-13 专题报道。': 'Backed by Jiangsu Key R&D Program (BE2024153), certified through 20,000 bending cycles at JSSEI (95% yield rate), and featured on CCTV-1 & CCTV-13.',
+  '查看工程案例': 'View Field Cases',
+  '了解探微团队': 'About Tanwei',
+  '热门关键字：': 'Hot Keywords:',
+  '无地图避障规划': 'Mapless Path Planning',
+  '混天绫柔性检测臂': 'Huntianling Continuum Arm',
+  '智能工况选型': 'Smart Configurator',
+  '柔性臂相关解答': 'Technical FAQ',
+  '搜索': 'Search',
+  '市场现状和问题': 'Market Status & Challenges',
+  '我国航空、核电、石化、火电等领域的重大高端装备大都工作在高温、高压、高辐射或交变载荷等严苛工况中，其内部密闭隔框、储罐内腔、反应釜及异形管路的焊缝与结构微区极易随服役时间增加而产生裂纹、腐蚀或残余应力集中。根据行业统计，我国在役压力容器保有量超 439 万台、压力管道超 101 万公里，每年因设备内部隐患漏检或超期服役引发的非计划停机与安全事故代价高昂。因此，对在役高端装备内部狭小密闭腔体进行常态化、定量化的原位无损检测，是保障装备安全服役与科学延寿的核心前提。': 'Critical equipment across aviation, nuclear, petrochemical, and thermal power sectors operates under extreme heat, pressure, radiation, and cyclic loads. Internal airframes, storage tanks, reactors, and complex pipelines are prone to weld cracking, corrosion, and residual stress accumulation over time. With over 4.39 million pressure vessels and 1.01 million km of pressure pipelines in service nationwide, routine quantitative in-situ non-destructive testing (NDT) inside confined cavities is essential to prevent unplanned outages and extend asset life.',
+  '然而，当前在役装备内部检修面临三大结构性难题：一是': 'However, internal inspection of in-service equipment faces three major bottlenecks: (1) ',
+  '“钻不进”': '"Cannot Enter"',
+  '，检修口孔径往往仅 30–60 mm 且内部通道曲折多变，传统刚性机械臂无法进入；二是': ' — inspection ports are typically only 30–60 mm wide with tortuous internal passages inaccessible to rigid arms; (2) ',
+  '“检不全”': '"Cannot Quantify"',
+  '，普通工业内窥镜仅能做定性肉眼观察，无法搭载重载超声、涡流或压痕探头进行定量测定；三是': ' — flexible borescopes only provide visual observation and lack the payload capacity to carry ultrasonic, eddy-current, or indentation probes; (3) ',
+  '“行不稳”': '"Cannot Stabilize"',
+  '，传统柔性臂伸展后刚度骤降、段间耦合震荡严重，重载下定位精度迅速衰减。传统的“停机拆解、切割取样”不仅破坏设备完整性，更造成巨额停产损失。': ' — conventional continuum arms suffer severe stiffness drop and inter-segment coupling vibration under load. Traditional shutdown and destructive disassembly cause massive downtime losses.',
+  '目前国内高端柔性检测装备存在约 ': 'China currently faces an estimated ',
+  '35% 的国产化缺口': '35% domestic localization gap',
+  '。因此，亟需一种兼具': ' in high-end flexible inspection equipment. The industry urgently requires an in-situ continuum robotic system combining ',
+  '“超高长径比、高刚度高负载、毫米级精准定位”': '"Ultra-High Slenderness, Variable-Stiffness High Payload, and Millimeter-Level Precision"',
+  '的原位无损检测柔性机械臂系统，在不拆一颗螺栓的前提下把检测探头与作业工具精准送达设备深腔，替代高危人工钻爬与破坏性拆解。': ' to deliver NDT probes and tools deep into confined cavities without removing a single bolt.',
+  '孔径受限 · 通道曲折': 'Restricted Port · Tortuous Path',
+  '钻': 'Cannot ',
+  '不进': 'Enter',
+  '检修口仅几十毫米且内部隔框交错，刚性机械臂与常规检测设备无法穿过狭窄弯道抵达真实缺陷区。': 'Inspection openings are only tens of millimeters wide with complex internal baffles; rigid robotic arms cannot pass through to reach true defect zones.',
+  '定性观察 · 难以定量': 'Visual Only · Not Quantitative',
+  '检': 'Cannot ',
+  '不全': 'Quantify',
+  '软管内窥镜负载能力极弱，无法搭载超声、残余应力或打磨夹取工具，焊缝微区缺陷无法定量评估。': 'Conventional borescopes have negligible payload capacity and cannot carry ultrasonic, residual-stress, or grinding/gripping tools for quantitative evaluation.',
+  '刚度骤降 · 耦合震荡': 'Stiffness Drop · Coupling Oscillation',
+  '行': 'Cannot ',
+  '不稳': 'Stabilize',
+  '常规连续体臂随长度增加刚度急剧衰减、段间力学耦合严重，重载工况下末端下垂抖动，无法精准作业。': 'Traditional continuum arms lose stiffness rapidly with length and suffer inter-segment coupling, causing tip sag and jitter under heavy payloads.',
+  '极限长径比': 'Max Slenderness Ratio',
+  '30–60mm 窄孔直入': 'Enters 30–60mm Ports',
+  '最大末端负载': 'Max Tip Payload',
+  '可搭载多模态探头': 'Multi-Modal NDT Payloads',
+  '刚度动态可调': 'Variable Stiffness Range',
+  '62–4300 N/m 变刚度': '62–4300 N/m Adjustable',
+  '小试稳态误差 ≤1.0mm': 'Steady Error ≤1.0mm',
+  '动态阶跃响应': 'Dynamic Step Response',
+  '逆反馈关节解耦': 'Inverse-Feedback Decoupled',
+  '特检院中试良品率': 'JSSEI Pilot Yield Rate',
+  '20,000 次弯折考核': '20,000 Bending Cycles',
+  '智能工况选型与 ROI 测算': 'Smart Configurator & ROI',
+  '“混天绫”超细长重载柔性机械臂系统': '"Huntianling" Ultra-Slender Heavy-Duty Continuum Robotic System',
+  '刚柔并济 · 狭小密闭腔体原位无损检测与作业平台': 'Rigid-Flexible Integration · In-Situ NDT & Operation Platform for Confined Cavities',
+  '在役航空器、核电储罐与石化承压设备的结构完整性评价与缺陷检修，要求检测装备既能像软管一样柔顺穿过几十毫米的曲折检修孔，又能在抵达目标焊缝或微区后具备刚性机械臂的高承载与毫米级定位稳定性。': 'Structural integrity assessment of in-service aircraft, nuclear tanks, and petrochemical pressure vessels requires equipment that can snake compliantly through narrow ports and then lock rigidly for high-load, millimeter-accurate inspection.',
+  '长径比 50.6 : 1': 'Slenderness 50.6 : 1',
+  '刚度可调 62–4300 N/m': 'Stiffness 62–4300 N/m',
+  '重复定位精度 ±0.6 mm': 'Repeatability ±0.6 mm',
+  '动态响应 ≤ 0.1 s': 'Response ≤ 0.1 s',
+  '支持视觉 / 超声 / 压痕 / 夹爪快换': 'Quick-Swap Vision / UT / Indentation / Gripper',
+  '全部定型机型 (3)': 'All Models (3)',
+  '航空隔框 / 小腔体 (06型)': 'Aviation / Compact Cavity (06)',
+  '石化压力容器 / 主力型 (08型)': 'Pressure Vessel / Flagship (08)',
+  '核电高危储罐 / 大纵深 (10型)': 'Nuclear Tank / Deep Cavity (10)',
+  '航空隔框 · 小腔体': 'Aviation · Compact',
+  'SHORT ARM · 短臂高载型': 'SHORT ARM · HIGH PAYLOAD',
+  '1.8 m 柔性检测臂': '1.8 m Continuum Inspection Arm',
+  '臂长 / 外径': 'Length / OD',
+  '独立关节数量': 'Independent Joints',
+  '6 关节解耦': '6 Decoupled Joints',
+  '8 关节解耦': '8 Decoupled Joints',
+  '10 关节解耦': '10 Decoupled Joints',
+  '额定末端负载': 'Rated Tip Payload',
+  '有效工作空间': 'Workspace Envelope',
+  'R = 1.2 m 球体': 'R = 1.2 m Sphere',
+  '万元 / 台': '0k RMB / Set',
+  '导出 PDF 规格书': 'PDF Datasheet',
+  '详细参数表': 'Specifications',
+  '获取报价 / 预约样机': 'Get Quote / Demo',
+  '压力容器 · 主力通用': 'Pressure Vessel · Flagship',
+  'STANDARD · 标准主力型': 'STANDARD · FLAGSHIP MODEL',
+  '2.4 m 柔性检测臂': '2.4 m Continuum Inspection Arm',
+  '核电储罐 · 大纵深': 'Nuclear Tank · Deep Reach',
+  'LONG ARM · 大纵深长臂型': 'LONG ARM · DEEP CAVITY',
+  '3.0 m 柔性检测臂': '3.0 m Continuum Inspection Arm',
+  '在线工况选型配置器 & 免拆检经济效益（ROI）测算': 'Interactive Confined-Space Configurator & Disassembly-Free ROI Calculator',
+  '航空隔框工况': 'Aviation Airframe Preset',
+  '石化压力容器工况': 'Pressure Vessel Preset',
+  '核电高危储罐工况': 'Nuclear Tank Preset',
+  '1. 现场检修口最小孔径 (Access Diameter)': '1. Min Inspection Port Diameter (Access Diameter)',
+  '2. 腔体内部所需探测纵深 (Inspection Reach)': '2. Required Internal Inspection Reach',
+  '3. 末端探头/工具总负载需求 (Payload)': '3. End-Effector Total Payload Requirement',
+  '4. 企业年均停机拆检频次 (Annual Inspections)': '4. Annual Shutdown Inspection Frequency',
+  'RECOMMENDED MODEL · 智能匹配结果': 'RECOMMENDED MODEL · SMART MATCH',
+  '预计年均节省拆检费': 'Est. Annual Cost Savings',
+  '预计设备投资回收期': 'Est. Payback Period',
+  '推荐方案参考报价': 'Reference Package Price',
+  '将此选型参数带入询盘 →': 'Attach Config to Inquiry →',
+  '导出该机型 PDF 规格书': 'Export Model PDF Datasheet',
+  '核心优势': 'Core Advantages',
+  '检测速度': 'Inspection Speed',
+  '测试与扫查速度快，立罐、卧罐内部全域覆盖率达 96%，从单点伸入检测到出具分析报告仅需 20~30 分钟。': 'High scanning speed with 96% internal coverage for vertical/horizontal tanks; takes only 20–30 minutes from port entry to quantitative report generation.',
+  '多模态搭载': 'Multi-Modal Payloads',
+  '6.0 kg 末端大负载，一体化兼容高清视觉、超声相控阵、压入法残余应力测头、电动夹爪与内壁清理工具。': '6.0 kg tip payload seamlessly supports HD dual-spectrum vision, phased-array UT, indentation residual-stress probes, electric grippers, and cleaning tools.',
+  '产品可靠性': 'Proven Reliability',
+  '参编 T/CSTM 00824-2023 与 GB/T 30583-2025 标准，通过省特检院 20,000 次连续弯折中试考核，良品率 95%。': 'Co-authored T/CSTM 00824-2023 & GB/T 30583-2025 standards; certified through 20,000 continuous bending fatigue cycles at JSSEI with a 95% yield rate.',
+  '环境适应性': 'Harsh-Environment Ready',
+  '无先验地图自主避障规划，不受暗光、高辐射、强腐蚀及高密度障碍干扰，未知腔体避障成功率 ≥95%。': 'Mapless autonomous obstacle avoidance immune to darkness, high radiation, corrosion, and dense obstacles, achieving ≥95% avoidance success.',
+  '混天绫 QZSZC001 系列': 'Huntianling QZSZC001 Series',
+  '原位无损': 'In-Situ Non-Destructive',
+  '不拆一颗螺栓、不切割取样，从 30–60 mm 原有检修口直接进入，单次检测成本降低 87%，设备延寿 30%。': 'Zero bolt removal or destructive sampling — enters directly through 30–60 mm ports, cutting single inspection cost by 87% and extending service life by 30%.',
+  '刚柔一体': 'Rigid-Flexible Unity',
+  '内-中-外三层柔索解耦结构，刚度 62–4300 N/m 达 70 倍瞬时可调，伸展自支撑无下垂，极限转弯半径 0.2 m。': 'Inner-Middle-Outer 3-layer decoupled tendon architecture provides 70× instant stiffness modulation (62–4300 N/m), self-supporting reach, and 0.2 m turning radius.',
+  '精度保障': 'Millimeter Precision',
+  '自研逆反馈关节解耦驱动算法，毫秒级消除段间耦合迟滞，0.1 s 动态阶跃响应，重复定位精度达 ±0.6 mm。': 'Proprietary inverse-feedback joint decoupling algorithm eliminates inter-segment hysteresis in milliseconds, delivering 0.1 s response and ±0.6 mm repeatability.',
+  '多场景适用': 'Cross-Industry Versatility',
+  '广泛适用于航空蒙皮隔框、核电高危储罐、石化反应釜、火电锅炉管道、船舶双层底及灾后搜救等受限空间。': 'Widely applicable to aircraft airframes, nuclear storage tanks, petrochemical reactors, boiler headers, ship double-bottoms, and urban search & rescue.',
+  '核心技术原理': 'Core Technologies',
+  '结构层面': 'STRUCTURE',
+  '内-中-外三层柔索解耦结构': 'Inner-Middle-Outer 3-Layer Decoupled Tendon Structure',
+  '三层柔索在段内耦合、段间通过滑轮（Pulley）与中间球铰（Middle Ball）实现力学解耦，依靠索力动态分配实现“刚柔一体”。伸展穿行时柔顺避障，抵达作业点受压时刚度瞬时提升 70 倍自支撑无变形，使 50.6 长径比与 6.0 kg 重载同时成立。': 'Three concentric tendon layers couple within segments and decouple between segments via precision pulleys and middle spherical joints. Compliant during navigation and 70× stiffer under load without sag, enabling a 50.6 slenderness ratio alongside a 6.0 kg payload.',
+  '刚度变化范围': 'Stiffness Modulation Range',
+  '承载能力提升': 'Payload Capacity Increase',
+  '极限转弯半径': 'Min Turning Radius',
+  '发明专利《一种空间站的机械臂装置》专利号：2024117977991': 'Invention Patent: "A Space Station Robotic Arm Apparatus" (No. 2024117977991)',
+  'Fig. 01 / 三层柔索滑轮与球铰解耦结构': 'Fig. 01 / 3-Layer Tendon Pulley & Spherical-Joint Decoupling Structure',
+  '控制层面': 'CONTROL',
+  '逆反馈关节解耦驱动系统': 'Inverse-Feedback Joint Decoupling Drive System',
+  '集成末端三维姿态传感器（Posture Sensor）、电机-索轮驱动阵列（Actuating Device）与气囊变刚度阀控回路（Airbag & Valve），自研逆反馈解耦算法将段间耦合干扰在毫秒级内实时补偿，粗精同驱，让超长臂体在重载下依然“指哪到哪”。': 'Integrates 3D tip posture sensors, motor-pulley actuating arrays, and pneumatic airbag stiffness valves. Our inverse-feedback decoupling algorithm compensates inter-segment interference in milliseconds for pinpoint accuracy under heavy loads.',
+  '重复精度提升': 'Repeatability Improvement',
+  '小试台架实测：单段最大弯曲 180°，满臂长稳定承载 5.2–6.0 kg': 'Bench Test Verified: 180° max single-segment bend, 5.2–6.0 kg full-reach payload',
+  'Fig. 02 / 逆反馈关节解耦驱动与闭环控制台架': 'Fig. 02 / Inverse-Feedback Joint Decoupling & Closed-Loop Control Testbed',
+  '智能层面': 'INTELLIGENCE',
+  '以局部最优解配合安全梯度策略降维，让机械臂在没有先验地图的狭小非结构化腔体里自主避障；将锯齿震荡的原始路径（RAW PATH）实时收敛为高阶连续平滑轨迹（SMOOTHED PATH），面对高密度障碍零碰撞通过。': 'Combines local optimal solvers with safety-gradient dimensionality reduction for autonomous obstacle avoidance in mapless confined cavities, converging jagged RAW PATHs into high-order SMOOTHED PATHs with zero collision.',
+  '轨迹平滑性提升': 'Trajectory Smoothness Gain',
+  '避障成功率': 'Obstacle Avoidance Success',
+  '自适应安全提升': 'Adaptive Safety Margin Gain',
+  '国家软著《检测探测用变刚度连续体机器人控制软件 V1.0》2024SR1758359': 'Software Copyright: "Variable-Stiffness Continuum Robot Control Software V1.0" (2024SR1758359)',
+  'Fig. 03 / 狭小腔体无地图避障与轨迹平滑规划': 'Fig. 03 / Mapless Confined-Cavity Obstacle Avoidance & Trajectory Smoothing',
+  '产品潜力与应用领域': 'Application Scenarios',
+  '航空蒙皮与隔框夹层': 'Aircraft Skin & Airframe Bays',
+  '不拆蒙皮，从检修口进入机身与机翼隔框内部，定位疲劳裂纹、异物与紧固件松动状态。': 'Enters fuselage and wing bays through inspection holes without skin removal to locate fatigue cracks, FOD, and loose fasteners.',
+  '核电储罐与高危管道': 'Nuclear Storage Tanks & Piping',
+  '高辐射环境下非拆卸原位扫查，替代人工进入高危罐体，单次检测降本 87%。': 'Non-disassembly in-situ scanning in high-radiation zones, replacing hazardous manual tank entry and cutting cost by 87%.',
+  '石化压力容器 / 反应釜': 'Petrochemical Vessels & Reactors',
+  '立罐、卧罐内部焊缝与母材全域扫查，覆盖率达 96%，20–30 分钟出具定量报告。': 'Full-cavity weld and base-metal scanning for vertical/horizontal vessels with 96% coverage and 20–30 min quantitative reporting.',
+  '化工异形管路与三通': 'Complex Chemical Piping & Tees',
+  '沿连续弯头、三通、变径段柔顺穿行，在线检查内壁腐蚀减薄与沉积堵塞。': 'Navigates consecutive elbows, tees, and reducers to inspect internal corrosion thinning and deposit blockages.',
+  '重型装备深腔焊缝': 'Heavy-Equipment Deep Welds',
+  '大型结构件内部合拢焊缝可达性差，柔性臂贴壁爬行完成超声与残余应力测定。': 'Reaches inaccessible closure welds inside large structural components for ultrasonic and residual-stress testing.',
+  '地下管廊 / 电缆沟巡检': 'Underground Utility & Cable Tunnels',
+  '低照度、多障碍环境下无地图自主避障通行，替代人工下井巡检。': 'Autonomous mapless traversal in low-light, obstacle-dense trenches, replacing manual manhole entry.',
+  '船舶双层底与狭小舱室': 'Ship Double-Bottoms & Compartments',
+  '双层底、边舱等受限空间内部结构检查，大幅减少人员进舱作业安全风险。': 'Internal structural inspection of double-bottoms and wing tanks, eliminating confined-space suffocation hazards.',
+  '灾后救援与特种作业': 'Disaster Search & Special Operations',
+  '废墟狭缝、坍塌腔体中深入探查生命迹象与危险源并实施机械夹取。': 'Penetrates rubble crevices and collapsed voids to detect life signs, identify hazards, and perform robotic retrieval.',
+  '项目案例': 'Engineering Cases',
+  '航空器蒙皮隔框舱体应急检修': 'Aircraft Airframe Compartment Emergency Inspection',
+  'AVIATION · 东部机场集团': 'AVIATION · Eastern Airport Group',
+  'SC4667 航班南京上空突发异响抖动，混天绫紧急出动，从狭窄检修口进入隔框内部，探查与异物拾取一步到位，避免了飞机停飞拆解造成的巨额损失。': 'When Flight SC4667 experienced abnormal vibration, the Huntianling arm entered through a narrow access port to inspect and retrieve foreign objects in one pass, avoiding costly aircraft grounding and disassembly.',
+  '核电水合肼储罐非拆卸原位检测': 'Non-Disassembly In-Situ Inspection of Nuclear Hydrazine Tank',
+  'NUCLEAR · 秦山核电基地': 'NUCLEAR · Qinshan Nuclear Power Base',
+  '面对高辐射环境下的水合肼储罐，在不拆卸罐体的前提下从原有检修口伸入完成内部全域“CT 扫描”，单次检测成本降低 87%，罐体使用寿命延长 30%。': 'Conducted full-cavity internal scanning of high-radiation hydrazine tanks through existing ports without disassembly, reducing single-inspection cost by 87% and extending tank service life by 30%.',
+  '压力容器与异形管道原位无损检测': 'In-Situ NDT of Pressure Vessels & Complex Pipelines',
+  'PRESSURE VESSEL · 石化现场': 'PRESSURE VESSEL · Petrochemical Site',
+  '立罐、卧罐、异形管路现场原位作业，内部焊缝与母材检测覆盖率达 96%，单点检测到出具定量报告仅需 20–30 分钟，不占产线、不增停机。': 'On-site inspection of vertical/horizontal tanks and piping achieved 96% internal coverage, generating quantitative reports in 20–30 minutes without extra production downtime.',
+  '省特检院权威台架中试与小批量产': 'JSSEI Authoritative Pilot Test & Batch Production',
+  'PILOT TEST · 江苏省特检院': 'PILOT TEST · JSSEI Institute',
+  '在江苏省特种设备检验研究院台架完成立罐 18 次、卧罐 21 次、连续弯折疲劳 20,000 次严苛考核，整机良品率 95%，弯折寿命支撑 8–10 年服役。': 'Completed 18 vertical-tank tests, 21 horizontal-tank tests, and 20,000 continuous bending fatigue cycles at JSSEI with a 95% yield rate, supporting 8–10 years of industrial service.',
+  '关于我们': 'About Us',
+  '南京探微智能科技有限公司是一支专注于超细长重载柔性机械臂研发、制造与在役装备原位无损检测服务的高新技术企业团队，落户南京市江苏装备产业园，首期现代化标准厂房 1200 ㎡，划分精密研发、索驱装配、老化质检与办公四大功能区域。团队自主研发了基于“内-中-外三层柔索解耦结构”与“逆反馈关节解耦驱动”的混天绫系列连续体机械臂系统，同时针对现场不同受限工况配套了高清双光谱视觉、超声探伤、压入能量差残余应力测头及电动夹爪等模块化快换末端。核心技术源自江苏省智能制造重点实验室，获江苏省重点研发计划（项目号：BE2024153）专项支持，团队累计发表高水平论文 11 篇、申请及授权核心专利 15 项、软件著作权 4 项，参编《索驱动连续体机器人》（T/CSTM 00824-2023）与《承压设备残余应力测定 压入能量差法》（GB/T 30583-2025）国家标准，成果获 CCTV-1、CCTV-13 专题报道，致力于为航空、核电、石化及第三方特检机构提供安全、精准、高性价比的原位检测装备与延寿评估方案。': 'Nanjing Tanwei Intelligent Technology Co., Ltd. is a high-tech enterprise specializing in the R&D, manufacturing, and in-situ NDT service of ultra-slender heavy-duty continuum robotic arms. Located in Jiangsu Equipment Industrial Park (Nanjing) with a 1,200 ㎡ ISO-compliant facility, our team developed the "Huntianling" continuum robot series powered by our patented 3-layer decoupled tendon structure and inverse-feedback decoupling control, paired with modular quick-swap end-effectors (dual-spectrum vision, ultrasonic, indentation residual-stress probes, and electric grippers). Originating from the Jiangsu Provincial Key Laboratory of Intelligent Manufacturing and supported by the Jiangsu Key R&D Program (BE2024153), we hold 15 core patents, 4 software copyrights, and 11 academic papers, co-authored T/CSTM 00824-2023 and GB/T 30583-2025 standards, and were featured on CCTV-1 and CCTV-13.',
+  '新闻中心': 'News Center',
+  '秦山核电储罐非拆卸检测完成，单次检测成本降低 87%': 'Non-Disassembly Inspection Completed at Qinshan Nuclear Power Base, Cost Reduced by 87%',
+  '面对高辐射环境下的水合肼储罐，团队在不拆卸罐体的前提下通过原有检修口将混天绫柔性臂送入罐体内部完成全域检查，罐体在役寿命同步延长 30%......': 'Facing high-radiation hydrazine storage tanks, our team deployed the Huntianling continuum arm through existing ports for full-cavity scanning without tank disassembly, extending tank life by 30%...',
+  '第十七届过程装备实践与创新赛全国总决赛国家级奖项': 'National Award at the 17th Process Equipment Practice & Innovation Finals',
+  '混天绫团队携三代定型样机参赛，现场完整演示了柔性臂在模拟狭小腔体内的进入、无地图避障、探查与异物拾取全过程，获评委高度认可......': 'Competing with the Gen-3 prototype, the team demonstrated narrow-port entry, mapless obstacle avoidance, inspection, and FOD retrieval in simulated confined cavities...',
+  'CCTV-1、CCTV-13 报道“混天绫”三层联动柔性机械臂': 'CCTV-1 & CCTV-13 Feature the "Huntianling" Three-Layer Tendon Continuum Arm',
+  '中央电视台综合频道与新闻频道以“首创三层联动结构设计”为题，专题报道了混天绫柔性机械臂在狭小腔体内弯曲伸展并完成原位检测的全过程......': 'CCTV-1 and CCTV-13 broadcast a special report on our pioneering three-layer coupled continuum arm navigating tight bends and performing in-situ NDT inspection...',
+  '通过江苏省特种设备检验研究院台架中试，良品率 95%': 'Passed JSSEI Special Equipment Institute Pilot Test with 95% Yield Rate',
+  '完成立罐测试 18 次、卧罐测试 21 次、连续弯折疲劳 20,000 次考核：轨迹动态响应 ≤100 ms、稳态误差 ≤1.8 mm、智能避障成功率 ≥95%......': 'Completed 18 vertical-tank tests, 21 horizontal-tank tests, and 20,000 continuous bending fatigue cycles: dynamic response ≤100 ms, steady error ≤1.8 mm, obstacle avoidance ≥95%...',
+  '作业中若突发断电或气源中断，机械臂会卡在腔体内部吗？': 'Will the robotic arm get stuck inside the cavity if power or air supply fails?',
+  '不会。混天绫具备“三层柔索+变刚度气囊”断电安全冗余，异常掉电时控制箱可一键释放气囊锁紧气压与柔索预紧力，使臂体瞬间恢复 62 N/m 柔顺状态，操作人员可轻松沿原检修口顺畅回抽取出。': 'No. Huntianling features a fail-safe redundancy: upon power or pressure loss, the control box releases airbag pressure and tendon pre-tension in milliseconds, returning the arm to its 62 N/m compliant state for effortless manual withdrawal.',
+  '末端接口能否搭载我们现有的超声、涡流或压痕残余应力探头？': 'Can the tip interface carry our existing ultrasonic, eddy-current, or residual-stress probes?',
+  '完全支持。臂体预留 1–3 路传感器通道与标准机电快换法兰，末端负载达 5.2–6.0 kg，兼容主流相控阵超声（PAUT）、压入能量差法残余应力测头、双光谱内窥及电动夹爪。': 'Yes. The arm provides 1–3 internal sensor conduits and a standardized electro-mechanical quick-swap flange with 5.2–6.0 kg payload capacity, compatible with PAUT, eddy-current, indentation residual-stress probes, and grippers.',
+  '在高辐射、强腐蚀或全黑无地图金属腔体内能否稳定工作？': 'Can it operate reliably in high-radiation, corrosive, or pitch-black mapless metal cavities?',
+  '外部可选配耐辐照、耐酸碱氟橡胶防护套（已在秦山核电水合肼储罐验证）；算法采用无先验地图的局部安全梯度场避障，不依赖外部光学定位，全黑腔体避障成功率 ≥95%。': 'An optional radiation- and acid/alkali-resistant fluoroelastomer sheath (proven at Qinshan Nuclear Power Base) protects the arm, while mapless safety-gradient path planning achieves ≥95% obstacle avoidance in total darkness.',
+  '标准设备采购与驻场检测技术服务如何计费？交付周期多久？': 'What are the pricing options and lead times for equipment purchase vs. on-site inspection service?',
+  '标准成套设备 30–40 万元/台（交付周期 4–6 周，含 2 天实操培训与 12 个月质保）；若仅需单次或短期检修，可选择工程师携设备入场技术服务（单次定检 3000 元起，短期 4 万元/月，长期 2 万元/月）。': 'Standard turnkey systems cost 300k–400k RMB/set (4–6 weeks lead time, including 2-day training & 12-month warranty). On-site engineer inspection service starts from 3,000 RMB/visit (or 20k–40k RMB/month).',
+  '中国 · 江苏省南京市': 'Nanjing, Jiangsu, China',
+  '南京市江苏装备产业园（1200 ㎡ 研发与制造基地）': 'Jiangsu Equipment Industrial Park, Nanjing (1,200 ㎡ R&D & Manufacturing Base)',
+  '24 小时技术与商务热线': '24/7 Technical & Sales Hotline',
+  '给我留言 / 获取报价': 'Leave a Message / Request Quote',
+  '提交留言（发送邮件）': 'Send Inquiry (Email)',
+  '复制留言单（发微信）': 'Copy Inquiry (Clipboard)',
+  '在线咨询': 'Inquiry',
+  '服务热线': 'Hotline',
+  '规格书': 'Datasheet',
+  '返回顶部': 'Top',
+  '一键拨号': 'Call Now',
+  '在线留言': 'Message',
+  '获取该机型报价 / 预约样机': 'Request Quote / Book Demo',
+  '导出 / 打印 PDF 规格书': 'Export / Print PDF Datasheet',
+  '获取报价 / 预约样机演示': 'Request Quote / Book Prototype Demo',
+  '立即提交询盘': 'Submit Inquiry Now',
+  '复制询盘内容': 'Copy Inquiry Text'
+};
+
+const I18N_PH = {
+  '请输入关键字（如：核电 / 08 / 精度）': 'Search keywords (e.g. Nuclear / 08 / Precision)',
+  '您的姓名 / 职称 *': 'Your Name / Title *',
+  '联系电话 / 微信 *': 'Phone / WeChat / Email *',
+  '所属单位 / 企业名称': 'Company / Organization',
+  '请简述留言内容或现场工况（如：检修口孔径、探测纵深、需搭载的探头或期望样机演示时间）...': 'Describe your port diameter, cavity depth, required NDT probes, or preferred demo schedule...',
+  '请简述检修口尺寸、腔体深度或期望演示时间...': 'Describe port diameter, cavity depth, or preferred demo date...'
+};
+
+window.__LANG = 'zh';
+(function(){
+  const trackedNodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+  let n;
+  while((n = walker.nextNode())){
+    if(!n.parentElement) continue;
+    const tag = n.parentElement.tagName;
+    if(tag === 'SCRIPT' || tag === 'STYLE') continue;
+    const raw = n.nodeValue;
+    const trimmed = raw.trim();
+    if(trimmed && I18N_DICT[trimmed] !== undefined){
+      n.__zh = raw;
+      n.__en = raw.replace(trimmed, I18N_DICT[trimmed]);
+      trackedNodes.push(n);
+    }
+  }
+  const trackedInputs = [];
+  document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+    const ph = el.getAttribute('placeholder');
+    if(I18N_PH[ph]){
+      el.__zhPh = ph;
+      el.__enPh = I18N_PH[ph];
+      trackedInputs.push(el);
+    }
+  });
+
+  window.setSiteLang = function(lang){
+    window.__LANG = lang === 'en' ? 'en' : 'zh';
+    const isEn = window.__LANG === 'en';
+    document.documentElement.lang = isEn ? 'en' : 'zh-CN';
+    const bZh = document.getElementById('btnLangZh');
+    const bEn = document.getElementById('btnLangEn');
+    if(bZh) bZh.classList.toggle('active', !isEn);
+    if(bEn) bEn.classList.toggle('active', isEn);
+
+    trackedNodes.forEach(node => { node.nodeValue = isEn ? node.__en : node.__zh; });
+    trackedInputs.forEach(el => { el.setAttribute('placeholder', isEn ? el.__enPh : el.__zhPh); });
+    if(window.__updateCfg) window.__updateCfg();
+    localStorage.setItem('jn_site_lang', window.__LANG);
+    showToast(isEn ? 'Switched to English Mode' : '已切换为中文模式');
+  };
+
+  const savedLang = localStorage.getItem('jn_site_lang');
+  if(savedLang === 'en') window.setSiteLang('en');
+})();
+</script>
+</body>
+</html>
